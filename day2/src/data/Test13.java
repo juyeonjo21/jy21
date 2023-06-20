@@ -17,8 +17,6 @@ public class Test13 {
 		System.out.println(freeCount);
 		System.out.println(totalPrice);
 		
-		
-		
 	}
 
 }
