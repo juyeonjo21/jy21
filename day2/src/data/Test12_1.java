@@ -14,7 +14,6 @@ public class Test12_1 {
 		
 		System.out.println(eventCount);
 		System.out.println(freeCount);
-
+		
 	}
-
 }
