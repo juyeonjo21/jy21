@@ -23,7 +23,7 @@ public class Test05 {
 		
 		
 		int fine; 
-		int overSpeed;
+		int overFine;
 		int limitSpeed = 50; //규정속도 50km
 		int plusFine = 10000; //초과 벌금
 		
@@ -31,16 +31,16 @@ public class Test05 {
 		
 		if(speed > limitSpeed ) {
 			fine = 30000;
-			overSpeed= (speed - limitSpeed) *plusFine / 10; 
+			overFine= (speed - limitSpeed) *plusFine / 10; 
 			
-			int total = fine + overSpeed;
+			int total = fine + overFine;
 			
 			System.out.print("벌금은 총 " + total + "원 입니다. ");
 		}
 		
 		else {
 			fine = 0;
-			overSpeed = 0;
+			overFine = 0;
 			System.out.print("벌금 없음.");
 		}
 		
