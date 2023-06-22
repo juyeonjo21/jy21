@@ -2,7 +2,7 @@ package input;
 
 import java.util.Scanner;
 
-public class Test03 {
+public class Test03_1 {
 	public static void main(String[] args) {
 		//사용자에게 다음 정보를 입력받아 '총점(tot)'과 '평균(avg)'을 구하여 출력
 		//국어점수(kor)
@@ -12,11 +12,9 @@ public class Test03 {
 		//입력
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("국어점수 입력 : ");
+		
 		int kor = sc.nextInt();
-		System.out.println("영어점수 입력 : ");
 		int eng = sc.nextInt();
-		System.out.println("수학점수 입력 : ");
 		int mat = sc.nextInt();
 		
 		sc.close();
