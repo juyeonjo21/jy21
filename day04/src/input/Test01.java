@@ -11,7 +11,7 @@ public class Test01 {
 		//콘솔 창에 입력하는 문자 or 숫자를 아스키코드로 입력함
 		int a = System.in.read(); 
 		System.out.println("a = " + a );
-		
+		 
 	}
 
 }
