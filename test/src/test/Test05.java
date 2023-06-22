@@ -30,7 +30,7 @@ public class Test05 {
 		
 		if(speed > 50 ) {
 			fine = 30000;
-			over = ((speed / 10 ) -5 ) *plusFine; // 10km초과당 +10000원
+			over = (speed -50 / 10 ) *plusFine; // 10km초과당 +10000원
 		}
 		
 		else {
