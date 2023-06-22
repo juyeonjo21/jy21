@@ -22,7 +22,7 @@ public class Test01 {
 		System.out.println(a);
 		System.out.println(b);
 		
-		System.out.println((int)a); 
+		System.out.println((int)a); //char 'a'에 해당하는 문자의 수를 표현(H-72)
 		
 		int c = b;  //문자 <-> 숫자 서로 상호 호환이 가능하다
 		System.out.println(c); //캐릭터의 글자를 숫자로(코드) 출력
