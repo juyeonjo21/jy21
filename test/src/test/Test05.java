@@ -25,11 +25,12 @@ public class Test05 {
 		int fine;
 		int over;
 		int plusFine = 10000;
+	
 
 		
 		if(speed > 50 ) {
 			fine = 30000;
-			over = (speed / 10 - 5) *plusFine; // 10km초과당 +10000원
+			over = ((speed / 10 ) -5 ) *plusFine; // 10km초과당 +10000원
 		}
 		
 		else {
@@ -41,7 +42,7 @@ public class Test05 {
 		
 		
 		System.out.print("벌금은 총 " + total + "원 입니다. ");
-		System.out.println( "\n * " + "10km 초과당 추가 벌금은 " + "10000" + "원"+ " * "  );
+		System.out.print( "\n* " + "10km 초과당 추가 벌금은 " + "10000" + "원"+ " * "  );
 		
 	}
 
