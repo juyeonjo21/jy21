@@ -9,11 +9,11 @@ public class Test04_1 {
 		//입력
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("인원 수 :  ");
+		System.out.print("인원 수 :  ");
 		int people = sc.nextInt();
-		System.out.println("여행예정(월): ");
+		System.out.print("여행예정(월): ");
 		int month = sc.nextInt();
-		System.out.println("여행기간(일): ");
+		System.out.print("여행기간(일): ");
 		int days = sc.nextInt();
 		
 		sc.close();
@@ -40,10 +40,10 @@ public class Test04_1 {
 		int discount = total * rate / 100; //할인 금액
 		int result = total - discount; //최종 경비
 
-		System.out.print("예상 경비  " + result + "원");
-		System.out.print("할인율 : " + rate + "%" );
-		System.out.print("할인 금액 : "+ discount + "원" );
-		System.out.print("최종 경비 : " + result + "원");
+		System.out.println("예상 경비 :  " + result + "원");
+		System.out.println("할인율 : " + rate + "%" );
+		System.out.println("할인 금액 : "+ discount + "원" );
+		System.out.println("최종 경비 : " + result + "원");
 		
 		
 		
