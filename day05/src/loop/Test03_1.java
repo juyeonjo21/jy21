@@ -6,7 +6,7 @@ public class Test03_1 {
 
 		//불규칙적인 수를 출력할 때
 		
-		for(int i = 1; i <= 100; i ++) {
+		for(int i = 1; i <= 99; i ++) {
 			if(i % 2 != 0 ) { //i가 홀수면
 			System.out.println(i);
 			//조건은 커버리지 확인은 디버그
