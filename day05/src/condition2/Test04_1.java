@@ -40,7 +40,7 @@ public class Test04_1 {
 		int discount = total * rate / 100; //할인 금액
 		int result = total - discount; //최종 경비
 
-		System.out.println("예상 경비 :  " + result + "원");
+		System.out.println("\n예상 경비 :  " + result + "원");
 		System.out.println("할인율 : " + rate + "%" );
 		System.out.println("할인 금액 : "+ discount + "원" );
 		System.out.println("최종 경비 : " + result + "원");
