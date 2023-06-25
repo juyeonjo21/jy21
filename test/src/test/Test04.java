@@ -7,8 +7,8 @@ public class Test04 {
 			for(int i = 0; i <= 99; i ++ ) {
 				if(i  % 10 ==5 || i / 10 ==5 ) { 
 				System.out.println(i);
+				
 				}
 			}
 		}
-	}	
-	
+}
