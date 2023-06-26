@@ -19,7 +19,6 @@ public class Test10 {
 			int hour = sc.nextInt();
 			System.out.print( "분 : ");
 			int minute = sc.nextInt();
-			//System.out.println(hour + " 시간 " + minute + " 분 " );
 			totalH += hour ;   //시간 누적
 			totalM += minute ;  //분단위 누적
 		
@@ -27,6 +26,7 @@ public class Test10 {
 		sc.close();
 		
 		    int total = totalH * 60 + totalM ; 
+		    System.out.println(total);
 		    int totalTime = total / 60 ;  //총 시간
 		    int totalMin = total % 60 ;  //총 분
 		    
@@ -35,6 +35,7 @@ public class Test10 {
 		    int averageM = average % 60 ;  //총 평균 분
 		    
 		
+		    
 	System.out.println("총 공부 시간 : " + totalTime + " 시간 " + totalMin + " 분 " );
 	System.out.println("일 평균 공부 시간 : " + averageH + " 시간 " + averageM + " 분 " );
 	
