@@ -10,7 +10,10 @@ public class Test10_2 {
 
 		int total = 0;
 		
-		for(int i = 0; i < 5; i++ ) {
+		System.out.println("일 수 입력 : ");
+		int day = sc.nextInt();
+		
+		for(int i = 0; i < 5; i++ ) { 
 			System.out.print( "공부한 시간 / 분 : ");
 			int hour = sc.nextInt();
 			int minute = sc.nextInt();
