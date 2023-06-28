@@ -9,7 +9,7 @@ public class Test09 {
 		//[1] 1~45 숫자들의 각자 나온 횟수 출력
 		Random r = new Random();
 		
-		int[] countList = new int[45]; //변수 6개를 대신하는 것
+		int[] countList = new int[45]; //변수를 대신하는 것
 
 
 		for(int i = 0; i < 1000; i++ ) {
