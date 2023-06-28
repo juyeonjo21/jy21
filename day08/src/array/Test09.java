@@ -5,7 +5,8 @@ import java.util.Random;
 public class Test09 {
 
 	public static void main(String[] args) {
-		//[Q] 로또 문제 1000번 추첨 / 1~45 몇번 나왔느냐 / 가장 많이 나온 번호 찾기
+		//[Q] 로또 문제 1000번 추첨 
+		//[1] 1~45 숫자들의 각자 나온 횟수 출력
 		Random r = new Random();
 		
 		int[] countList = new int[45]; //변수 6개를 대신하는 것
