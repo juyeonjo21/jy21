@@ -16,15 +16,15 @@ public class Test14 {
 			for(int i = 0; i < data.length; i ++) {
 			    int randomIndex = r.nextInt(data.length); //배열 위치
 			    
-			    int arr = data[i];
+			    int card = data[i];
 			    data[i] = data[randomIndex];
-			    data[randomIndex] = arr;
+			    data[randomIndex] = card;
 			
-			    System.out.println("카드넘버 : " + data[i]);
+			    System.out.println("카드넘버 : " + data[i] );
 			    System.out.println("섞인 위치 : " + randomIndex); 
 			    
 			}
-		        System.out.println("랜덤 카드 : " + Arrays.toString(data)); 
+		        System.out.println("랜덤 카드 배열 : " + Arrays.toString(data)); 
 			}
 		}
 
