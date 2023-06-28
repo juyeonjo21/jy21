@@ -8,6 +8,7 @@ public class Test07 {
 		String[] names = new String[5];
 		
 		Scanner sc = new Scanner(System.in);
+	
 		
 		for(int i = 0; i < names.length; i++) {
 		System.out.println("나라 이름 입력 " );
