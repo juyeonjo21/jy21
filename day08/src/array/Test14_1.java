@@ -20,7 +20,7 @@ public class Test14_1 {
 		int index = r.nextInt(data.length);
 		
 		if(i ==  index ) { //같은 자리가 나왔다면
-			i--;
+			i--; //무효화시킨다
 			continue;
 		}
 		
