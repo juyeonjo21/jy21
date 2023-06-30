@@ -1,4 +1,4 @@
-package oop.test4;
+package oop.method2;
 
 public class Test01 {
 	public static void main(String[] args) {
@@ -31,8 +31,6 @@ public class Test01 {
 		System.out.println("구분 : " + a1.season );
 		System.out.println("금메달 수 : " + a1.gold );
 		System.out.println("은메달 수 : " + a1.silver);
-		System.out.println("동메달 수 : " + a1.bronze );
-
 		
 		
 		System.out.println("선수 이름 : " +a2.name );
@@ -47,7 +45,6 @@ public class Test01 {
 		System.out.println("종목 : " + a3.event );
 		System.out.println("구분 : " + a3.season );
 		System.out.println("금메달 수 : " + a3.gold );
-		System.out.println("동메달 수 : " + a3.silver );
 		System.out.println("동메달 수 : " + a3.bronze );
 		
 	
