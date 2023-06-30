@@ -42,13 +42,12 @@ public class Student {
 		System.out.println("< 학생 성적 정보 >");
 		System.out.println(this.level + " 학년 "  + this.group + " 반 " + " 이름 : " + this.name );
 		System.out.println("국어 : " + this.korean + " 영어 : " + this.english + " 수학 : " + this.math);
-		System.out.println("총점 : "  + " 점");
-		System.out.println("평균 : "  + " 점");
+		System.out.println("총점 : "  + this.getTotal() +  " 점");
+		System.out.println("평균 : "  + this.getAverage() + " 점");
 		
-		int total = this.getTotal();  //*위에 겟토탈 메소드를 만들어뒀으니 불러와서 쉽게 쓸 수 있다.
+		//int total = this.getTotal();  //*위에 겟토탈 메소드를 만들어뒀으니 불러와서 쉽게 쓸 수 있다.
 		System.out.println("총점 : " + this.getTotal() + "점");
-		
-		float average = this.getAverage();
+		//float average = this.getAverage();
 		System.out.println("평균 : " + this.getAverage() + "점");
 	
        if(this.getPass()) {
@@ -56,11 +55,8 @@ public class Student {
        }
        else {
     	   System.out.println("재평가 대상 ");
-       }
+           }
 	
-		System.out.println();
-	
-
 		}
 	}
 	
