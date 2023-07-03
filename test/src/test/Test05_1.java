@@ -7,14 +7,16 @@ public class Test05_1 {
 		for(int i = 1; i <=99; i ++) {
 			int ten = i / 10;
 			int one = i % 10;
-		if(ten == 3 || ten == 6 || ten == 9) {
+		if(ten == 3 || ten == 6 || ten == 9 ) {
 			System.out.println(i);
 		}
-		else if(one ==3 || one == 6 || one == 9) {
+		else if(one == 3 || one == 6 || one ==9 ) {
 			System.out.println(i);
-			
-			}
 		}
+		else {			
+		}
+		
 	}
+}
 }
 

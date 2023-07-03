@@ -20,6 +20,7 @@ public class Test03_3 {
 
 	
 
+		 
 		
 		System.out.println(data[0][0]);
 		System.out.println(data[0][1]);
