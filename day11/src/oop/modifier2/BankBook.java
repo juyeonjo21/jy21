@@ -35,7 +35,7 @@ public class BankBook {
 		return total;
 	}
 	public void setTotal(int total) {
-		
+	if(total > 0)
 		this.total = total;
 	}
 	
