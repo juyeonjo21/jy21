@@ -1,4 +1,4 @@
-package oop.modifier2;
+package oop.modifier2_1;
 
 public class BankBook {
 	private String name; //이름
