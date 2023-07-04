@@ -6,6 +6,6 @@ package oop.keyword3;
 public class Calculator {
 	//static 키워드가 붙은 메소드는 객체 생성 없이도 호출 가능(메모리 고정)
 	public static int plus(int left, int right) {
-		return left + right; //[1]번의 해결법
+		return left + right; //[2] 해결법
 	}
 }
