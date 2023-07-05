@@ -2,54 +2,53 @@ package oop.total1;
 
 public class Time {
 //종합문제 - 시간 관리
-	
-	private int hour;
-	private int min;
-	private int sec;
-	
-	public int getHour() {
-		return hour;
-	}
-	public void setHour(int hour) {
-		this.hour = hour;
-	}
-	public int getMin() {
-		return min;
-	}
-	public void setMin(int minute) {
-		this.min = min;
-	}
-	public int getSec() {
-		return sec;
-	}
-	public void setSec(int sec) {
-		this.sec = sec;
-	}
-	public int getTotalTime() {
-		return (hour * 60) + (min * 60) + sec;
-	}
-	
-	
-	
-	public Time(int hour, int min, int sec) {
-		this.hour = hour;
-		this.min = min;
-		this.sec = sec;
-	}
-	public Time(int min, int sec) {
-		this.min = min;
-		this.sec = sec;
-	}
-	public Time( int sec) {
-		this.sec = sec;
-	
-	}
-	
-	
-	
-	public void show() {
-		System.out.println( this.getTotalTime() + " 초");
-	}
-	}
-	
+	//필드 - 시간을 초로 저장할 수 있는 필드 1개만 구현
+		private long value;
 
+		//필드에 대한 Setter/Getter
+		public void setValue(long value) {
+			if(value < 0L) return;
+			this.value = value;
+		}
+		public long getValue() {
+			return value;
+		}
+
+		//생성자
+		//[1] 시간/분/초를 설정할 수 있는 생성자
+		public Time(long hour, long minute, long second) {
+			long total = hour * 60 * 60 + minute * 60 + second;
+			this.setValue(total);
+		}
+		//[2] 분/초를 설정할 수 있는 생성자
+		public Time(long minute, long second) {
+			long total = minute * 60 + second;
+			this.setValue(total);
+		}
+		//[3] 초를 설정할 수 있는 생성자
+		public Time(long second) {
+			this.setValue(second);
+		}
+
+		//가상의 Getter 메소드
+		public long getHour() {
+			return this.value / 60 / 60;
+		}
+		public long getMinute() {
+			return this.value / 60 % 60;
+		}
+		public long getSecond() {
+			return this.value % 60;
+		}
+
+		public void show() {
+			System.out.print(this.getHour());
+			System.out.print("시간 ");
+			System.out.print(this.getMinute());
+			System.out.print("분 ");
+			System.out.print(this.getSecond());
+			System.out.println("초");
+		}
+
+	}
+	
