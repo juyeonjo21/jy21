@@ -9,7 +9,7 @@ public class Browser {
 		return URL;
 	}
 	public void setURL(String uRL) {
-		URL = uRL;
+		URL = URL;
 	}
 	public void refresh() {
 		System.out.println("새로고침");
