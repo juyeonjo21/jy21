@@ -1,6 +1,6 @@
 package oop.inherit8;
 
-public class Test02 {
+public class Test03 {
 	public static void main(String[] args) {
 
 		
