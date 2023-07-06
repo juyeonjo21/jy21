@@ -5,7 +5,8 @@ public class Test01 {
 		
 		int type = 2;
 		int action = 1;
-
+		
+		//NoteBook note book  = 맥북객체 or 갤럭시북객체;
 		NoteBook notebook;
 		if(type == 1) {
 			notebook = new MacBook(); //맥북 -> 노트북 (업캐스팅)
