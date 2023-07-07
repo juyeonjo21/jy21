@@ -12,12 +12,22 @@ public class Test04 {
 		//-> 모든 검사를 통과했다면, '닉네임 설정이 완료되었습니다' 라는 메세지 출력
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("닉네임 : ");
-		String name = sc.next();
+		System.out.println("닉네임 입력 : ");
+		String nickname = sc.next();
 		
-		if(name.length() >=2 && name.length() <= 10) {
-			System.out.println();
+		boolean a = nickname.length() >= 2 && nickname.length() <= 10;
+		
+		
+		if(a == false) {
+			System.out.println("닉네임은 2글자 이상, 10글자 이하여야 합니다.");
 		}
-		 
+		else if(nickname.contains("운영자")) {
+			System.out.println("닉네임엔 '운영자'라는 단어는 사용 불가합니다.");
+		}
+		else {
+			System.out.println("닉네임 설정이 완료되었습니다.");
+		}
+	
+		  //이렇게 하면 안 해도 되는 것 까지 실행되어서 느려짐. 조건은 if문에 넣는 게 좋음.
 	}
 }
