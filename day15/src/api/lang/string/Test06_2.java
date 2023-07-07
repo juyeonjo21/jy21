@@ -29,11 +29,11 @@ public class Test06_2 {
 		//[1] 3글자인지 판정
 		//[2] 이어지는지 판정
 		boolean a =  user.length() == 3;
-		boolean b = user.charAt(2) == user.charAt(2);
+		boolean b = user.charAt(2) == user.charAt(0);
 		
 		if( a && b ) {
 			System.out.println("합격!");
-			text = user;
+			text = user; //제시어 교체
 		}
 		else {
 			System.out.println("게임오버!");
