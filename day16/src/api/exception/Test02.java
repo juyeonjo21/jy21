@@ -3,7 +3,7 @@ package api.exception;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Test01 {
+public class Test02 {
 
 	public static void main(String[] args) {
 		//예외(Exception) 처리 구문

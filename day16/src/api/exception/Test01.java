@@ -2,7 +2,7 @@ package api.exception;
 
 import java.util.Scanner;
 
-public class Test02 {
+public class Test01 {
 
 	public static void main(String[] args) {
 		//예외(Exception)
