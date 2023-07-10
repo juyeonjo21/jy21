@@ -5,7 +5,7 @@ public class Test05 {
 	public static void main(String[] args) {
 		//Integer 클래스
 		//= Wrapper 클래스(감싸다) - 총 8종류
-		//= int와 관련된 여러 기능들ㅇ르 제공하는 클래스
+		//= int와 관련된 여러 기능들을 제공하는 클래스
 		//= int를 객체 형태로 사용하도록 만들어주는 클래스
 		
 		//생성 - Java 9 이후부터 비추천 처리
