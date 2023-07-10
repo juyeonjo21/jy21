@@ -1,7 +1,9 @@
 package api.lang.string2;
 
 
-public class Member {
+public class Member01 {
+	//[Q] 회원가입 과제 문제 풀이
+	//필드 - 데이터 5개
 		private String memberId;
 		private String memberPw;
 		private String memberName;
@@ -42,7 +44,7 @@ public class Member {
 		}
 
 		public void setMemberName(String memberName) {
-			String regex = "^[가-힣]{2,7}$";
+			String regex = "^[가-힣]{2,7}$"; 
 			if(memberName.matches(regex)) {
 			this.memberName = memberName;
 			}
@@ -56,8 +58,7 @@ public class Member {
 		}
 
 		public void setMemberLevel(String memberLevel) { //기본값-일반회원
-			if(memberLevel.equals("관리자")|| memberLevel.equals("우수회원")	
-					|| memberLevel.equals("일반회원")) {
+			if(memberLevel.equals("^관리자|우수회원|일반회원$")){ //이렇게 if문 안에 식 넣어도 됨.
 				this.memberLevel = memberLevel;
 		}
 	}
@@ -73,11 +74,12 @@ public class Member {
 
 		public String getMaskingPw() {
 			String star = "*";
-			return memberPw.charAt(0)+ star.repeat(memberPw.length() - 1);
+			return this.memberPw.charAt(0)+ star.repeat(memberPw.length() - 1);
+			//return this.memberPw.substring(0,2)+ "*".repeat(memberPw.length() - 1);
 		}	
 
-		public Member(String memberId, String memberPw, String memberName,	
-										String memberLevel, int memberPoint ) {
+		//생성자
+		public Member01(String memberId, String memberPw, String memberName ) {
 			this.setMemberId(memberId);
 			this.setMemberPw(memberPw);
 			this.setMemberName(memberName);
@@ -89,11 +91,11 @@ public class Member {
 		public void show() {
 			System.out.println();
 			System.out.println("<회원 정보>");
-			System.out.println("회원 ID : " + this.getMemberId());
+			System.out.println("회원 ID : " + this.memberId);
 			System.out.println("비밀번호 : " + this.getMaskingPw());
-			System.out.println("회원 이름 : " + this.getMemberName());
-			System.out.println("회원 등급 : " + this.getMemberLevel());
-			System.out.println("회원 포인트 : " + this.getMemberPoint());
+			System.out.println("회원 이름 : " + this.memberName);
+			System.out.println("회원 등급 : " + this.memberLevel);
+			System.out.println("회원 포인트 : " + this.memberPoint);
 		}
 
 	}

@@ -2,7 +2,7 @@ package api.lang.string2;
 
 import java.util.Scanner;
 
-public class Test07 {
+public class Test07_1 {
 	public static void main(String[] args) {
 		//회원가입 프로그램
 		//'Member'라는 클래스를 만들고 다음 정보를 보관할 수 있도록 구현합니다.
@@ -22,11 +22,8 @@ public class Test07 {
 
 		sc.close();
 
-		Member a = new Member(memberId, memberPw, memberName, "일반회원" , 100);
-		a.setMemberId(memberId);
-		a.setMemberPw(memberPw);
-		a.setMemberName(memberName);
-
+		Member01 a = new Member01 (memberId, memberPw, memberName);
+	
 
 		a.show();
 
