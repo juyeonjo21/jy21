@@ -1,15 +1,21 @@
 package api.exception;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Test02 {
+public class Test01 {
 
 	public static void main(String[] args) {
-		//예외(Exception)
-		//- 실행 중 발생하는 돌발상황
+		//예외(Exception) 처리 구문
+//		try {           //기본 규칙
+//			플랜 A 코드
+//		}
+//		catch{
+//			플랜 B 코드
+//		}
 		
-		//ex) 1/n 계산기
 		
+		try { //플랜A
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("금액 : " );
@@ -25,12 +31,18 @@ public class Test02 {
 		
 		System.out.println("1인당 내야할 금액은 " + price + " 원 입니다.");
 		System.out.println(remain + " 원은 저희가 지원해 드려요! ");
+		}
+		catch(ArithmeticException e ){
+			//플랜 B-1. 인원수를 0을 입력했을 때
+			System.err.println("인원수는 0일 수 없습니다.");
+		}
+		catch(InputMismatchException e ){
+			//플랜 B-2. 입력을 잘못 했을 때
+			System.err.println("입력을 숫자로 해야 합니다.");
+		}
 		
-		//오류 발생 상황 예시
-		//[1]인원수를 0으로 했을 때
-		//[2]문자열 입력 시
-		//[3]실수 입력 시
-		//[4]엄청 큰 숫자 입력 시
+		
+	
 	}
 
 }
