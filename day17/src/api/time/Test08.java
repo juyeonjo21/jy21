@@ -52,6 +52,7 @@ public class Test08 {
 		System.out.println(period.getYears()); //0년 남음
 		System.out.println(period.getMonths()); //4개월 남음
 		System.out.println(period.getDays()); // 0년 4개월 18일 남음
+		
 	}
 
 }
