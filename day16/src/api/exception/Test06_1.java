@@ -14,8 +14,10 @@ public class Test06_1 {
 		String input = sc.next();
 		sc.close();
 		
-//		if(!input.^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2]{2})$)
-		
+		if(input.matches("^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2])$") == false) { //형식에 맞지 않으면
+			throw new Exception("시간 형식이 맞지 않습니다"); //정규표현식 
+		}
+
 		
 		int currentYear = LocalDate.now().getYear();
 		int currentMonth = LocalDate.now().getMonthValue();
@@ -24,7 +26,7 @@ public class Test06_1 {
 		String[] part = input.split("-"); //-를 구분자(delimiter)로 하여 분해(자르기)
 		int year = Integer.parseInt(part[0]);
 		int month = Integer.parseInt(part[1]);
-		if(year > currentYear || (year == currentYear && month > currentMonth )) {
+		if(year > currentYear || (year == currentYear && month > currentMonth )) { //미래의 년/월 이라면 
 			throw new Exception("미래의 시간은 입력할 수 없습니다.");
 		}
 		if(year < 1900) { //연도가 1900 미만이라면
