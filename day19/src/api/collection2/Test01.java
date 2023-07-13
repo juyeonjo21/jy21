@@ -8,7 +8,7 @@ public class Test01 {
 	public static void main(String[] args) {
 		//비선형 구조
 		
-		//Set
+		//Set 
 		//= 중복이 발생할 수 없는 구조
 		//= 트리 구조면 TreeSet, 해시 구조면 HashSet
 		
