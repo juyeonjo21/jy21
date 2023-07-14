@@ -28,7 +28,7 @@ public class Test03_2 {
 			stream.write(f);
 			count++;
 			double percent = count * 100d / total;
-			System.out.println();
+			System.out.println(count + "/" + total + "("+ fmt.format(percent)+ "%)");
 
 			
 		}
