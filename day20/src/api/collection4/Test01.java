@@ -5,7 +5,7 @@ import java.util.Stack;
 public class Test01 {
 	public static void main(String[] args) {
 		//이용방법이 정해져 있는 저장소
-		
+		//stack -> 이력을 관리하는데에 최적화
 		Stack<String> stack = new Stack<>();
 		
 		//추가
