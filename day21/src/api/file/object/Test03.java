@@ -1,39 +1,34 @@
 package api.file.object;
 
-import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.TreeSet;
+import java.io.ObjectInputStream;
+import java.util.Date;
 
 public class Test03 {
-	public static void main(String[] args) throws IOException {
-		//[Q] 이번주 로또번호를 예상한 결과를 'sample/lotto.kh' 파일에 객체 출력
-		//랜덤 출력
-		Random r = new Random();
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+		//객체입력
 		
-		Set<Integer> lotto = new TreeSet<>();
+		//준비물
+		File target = new File("sample/object.kh");
 		
-		while(lotto.size() < 6 ) {
-		int number = r.nextInt(45)+1;
+		FileInputStream stream = new FileInputStream(target);
+		BufferedInputStream buffer = new BufferedInputStream(stream);
+		ObjectInputStream obj = new ObjectInputStream(buffer);
 
-		}
-	
-		File target = new File("sample/lotto.kh");
+//		ObjectInputStream obj = new ObjectInputStream(
+//				new BufferedInputStream(new FileInputStream(target)));
 		
-		FileOutputStream stream = new FileOutputStream(target);
-		BufferedOutputStream buffer = new BufferedOutputStream(stream);
-		ObjectOutputStream obj = new ObjectOutputStream(buffer);
+//		애초에 ObjectOutputStream은 아무거나(Object) 저장하도록 되어있다.
+//		= 따라서 저장된 객체를 불러오면 당연히 Object 형태로 보관중
+//		= 실제 저장한 형태는 개발자가 알고 있을 것이므로 '다운캐스팅'하여 사용
+		Date d = (Date) obj.readObject(); //-> 저장 시각 표시
+		System.out.println("d = " + d);
 		
-
-		obj.writeObject(lotto);
-		
+		//정리
 		obj.close();
-		
 	}
 
 }
