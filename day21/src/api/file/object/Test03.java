@@ -21,7 +21,6 @@ public class Test03 {
 		while(lotto.size() < 6 ) {
 		int number = r.nextInt(45)+1;
 
-		lotto.add(number);
 		}
 	
 		File target = new File("sample/lotto.kh");
