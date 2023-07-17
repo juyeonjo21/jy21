@@ -19,7 +19,7 @@ public class Test02_1 {
 		Set<Integer> lotto = new TreeSet<>();
 		
 		while(lotto.size() < 6 ) {
-		int number = r.nextInt(45)+1;
+		lotto.add(r.nextInt(45) + 1 );
 
 		}
 	
