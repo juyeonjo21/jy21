@@ -16,5 +16,3 @@ SELECT * FROM product WHERE made = (SELECT max(made) FROM product);
 --[Q] 가격이 가장 저렴한 책 정보
 SELECT * FROM book WHERE book_price = (SELECT min(book_price) FROM book); 
 
--- 가격이 비싼 순서로 3개만 조회
---SELECT * FROM book WHERE book_price = (SELECT max(book_price) FROM book); 
