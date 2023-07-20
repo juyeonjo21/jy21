@@ -117,3 +117,49 @@ SELECT * FROM product WHERE
 made BETWEEN
 to_date('2020-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')
 AND to_date('2020-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss');
+
+
+--[Q] 여름(6,7,8)월에 생산한 제품 조회 
+SELECT * FROM product WHERE to_char(made, 'mm') IN ('06','07','08');
+SELECT * FROM product WHERE extract(MONTH FROM made) BETWEEN 6 AND 8;
+
+--[Q] 2019년 하반기에 생산한 상품 정보 조회
+--[1]
+SELECT * FROM product WHERE to_char(made, 'yyyy-mm') IN('2019-07','2019-08','2019-09','2019-10',
+'2019-11','2019-12');
+--[2]
+SELECT * FROM product WHERE extract(YEAR FROM made) = 2019
+AND EXTRACT(MONTH FROM made) BETWEEN 7 AND 12;
+--[3]
+SELECT * FROM product WHERE
+made BETWEEN
+to_date('2019-07-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+AND to_date('2019-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss');
+
+--[Q] 2020년부터 현재까지 생산한 상품 정보 조회
+-- sysdate는 굳이 to_date() 안 쓰고 바로 써도 됨.
+SELECT * FROM product WHERE
+made BETWEEN
+to_date('2020-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+AND sysdate;
+
+--[Q] 최근 1년간 생산한 상품 정보 조회
+-- 오라클 날짜는 기본 계산 단위가 (일)이다
+-- 따라서 1년 전은 'sysdate - 365' 이다.
+SELECT * FROM product WHERE
+made BETWEEN sysdate - 365 AND sysdate;
+
+--(응용) 시간까지 고려(시작일 00시부터 종료일 23시59분까지)
+-- 자바에선 문자열 더하기(+)쓰지만, 오라클은 (or)연산을 쓴다.
+SELECT * FROM product WHERE
+made BETWEEN 
+to_date(
+to_char(sysdate - 365, 'yyyy-mm-dd') || ' ' || '00:00:00',
+'yyyy-mm-dd hh24:mi:ss'
+)
+AND
+to_date(
+to_char(sysdate,'yyyy-mm-dd') || ' ' || '23:59:59',
+'yyyy-mm-dd hh24:mi:ss'
+);
+
