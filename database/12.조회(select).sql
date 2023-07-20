@@ -163,3 +163,56 @@ to_char(sysdate,'yyyy-mm-dd') || ' ' || '23:59:59',
 'yyyy-mm-dd hh24:mi:ss'
 );
 
+-----------------------------------------------------------------------------
+-- 정렬(Order)
+-----------------------------------------------------------------------------
+-- 모든 조회가 끝나고 나온 결과를 원하는 목적에 따라 재배열
+-- asc(오름차순, ascending) / desc(내림차순, descending)
+
+-- 정렬을 따로 지정하지 않겠다(비추천) -> 순번이 오락가락 나올지도
+SELECT * FROM product;
+
+SELECT * FROM product ORDER BY NO;
+SELECT * FROM product ORDER BY NO ASC;
+SELECT * FROM product ORDER BY NO DESC;
+
+--2차 정렬 (가격순이되, 같은 가격이면 순번 순서대로 정렬해라)
+SELECT * FROM product ORDER BY price DESC, NO ASC;
+
+--[Q] 최근에 제조된 상품부터 출력
+SELECT * FROM product ORDER BY made DESC;
+-- 번호가 시퀀스라면 아래 코드도 가능
+--SELECT * FROM product ORDER BY NO DESC;
+
+--[Q] 폐기일이 오래된 상품부터 출력
+SELECT * FROM product ORDER BY expire ASC;
+
+--[Q] 이름순으로 출력(이름순/ 혹시 이름이 같으면 번호순)
+SELECT * FROM product ORDER BY name ASC;
+SELECT * FROM product ORDER BY name ASC, NO ASC;
+
+--[Q] 상품을 종류별로 가격이 비싼 순으로 출력
+SELECT * FROM product ORDER BY TYPE ASC, price DESC;
+SELECT * FROM product ORDER BY TYPE ASC, price DESC, NO ASC;
+
+--[Q] 유통기한이 가장 짧은 상품부터 출력 (+1 해줘야 함.) (*식에 괄호 안 써도 무방)
+SELECT * FROM product ORDER BY(expire - made +1) ASC; 
+SELECT * FROM product ORDER BY expire - made +1 ASC, NO ASC; 
+
+-- 유통기한 표시(별칭까지 붙이기 "유통기한" 쌍따옴표 생략이 좋음(단, 띄어쓰기 없다면.))
+SELECT NO, name, TYPE, price, made, expire, expire - made+1 유통기한
+FROM product
+ORDER BY expire - made+1 ASC, NO ASC;
+
+-- .*(와일드카드)
+SELECT
+ product.*, expire-made+1 유통기한 
+FROM product 
+ORDER BY 유통기한 ASC, NO ASC; 
+
+-- 테이블에도 별칭 부여 가능
+SELECT
+ p.*, expire-made+1 유통기한 
+FROM product p 
+ORDER BY 유통기한 ASC, NO ASC; 
+
