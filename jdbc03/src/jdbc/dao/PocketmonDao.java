@@ -19,7 +19,7 @@ public class PocketmonDao {
 		
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		jdbcTemplate.update(sql,data);
-	}*/
+	}*/ 
 
 	//바람직한 형태의 등록 메소드
 	public void insert(PocketmonDto dto) {

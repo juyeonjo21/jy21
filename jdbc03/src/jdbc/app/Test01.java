@@ -20,7 +20,7 @@ public class Test01 {
 		//처리
 		PocketmonDao dao = new PocketmonDao();
 		//dao.insert(no, name, type);
-		dao.insert(dto);
+		dao.insert(dto); 
 		
 		System.out.println("등록 완료!");
 	}
