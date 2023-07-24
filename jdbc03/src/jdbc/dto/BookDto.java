@@ -7,7 +7,7 @@ public class BookDto {
 	private int id;
 	private String title;
 	private String author;
-	private Date publication;
+	private String publication;
 	private double price;
 	private String publisher;
 	private int pageCount;
@@ -39,10 +39,10 @@ public class BookDto {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public Date getPublication() {
+	public String getPublication() {
 		return publication;
 	}
-	public void setPublication(Date publication) {
+	public void setPublication(String publication) {
 		this.publication = publication;
 	}
 	public double getPrice() {
