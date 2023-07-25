@@ -35,7 +35,7 @@ public class MemberDao {
 		
 		return result > 0;
 	}
-	//회원정보 변겨ㅑㅇ
+	//회원정보 변경
 	public boolean updateMemberInfo(MemberDto dto) {
 		String sql = "update member set  member_nickname=?, member_contact=?,"
 				+ " member_birth=?, member_email=? where member_id=?";
@@ -47,5 +47,14 @@ public class MemberDao {
 		int result = jdbcTemplate.update(sql,data);
 		
 		return result > 0;
+	}
+	//회원 탈퇴
+	public boolean delete(String id) {
+		String sql = "delete Member where member_id=?";
+		Object[] data = {id};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.update(sql,data) > 0;
+		
 	}
 }

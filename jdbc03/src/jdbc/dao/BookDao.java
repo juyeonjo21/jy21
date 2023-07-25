@@ -39,4 +39,12 @@ public class BookDao {
 		
 		return result >0;
 	}
+	//도서 삭제
+	public boolean delete(int id) {
+		String sql = "delete book where book_id=?";
+		Object[] data = {id};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.update(sql,data) > 0;
+		
+	}
 }
