@@ -75,7 +75,14 @@ public class BoardDao {
 		Object[] data = {begin, end};
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper, data);
+	}
+	//상세 조회
+	public BoardDto selectOne(int no) {
+		String sql = "select * from board where board_no=?";
+		Object[] data = {no};
 		
-		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		List<BoardDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 }
