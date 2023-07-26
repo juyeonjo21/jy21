@@ -5,19 +5,19 @@ import java.util.Random;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController//애노테이션(Annotation) - 역할 정의
 public class QuizController {
 	Random r = new Random();
 	
 	@RequestMapping ("/dice")
-		public int dice() {
+		public String dice() {
 		int dice = r.nextInt(6)+1;
-			return dice;
+			return "주사위 : " + dice;
 		}
 	@RequestMapping ("/lotto")
-	public int lotto() {
+	public String lotto() {
 	int lotto = r.nextInt(45)+1;
-		return lotto;
+		return "로또 번호 : " + lotto;
 	}
 }
-	
+	 
