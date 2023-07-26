@@ -84,6 +84,16 @@ public class MemberDao {
 		
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper, data);
-				
+	}
+	//상세조회
+	public MemberDto selectOne(String id) {
+		String sql = "select * from Member where member_id=?";
+		Object[] data = {id};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		List<MemberDto> list = jdbcTemplate.query(sql, mapper, data);
+		
+		return list.isEmpty() ? null : list.get(0);
+		
 	}
 }
