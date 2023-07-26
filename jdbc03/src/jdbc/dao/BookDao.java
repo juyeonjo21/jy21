@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.BookDto;
+import jdbc.dto.PocketmonDto;
 import jdbc.mapper.BookMapper;
 import jdbc.util.JdbcUtils;
 
@@ -58,5 +59,16 @@ public class BookDao {
 		
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper);
+	}
+	//기본키를 이용한 상세조회 구현
+	
+	public BookDto selectOne(int id) {
+		String sql = "select * from Book where book_id=?";
+		Object[] data = {id};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		List<BookDto> list = jdbcTemplate.query(sql, mapper,data);
+		
+		return list.isEmpty() ? null : list.get(0);
 	}
 }
