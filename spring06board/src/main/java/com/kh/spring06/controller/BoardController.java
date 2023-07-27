@@ -19,7 +19,18 @@ public class BoardController {
 			@ModelAttribute BoardDto dto) {
 		dao.insert(dto);
 		return "게시글 등록 완료!";
+	}
+	@RequestMapping("/update")
+	public String update(@ModelAttribute BoardDto dto) {
+		boolean result = dao.update(dto);
 		
+		//if(dao.update(dto))
+		if(result) {
+			return "게시글 정보 변경 완료";
+		}
+		else {
+			return "게시글이 존재하지 않습니다";
+		}
 	}
 
 }
