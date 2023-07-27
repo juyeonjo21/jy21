@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kh.spring05.dto.PocketmonDao;
+import com.kh.spring05.dao.PocketmonDao;
 import com.kh.spring05.dto.PocketmonDto;
 
 @RestController //등록하고

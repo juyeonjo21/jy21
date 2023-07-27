@@ -1,8 +1,10 @@
-package com.kh.spring05.dto;
+package com.kh.spring05.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.kh.spring05.dto.PocketmonDto;
 
 // DAO 클래스
 // = Spring에 등록해야됨
