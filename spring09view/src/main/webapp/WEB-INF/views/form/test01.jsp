@@ -21,7 +21,7 @@
 	1.전송할 주소 - form에 작성
 	2.전송할 데이터의 이름 - input에 작성
 	 -->
-	 <form action="http://www.google.com">
+	 <form action="http://localhost:8080/insert">
 		 번호 : <input name="no"> <br><br>
 		 이름 : <input name="name"> <br><br>
 		 속성 : <input name="type"> <br><br>
