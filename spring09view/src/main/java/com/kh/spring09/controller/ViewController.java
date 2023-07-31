@@ -31,4 +31,8 @@ public class ViewController {
 	public String login() {
 		return "/WEB-INF/views/login.jsp";
 	}
+	@RequestMapping("/dummy")
+	public String dummy() {
+		return "/WEB-INF/views/dummy.jsp";
+	}
 }
