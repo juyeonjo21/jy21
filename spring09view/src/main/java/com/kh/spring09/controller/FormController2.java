@@ -19,4 +19,5 @@ public class FormController2 {
 	public String test03() {
 		return "/WEB-INF/views/form2/test03.jsp";
 	}
+	
 }
