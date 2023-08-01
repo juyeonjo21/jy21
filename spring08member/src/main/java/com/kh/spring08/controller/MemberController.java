@@ -13,6 +13,7 @@ import com.kh.spring08.dao.MemberDao;
 import com.kh.spring08.dto.MemberDto;
 
 @RestController
+@RequestMapping("/member") //공용주소
 public class MemberController {
 	@Autowired
 	private MemberDao dao;
