@@ -1,0 +1,14 @@
+package com.kh.spring09.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+//@RestController//데이터반환
+@Controller//화면을반환
+@RequestMapping("/form2")
+public class FormController2 {
+	@RequestMapping("/test01")
+	public String terst01() {
+		return "/WEB-INF/views/form2/test01.jsp";
+	}
+}
