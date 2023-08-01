@@ -97,14 +97,15 @@ public class MemberController {
 	
 	//회원은 탈퇴시에도 비밀번호를 검사해야 한다
 	@RequestMapping("/exit")
-	public String exit(@RequestAttribute MemberDto inputDto) {
+	public String exit(@ModelAttribute MemberDto inputDto) {
 		MemberDto originDto = dao.selectOne(inputDto.getId());
 		if(originDto == null) {
 			return "아이디 없음";
 		}
-		if(originDto.getPw().equals(inputDto.getPw())==false) {
-			return "비밀번호 불일치";
+		if(originDto.getPw().equals(inputDto.getPw()) == false) {
+			return "비밀번호 맞지 않음";
 		}
+		
 		dao.delete(inputDto.getId());
 		return "안녕히가세요";
 	}
