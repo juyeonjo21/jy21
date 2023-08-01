@@ -21,7 +21,7 @@ public class MemberController {
 	//등록
 	@RequestMapping("/join")
 	public String join(@ModelAttribute MemberDto dto) {
-		return "회원 정보 등록 완료!";
+		return "회원가입 완료!";
 	}
 	//목록
 	//테스트주소 http://localhost:8080/member/list
