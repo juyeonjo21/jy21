@@ -40,6 +40,7 @@
 		<h1>존재하지 않는 도서입니다.</h1>
 		</c:otherwise>
 	</c:choose>
+	<a href="list">목록보기</a>
 	
 </body>
 </html>
