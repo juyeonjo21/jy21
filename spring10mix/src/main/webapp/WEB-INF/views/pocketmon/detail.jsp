@@ -24,5 +24,8 @@
 		</c:otherwise>
 	</c:choose>
 	
+<!--  <a href="/pocketmon/list">목록보기</a> -->
+	  <a href="detail?no=${dto.no}">상대</a>
+	
 </body>
 </html>
