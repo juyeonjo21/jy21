@@ -23,6 +23,7 @@
 		<h1>게시글이 존재하지 않습니다.</h1>
 		</c:otherwise>
 	</c:choose>
+	<a href="list">목록보기</a>
 
 </body>
 </html>
