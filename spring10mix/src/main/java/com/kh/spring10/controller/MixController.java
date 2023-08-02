@@ -1,12 +1,13 @@
 package com.kh.spring10.controller;
 
-import java.time.LocalDate;
 import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kh.spring10.dto.PocketmonDto;
 
 @Controller
 public class MixController {
@@ -46,5 +47,17 @@ public class MixController {
 		model.addAttribute("age", age);
 		model.addAttribute("price", price);
 		return "/WEB-INF/views/test02.jsp";
+	}
+	
+	@RequestMapping("/test03")
+	public String test03(Model model) {
+		PocketmonDto dto = new PocketmonDto();
+		dto.setNo(1);
+		dto.setName("피카츄");
+		dto.setType("전기");
+		
+		model.addAttribute("dto", dto);
+		
+		return "/WEB-INF/views/test03.jsp";
 	}
 }
