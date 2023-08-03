@@ -20,7 +20,7 @@
 		<h1>속성 : ${dto.type}</h1>
 		
 		<a href="edit?no=${dto.no}">정보수정</a>
-		
+		<a href="delete?no=${dto.no}">삭제하기</a>
 		
 		</c:when>
 		<c:otherwise>
