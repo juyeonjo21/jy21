@@ -18,11 +18,15 @@
 		<h1>내용 : ${dto.content}</h1>
 		<h1>작성자 : ${dto.writer}</h1>
 		<h1>조회수 : ${dto.readcount}</h1>
+		
 		</c:when>
 		<c:otherwise>
 		<h1>게시글이 존재하지 않습니다.</h1>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${dto!=null}">
+	<h2><a href="edit?no=${dto.no}">수정하기</a></h2>
+	</c:if>
 	<a href="list">목록보기</a>
 
 </body>

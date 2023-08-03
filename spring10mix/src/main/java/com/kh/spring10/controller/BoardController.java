@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,4 +48,22 @@ public class BoardController {
 		//방금 등록한 번호의 게시글 상세 페이지로 강제 이동!(redirect)
 		return "redirect:detail?no=" + no;
 	}
+	//수정
+	@GetMapping("/edit")
+	public String edit(@RequestParam int no, Model model) {
+		BoardDto dto = dao.selectOne(no);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/board/edit.jsp";
+	}
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute BoardDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {
+			return "redirect:detail?no=" + dto.getNo();
+		}
+		else {
+			return "redirect:에러페이지";
+		}
+	}
+	
 }
