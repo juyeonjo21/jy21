@@ -17,6 +17,7 @@
 		<th>판매가</th>
 		<th>페이지 수</th>
 		<th>장르</th>
+		<th>메뉴</th>
 	 </tr>
 	</thead>
 	
@@ -33,6 +34,10 @@
 		<td>${dto.price}</td>
 		<td>${dto.pageCount}</td>
 		<td>${dto.genre}</td>
+			<td>
+			<a href="delete?id=${dto.id}">삭제</a>
+			</td>
+			
 		
 		</tr>
 		</c:forEach>

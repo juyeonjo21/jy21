@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,5 +62,25 @@ public class BookController {
 			return "redirect:에러페이지";
 		}
 	}
-
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int id) {
+		boolean result = dao.delete(id);
+		if(result) {
+			return "redirect:list";
+		}
+		else {
+			return "redirect:에러페이지";
+		}
+	}
+	@RequestMapping("/delete/{id}")
+	public String delete2(@PathVariable int id) {
+		boolean result = dao.delete(id);
+		if(result) {
+			return "redirect:/book/list";
+		}
+		else {
+			return "redirect:에러페이지";
+		}
+	}
 }
+
