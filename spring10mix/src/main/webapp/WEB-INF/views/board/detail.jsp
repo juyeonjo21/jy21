@@ -26,6 +26,8 @@
 	</c:choose>
 	<c:if test="${dto!=null}">
 	<h2><a href="edit?no=${dto.no}">수정하기</a></h2>
+	<h2><a href="delete?no=${dto.no}">삭제하기</a></h2>
+	<h2><a href="delete/${dto.no}">삭제하기2</a></h2>
 	</c:if>
 	<a href="list">목록보기</a>
 
