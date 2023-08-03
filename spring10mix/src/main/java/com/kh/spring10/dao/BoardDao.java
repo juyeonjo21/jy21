@@ -19,16 +19,31 @@ public class BoardDao {
 	private BoardDetailMapper detailmapper;
 	
 	@Autowired
-	private BoardListMapper listmapper;
+	private BoardListMapper listMapper;
+
+	//등록과 번호 생성 가능
+	//select board_seq.nextval from dual
+	//insert into board(...)values(?,?,?,?,0)
+	public int sequence() {
+		String sql = "select board_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql,int.class);
+	//return jdbcTemplate.queryForObject(sql,integer.class);
+	}
 	
 	public void insert(BoardDto dto) {
-		String sql = "insert into board(board_no, board_title,"
-				+ " board_content, board_writer)"
-				+ "values(board_seq.nextval,?,?,?)";
-		Object[] data = {dto.getTitle(), dto.getContent(),dto.getWriter()};
-		
+		String sql = "insert into board("
+				+ "board_no, board_title, board_content,"
+				+ "board_writer, board_readcount"
+				+ ") values(?,?,?,?,0)";
+		Object[] data = {
+			dto.getNo(), dto.getTitle(), dto.getContent(),
+			dto.getWriter()
+		};
 		jdbcTemplate.update(sql,data);
 	}
+	
+	
+	
 	public boolean update(BoardDto dto) {
 		String sql = "update board "
 				+ "set board_title=?, board_content=?"
@@ -49,7 +64,7 @@ public class BoardDao {
 				+ "board_writer, board_readcount "
 				+ "from "
 				+ "board order by board_no desc";
-		return jdbcTemplate.query(sql, listmapper);
+		return jdbcTemplate.query(sql, listMapper);
 	}
 	public BoardDto selectOne(int no) {
 		String sql = "select * from board where board_no=?";
