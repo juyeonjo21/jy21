@@ -8,7 +8,7 @@
 	<thead>
 	 <tr>
 		<th>번호</th>
-		<th width="50%">도서명</th>
+		<th width="30%">도서명</th>
 		<th>저자</th>
 		<th>출간일</th>
 		<th>출판사</th>
