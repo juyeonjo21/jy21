@@ -45,6 +45,21 @@ public class BookController {
 		dao.insert(dto);
 		return "redirect:/book/list";
 	}
-	
+	@GetMapping("/edit")
+	public String edit(@RequestParam int id, Model model) {
+		BookDto dto = dao.selectOne(id);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/book/edit.jsp";
+	}
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute BookDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {
+			return "redirect:detail?id=" + dto.getId();
+		}
+		else {
+			return "redirect:에러페이지";
+		}
+	}
 
 }
