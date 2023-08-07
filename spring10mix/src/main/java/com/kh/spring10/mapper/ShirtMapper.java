@@ -17,6 +17,7 @@ public class ShirtMapper implements RowMapper<ShirtDto>{
 		dto.setShirtNo(rs.getInt("shirt_no"));
 		dto.setShirtName(rs.getString("shirt_name"));
 		dto.setShirtColor(rs.getString("shirt_color"));
+		dto.setShirtSize(rs.getNString("shirt_size"));
 		dto.setShirtPrice(rs.getInt("shirt_price"));
 		dto.setShirtKind(rs.getString("shirt_kind"));
 		dto.setShirtType(rs.getString("shirt_type"));

@@ -7,6 +7,7 @@ public class ShirtDto {
 	private int shirtNo;
 	private String shirtName;
 	private String shirtColor;
+	private String shirtSize;
 	private int shirtPrice;
 	private String shirtKind;
 	private String shirtType;

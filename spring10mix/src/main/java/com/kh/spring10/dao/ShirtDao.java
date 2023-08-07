@@ -25,12 +25,12 @@ public class ShirtDao {
 	//등록
 	public void insert(ShirtDto dto) {
 		String sql = "insert into shirt("
-				+ "shirt_no, shirt_name, shirt_color,"
+				+ "shirt_no, shirt_name, shirt_color, shirt_size, "
 				+ "shirt_price, shirt_kind, shirt_type,"
 				+ "shirt_material, shirt_stock"
-				+ ") values(?,?,?,?,?,?,?,?)";
+				+ ") values(?,?,?,?,?,?,?,?,?)";
 		Object[] data = {
-				dto.getShirtNo(), dto.getShirtName(),dto.getShirtColor(),
+				dto.getShirtNo(), dto.getShirtName(),dto.getShirtColor(), dto.getShirtSize(),
 				dto.getShirtPrice(), dto.getShirtKind(), dto.getShirtType(),
 				dto.getShirtMaterial(),dto.getShirtStock()
 		};
@@ -39,7 +39,7 @@ public class ShirtDao {
 	
 	//조회
 	public List<ShirtDto> selectList(){
-		String sql = "select shirt_no, shirt_name, shirt_color,"
+		String sql = "select shirt_no, shirt_name, shirt_color, shirt_size,"
 				+ "shirt_price, shirt_kind, shirt_type, shirt_material,"
 				+ "shirt_stock "
 				+ "from "
@@ -56,11 +56,11 @@ public class ShirtDao {
 	
 	//변경
 	public boolean update(ShirtDto dto) {
-		String sql = "update shirt set shirt_name=?, shirt_color=?,"
+		String sql = "update shirt set shirt_name=?, shirt_color=?, shirt_size=?, "
 				+ "shirt_price=?, shirt_kind=?, shirt_type=?,"
 				+ "shirt_material=?, shirt_stock=? where shirt_no=?";
 		Object[] data = {
-				 dto.getShirtName(), dto.getShirtColor(), dto.getShirtPrice(),
+				 dto.getShirtName(), dto.getShirtColor(), dto.getShirtSize(), dto.getShirtPrice(),
 				dto.getShirtKind(), dto.getShirtType(), dto.getShirtMaterial(),
 				dto.getShirtStock(),dto.getShirtNo()
 		};

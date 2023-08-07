@@ -16,6 +16,7 @@
 	<h1>${dto.shirtNo}번 상품정보</h1>
 	<h1>상품명 : ${dto.shirtName}</h1>
 	<h1>색상 : ${dto.shirtColor}</h1>
+	<h1>사이즈 : ${dto.shirtSize}</h1>
 	<h1>판매가 : ${dto.shirtPrice}원</h1>
 	<h1>상품종류 : ${dto.shirtKind}</h1>
 	<h1>상품유형 : ${dto.shirtType}</h1>

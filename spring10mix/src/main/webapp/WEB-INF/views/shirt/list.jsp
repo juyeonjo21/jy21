@@ -14,12 +14,13 @@
 	<h1>상품List</h1>
 	<a href="add"><button>상품등록</button></a><br><br>
 	
-	<table border="1" width="700">
+	<table border="1" width="60%">
 	<thead>
 	<tr>
 	<th bgcolor="#ffeaa7">번호</th>
 	<th>상품명</th>
 	<th>상품색상</th>
+	<th>사이즈</th>
 	<th>판매가</th>
 	<th>상품종류</th>
 	<th>상품유형</th>
@@ -37,6 +38,7 @@
 		<a href="detail?shirtNo=${dto.shirtNo}">${dto.shirtName}</a>
 		</td>
 		<td>${dto.shirtColor}</td>
+		<td>${dto.shirtSize}</td>
 		<td>${dto.shirtPrice}원</td>
 		<td>${dto.shirtKind}</td>
 		<td>${dto.shirtType}</td>
