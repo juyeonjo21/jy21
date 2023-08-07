@@ -64,7 +64,7 @@ public class ShirtDao {
 				dto.getShirtKind(), dto.getShirtType(), dto.getShirtMaterial(),
 				dto.getShirtStock(),dto.getShirtNo()
 		};
-		return jdbcTemplate.update(sql, data) > 0;
+		return jdbcTemplate.update(sql, data) > 0; 
 	}
 	//삭제
 	public boolean delete(int shirtNo) {
