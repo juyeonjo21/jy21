@@ -4,9 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import com.springhome.dto.MemberDto;
 
+@Component
 public class MemberMapper implements RowMapper<MemberDto> {
 
 	@Override
@@ -24,9 +26,7 @@ public class MemberMapper implements RowMapper<MemberDto> {
 		memberDto.setMemberPoint(rs.getInt("member_point"));
 		memberDto.setMemberJoin(rs.getDate("member_join"));
 		memberDto.setMemberLogin(rs.getDate("member_login"));
-		memberDto.setMemberChage(rs.getDate("member_change"));
+		memberDto.setMemberChange(rs.getDate("member_change"));
 		return memberDto;
 	}
-	
-
 }
