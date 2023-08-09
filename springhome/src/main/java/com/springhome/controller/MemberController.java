@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springhome.dao.MemberDao;
 import com.springhome.dto.MemberDto;
@@ -65,10 +66,14 @@ public class MemberController {
 		//boolean isCorrectPw = 입력한 비밀번호와 DB의 비밀번호가 같느냐
 		boolean isCorrectPw = inputDto.getMemberPw().equals(findDto.getMemberPw());
 		
-		//[3]비밀번호가 일치하면 메인페이지로 이동
+		//[3]비밀번호가 일치하면 메인페이지로 이동(로그인 성공)
 		if(isCorrectPw) {
+			//세션에 아이디 저장
 			session.setAttribute("name",inputDto.getMemberId());
-		return "redirect:/"; //절대경로 - 자동으로 초기페이지로 이동
+			//로그인시간 갱신
+			memberDao.updateMemberLogin(inputDto.getMemberId());
+			//메인페이지로 이동
+			return "redirect:/"; //절대경로 - 자동으로 초기페이지로 이동
 		}
 		//[4]비밀번호가 일치하지 않으면 로그인페이지로 이동
 	else {
@@ -93,4 +98,41 @@ public class MemberController {
 		model.addAttribute("memberDto", memberDto);
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
+	//비밀번호 변경
+	@GetMapping("/password")
+	public String password() {
+		return "/WEB-INF/views/member/password.jsp";
+	}
+	@PostMapping("/password")
+	public String password(HttpSession session,
+						@RequestParam String originPw,
+						@RequestParam String changePw) {
+		String memberId = (String) session.getAttribute("name"); //object로 꺼내기 위해 다운캐스팅
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		
+		//[1]기존 비밀번호가 일치하는지 판정
+		if(memberDto.getMemberPw().equals(originPw)) {//비밀번호가 일치한다면
+			//[2]1번이 성공일 때만 비밀번호를 변경하도록 처리(+개인정보 변경시각 수정(마지막 정보 변경일))
+			memberDao.updateMemberPw(memberId,changePw); //dto써도 무방(값이 1-2개일 때)
+			return "redirect:passwordFinish";
+		}
+		else {
+			return "redirect:password?error"; //비밀번호 입력이 틀렸습니다 - 다시 입력하세요
+		}
+	}
+	
+	@RequestMapping("/passwordFinish")
+	public String passwordFinish() {
+		return "/WEB-INF/views/member/passwordFinish.jsp";
+	}
 }
+
+
+
+
+
+
+
+
+
+
