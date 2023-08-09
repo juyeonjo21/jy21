@@ -135,7 +135,7 @@ public class MemberController {
 			model.addAttribute("memberDto", memberDto);
 			return "/WEB-INF/views/member/change.jsp";
 		}
-		//개인정보 변경
+		
 		@PostMapping("/change")
 		public String change(@ModelAttribute MemberDto inputDto,
 							HttpSession session){
@@ -150,17 +150,36 @@ public class MemberController {
 			else { //비밀번호가 일치하지 않는다면 - 다시 입력하도록 되돌려보냄
 				return "redirect:change?error";
 			}
+		}
+		
+		//회원탈퇴
+		@GetMapping("/exit")
+		public String exit() {
+			return "/WEB-INF/views/member/exit.jsp";
+		}
+		
+		@PostMapping("/exit")
+		public String exit(HttpSession session, @RequestParam String memberPw) {
+			String memberId = (String) session.getAttribute("name");
 			
+			MemberDto memberDto = memberDao.selectOne(memberId);
+			
+			if(memberDto.getMemberPw().equals(memberDto.getMemberPw())) {
+				//삭제
+				memberDao.delete(memberId);
+				//로그아웃
+				session.removeAttribute("name");//세션에서 name의 값을 삭제
+				//session.invalidate(); 세션소멸-비추천
+			return "redirect:exitFinish"; //탈퇴완료 페이지로 이동
 		}
+		//비밀번호가 일치하지 않으면
+	else {
+		return "redirect:exit?error"; //다시 탈퇴 페이지로
+	}	
+	}
+		@RequestMapping("/exitFinish")
+		public String exitFinish() {
+			return "/WEB-INF/views/member/exitFinish.jsp";
 		}
-
-
-
-
-
-
-
-
-
-
+}
 
