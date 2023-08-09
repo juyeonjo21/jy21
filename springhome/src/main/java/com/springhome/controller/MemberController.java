@@ -98,6 +98,7 @@ public class MemberController {
 		model.addAttribute("memberDto", memberDto);
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
+	
 	//비밀번호 변경
 	@GetMapping("/password")
 	public String password() {
@@ -125,7 +126,34 @@ public class MemberController {
 	public String passwordFinish() {
 		return "/WEB-INF/views/member/passwordFinish.jsp";
 	}
-}
+	
+	//개인정보 변경
+		@GetMapping("/change")
+		public String nickname(HttpSession session, Model model) {
+			String memberId = (String) session.getAttribute("name");
+			MemberDto memberDto = memberDao.selectOne(memberId);
+			model.addAttribute("memberDto", memberDto);
+			return "/WEB-INF/views/member/change.jsp";
+		}
+		//개인정보 변경
+		@PostMapping("/change")
+		public String change(@ModelAttribute MemberDto inputDto,
+							HttpSession session){
+			String memberId = (String) session.getAttribute("name");
+			//비밀번호 검사 후 변경 처리 요청
+			MemberDto findDto = memberDao.selectOne(memberId);
+			if(inputDto.getMemberPw().equals(findDto.getMemberPw())) { //비밀번호가 일치한다면
+				inputDto.setMemberId(memberId); //아이디를 설정하고
+				memberDao.updateMemberInfo(inputDto);//정보 변경 처리
+				return "redirect:mypage";
+			}
+			else { //비밀번호가 일치하지 않는다면 - 다시 입력하도록 되돌려보냄
+				return "redirect:change?error";
+			}
+			
+		}
+		}
+
 
 
 
