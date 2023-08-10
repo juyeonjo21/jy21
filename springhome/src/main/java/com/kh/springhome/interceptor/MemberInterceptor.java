@@ -28,7 +28,7 @@ public class MemberInterceptor implements HandlerInterceptor {
 		}
 		else { //비회원이면 - 차단+로그인 페이지로 redirect -> 수동으로 할 땐 response를 쓴다
 			//return "redirect:/member/login";
-			response.sendRedirect("/member/login");
+			//response.sendRedirect("/member/login");
 			
 			//[2]권한 없음 오류 발생
 			//response.sendError(401);

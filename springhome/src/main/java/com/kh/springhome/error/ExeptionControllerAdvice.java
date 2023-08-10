@@ -35,12 +35,12 @@ public class ExeptionControllerAdvice {
 	@ExceptionHandler(NoTargetException.class)
 	public String  noTarget(NoTargetException e) {
 		//e.printStackTrace();
-		return "/WEB-INF/views/arror/noTarget.jsp";
+		return "/WEB-INF/views/error/noTarget.jsp";
 	}
 	
 	@ExceptionHandler(AuthorityException.class)
 	public String authority(AuthorityException e) {
 		e.printStackTrace();
-		return "/WEB-INF/views/arror/authority.jsp";
+		return "/WEB-INF/views/error/authority.jsp";
 	}
 }
