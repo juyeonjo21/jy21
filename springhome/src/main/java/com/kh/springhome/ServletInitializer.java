@@ -1,4 +1,4 @@
-package com.springhome;
+package com.kh.springhome;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

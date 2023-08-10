@@ -1,4 +1,4 @@
-package com.springhome;
+package com.kh.springhome;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

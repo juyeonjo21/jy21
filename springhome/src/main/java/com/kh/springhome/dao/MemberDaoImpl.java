@@ -1,4 +1,4 @@
-package com.springhome.dao;
+package com.kh.springhome.dao;
 
 
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.springhome.dto.MemberDto;
-import com.springhome.mapper.MemberMapper;
+import com.kh.springhome.dto.MemberDto;
+import com.kh.springhome.mapper.MemberMapper;
 
 @Repository
 public class MemberDaoImpl implements MemberDao{

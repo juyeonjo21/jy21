@@ -1,4 +1,4 @@
-package com.springhome.dto;
+package com.kh.springhome.dto;
 
 import java.sql.Date;
 

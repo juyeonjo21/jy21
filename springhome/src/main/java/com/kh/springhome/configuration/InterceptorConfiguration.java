@@ -1,12 +1,12 @@
-package com.springhome.configuration;
+package com.kh.springhome.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.springhome.interceptor.MemberInterceptor;
-import com.springhome.interceptor.TestInterceptor;
+import com.kh.springhome.interceptor.MemberInterceptor;
+import com.kh.springhome.interceptor.TestInterceptor;
 
 /**
 	스프링에서 제공하는 설정파일

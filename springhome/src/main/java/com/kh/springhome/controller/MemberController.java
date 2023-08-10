@@ -1,4 +1,4 @@
-package com.springhome.controller;
+package com.kh.springhome.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.springhome.dao.MemberDao;
-import com.springhome.dto.MemberDto;
+import com.kh.springhome.dao.MemberDao;
+import com.kh.springhome.dto.MemberDto;
 
 //회원 관련 기능을 처리하는 컨트롤러
 @Controller

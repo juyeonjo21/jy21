@@ -1,4 +1,4 @@
-package com.springhome.mapper;
+package com.kh.springhome.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.springhome.dto.MemberDto;
+import com.kh.springhome.dto.MemberDto;
 
 @Component
 public class MemberMapper implements RowMapper<MemberDto> {
