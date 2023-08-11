@@ -50,11 +50,14 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 				);*/
 		registry.addInterceptor(memberInterceptor) //화이트리스트방식 - 내가 지정한 애들 빼고 다 안돼
 					.addPathPatterns("/member/**")
+					.addPathPatterns("/board/**")
 					.excludePathPatterns(
-							"/member/join",
-							"/member/joinFinish",
+							"/member/join*",
+//							"/member/joinFinish",
 							"/member/login",
-							"/member/exitFinish"
+							"/member/exitFinish",
+							"/board/detail",
+							"/board/list"
 						);
 	}
 }

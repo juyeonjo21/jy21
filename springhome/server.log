@@ -1,0 +1,32 @@
+2023-08-10 13:58:12.036  INFO 16824 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-RHOUNB1 with PID 16824 (C:\Users\juyeon\git\jy21\springhome\target\classes started by juyeon in C:\Users\juyeon\git\jy21\springhome)
+2023-08-10 13:58:12.036 DEBUG 16824 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Running with Spring Boot v2.7.14, Spring v5.3.29
+2023-08-10 13:58:12.036  INFO 16824 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-08-10 13:58:12.593  INFO 16824 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Started SpringhomeApplication in 0.59 seconds (JVM running for 289.898)
+2023-08-10 13:58:38.689  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : Starting LoggingTest3 using Java 17.0.7 on DESKTOP-RHOUNB1 with PID 14980 (started by juyeon in C:\Users\juyeon\git\jy21\springhome)
+2023-08-10 13:58:38.690 DEBUG 14980 --- [main] com.kh.springhome.LoggingTest3           : Running with Spring Boot v2.7.14, Spring v5.3.29
+2023-08-10 13:58:38.691  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : No active profile set, falling back to 1 default profile: "default"
+2023-08-10 13:58:41.781  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : Started LoggingTest3 in 3.388 seconds (JVM running for 4.216)
+2023-08-10 13:58:42.293  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : Hello!
+2023-08-10 13:58:42.294  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : a = 10
+2023-08-10 13:58:42.294  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : a = 10
+2023-08-10 13:58:42.295  INFO 14980 --- [main] com.kh.springhome.LoggingTest3           : 20 + 30 = 50
+2023-08-10 14:00:56.390[INFO ]Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-RHOUNB1 with PID 16824 (C:\Users\juyeon\git\jy21\springhome\target\classes started by juyeon in C:\Users\juyeon\git\jy21\springhome) - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:00:56.390[DEBUG]Running with Spring Boot v2.7.14, Spring v5.3.29 - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:00:56.390[INFO ]No active profile set, falling back to 1 default profile: "default" - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:00:56.931[INFO ]Started SpringhomeApplication in 0.565 seconds (JVM running for 454.235) - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:01:32.130[INFO ]Starting LoggingTest3 using Java 17.0.7 on DESKTOP-RHOUNB1 with PID 11252 (started by juyeon in C:\Users\juyeon\git\jy21\springhome) - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:32.131[DEBUG]Running with Spring Boot v2.7.14, Spring v5.3.29 - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:32.131[INFO ]No active profile set, falling back to 1 default profile: "default" - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:35.137[INFO ]Started LoggingTest3 in 3.328 seconds (JVM running for 4.16) - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:35.618[INFO ]Hello! - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:35.618[INFO ]a = 10 - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:35.618[INFO ]a = 10 - com.kh.springhome.LoggingTest3 
+2023-08-10 14:01:35.620[INFO ]20 + 30 = 50 - com.kh.springhome.LoggingTest3 
+2023-08-10 14:02:46.909[INFO ]Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-RHOUNB1 with PID 16824 (C:\Users\juyeon\git\jy21\springhome\target\classes started by juyeon in C:\Users\juyeon\git\jy21\springhome) - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:46.910[DEBUG]Running with Spring Boot v2.7.14, Spring v5.3.29 - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:46.910[INFO ]No active profile set, falling back to 1 default profile: "default" - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:47.374[INFO ]Started SpringhomeApplication in 0.485 seconds (JVM running for 564.68) - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:04:28.384[INFO ]Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-RHOUNB1 with PID 16824 (C:\Users\juyeon\git\jy21\springhome\target\classes started by juyeon in C:\Users\juyeon\git\jy21\springhome) - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:04:28.385[DEBUG]Running with Spring Boot v2.7.14, Spring v5.3.29 - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:04:28.385[INFO ]No active profile set, falling back to 1 default profile: "default" - com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:04:28.900[INFO ]Started SpringhomeApplication in 0.539 seconds (JVM running for 666.205) - com.kh.springhome.SpringhomeApplication 
