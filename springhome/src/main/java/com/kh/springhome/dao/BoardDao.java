@@ -11,5 +11,7 @@ public interface BoardDao {
 	int sequence();
 	boolean delete(int boardNo);
 	boolean update(BoardDto boardDto);
+	
 	boolean updateReadcount(int boardNo);
+	Integer selectMax(String boardWriter);
 }

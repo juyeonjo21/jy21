@@ -50,7 +50,13 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<BoardDto> selectList() {
-		String sql = "select * from board order by board_no desc";
+//		String sql = "select * from board order by board_no desc";
+		String sql = "select "
+				+ "board_no, board_writer,"
+				+ "board_title, board_content,"
+				+ "board_readcount, board_likecount, board_replycount,"
+				+ "board_utime, board_ctime "
+				+ "from board order by board_no desc";
 		return jdbcTemplate.query(sql, listMapper);
 	}
 
@@ -71,9 +77,19 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public boolean updateReadcount(int boardNo) {
-		String sql = "update board set board_readcount = board_readcount+1 where board_no=?";
+		String sql = "update board set "
+				+ "board_readcount = board_readcount+1 "
+				+ "where board_no=?";
 		Object[] data = {boardNo};
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	@Override
+	public Integer selectMax(String boardWriter) {
+		String sql = "select max(board_no) from board "
+				+ "where board_writer =?";
+		Object[] data = {boardWriter};
+		return jdbcTemplate.queryForObject(sql, Integer.class, data);
 	}
 	
 	}

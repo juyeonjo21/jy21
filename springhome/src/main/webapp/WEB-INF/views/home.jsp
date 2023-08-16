@@ -7,7 +7,15 @@
  --%>
 	<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 	
-	<h2>환영합니다!</h2>
-	<img src="https://i.namu.wiki/i/b-sFE8PoPjvprMcH-N2QeRt9QDhaAMnffnBAlrqr4xh-zyuct584VHBwcrA3gwsuoihuPjV6h0ZTxEAU4rNoGacm2EzxGCWUaaBfC7e7ioYLY09jodNq1NdfXQu9smQHwIHLIgNdfe1U1gW9r-IiQw.webp">
+	<style>
+
+body {
+    background-color: #8B4513;
+}
+</style>
+	
+	<h2>Now I am become Death, the destroyer of worlds.</h2>
+	<h4>나는 이제 죽음이요, 세상의 파괴자가 되었도다.</h4>
+	<img src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2023%2F06%2Fchristopher-nolans-oppenheimer-gets-a-green-light-in-the-us-01.jpg?cbr=1&q=90">
 		
 	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
