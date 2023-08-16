@@ -23,7 +23,7 @@ public class ShirtController {
 	private ShirtDao dao;
 	
 	//등록
-	@RequestMapping("/add")
+	@GetMapping("/add")
 	public String add() {
 		return "/WEB-INF/views/shirt/add.jsp";
 	}
