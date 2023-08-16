@@ -14,7 +14,7 @@
 	<h1>상품List</h1>
 	<a href="add"><button>상품등록</button></a><br><br>
 	
-	<table border="1" width="700">
+	<table border="1" width="60%">
 	<thead>
 	<tr>
 	<th bgcolor="#ffeaa7">번호</th>

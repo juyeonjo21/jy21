@@ -25,7 +25,7 @@ public class ShirtDao {
 	//등록
 	public void insert(ShirtDto dto) {
 		String sql = "insert into shirt("
-				+ "shirt_no, shirt_name, shirt_color,"
+				+ "shirt_no, shirt_name, shirt_color, "
 				+ "shirt_price, shirt_kind, shirt_type,"
 				+ "shirt_material, shirt_stock"
 				+ ") values(?,?,?,?,?,?,?,?)";
@@ -56,7 +56,7 @@ public class ShirtDao {
 	
 	//변경
 	public boolean update(ShirtDto dto) {
-		String sql = "update shirt set shirt_name=?, shirt_color=?,"
+		String sql = "update shirt set shirt_name=?, shirt_color=?, "
 				+ "shirt_price=?, shirt_kind=?, shirt_type=?,"
 				+ "shirt_material=?, shirt_stock=? where shirt_no=?";
 		Object[] data = {
@@ -64,7 +64,7 @@ public class ShirtDao {
 				dto.getShirtKind(), dto.getShirtType(), dto.getShirtMaterial(),
 				dto.getShirtStock(),dto.getShirtNo()
 		};
-		return jdbcTemplate.update(sql, data) > 0;
+		return jdbcTemplate.update(sql, data) > 0; 
 	}
 	//삭제
 	public boolean delete(int shirtNo) {

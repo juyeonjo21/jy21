@@ -7,7 +7,7 @@
 <title>의류 관리 시스템</title>
 </head>
 <body>
-	<h1>의류 관리 시스템</h1>
+		<h1>의류 관리 시스템</h1>
 	<form action="add" method="post">
 	상품이름 <input type="text" name="shirtName" required><br><br>
 	상품색상 <select style="background:#cccccc" name="shirtColor" required>
@@ -18,6 +18,7 @@
 			<option style="background:#FFCCFF" >레드</option>
 			<option style="background:#FFCCFF">블루</option>
 			</select><br><br>
+
 	판매가 <input name="shirtPrice"><br><br>
 	상품종류 <select style="background:#cccccc" name="shirtKind" required>
 			<option value="">선택</option>
@@ -35,10 +36,10 @@
 	판매수량 <input name="shirtStock" required><br><br>
 	<button>상품등록</button>
 	</form>
-	
+
 	<h2><a href="list">목록으로</a></h2>
 
-	
-	
+
+
 </body>
 </html>
