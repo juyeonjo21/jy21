@@ -11,7 +11,14 @@
 
 	<tr>
 		<th width="25%">작성자</th>
-		<td>${boardDto.boardWriter}</td>
+		<td>
+		${boardDto.boardWriterString}
+		
+		<%--탈퇴한 사용자가 아닌 경우 닉네임을 추가로 출력 --%>
+		<c:if test="${writerDto != null}">
+		(${writerDto.memberNickname})
+		</c:if>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="right">

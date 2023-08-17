@@ -80,16 +80,40 @@ public class BoardController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int boardNo, Model model) {
 		boardDao.updateReadcount(boardNo); //조회수 증가
+		
 		BoardDto boardDto = boardDao.selectOne(boardNo);//조회
 		model.addAttribute("boardDto", boardDto);
+		
+		//작성자의 회원정보 추가
+		String boardWriter = boardDto.getBoardWriter();
+		if(boardWriter != null){
+			MemberDto memberDto = memberDao.selectOne(boardWriter);
+			model.addAttribute("writerDto", memberDto);
+		}
 		return "/WEB-INF/views/board/detail.jsp";
 	}
 	
-	//목록
+	//목록 + 검색
+	//- 검색일 경우에는 type과 keyword라는 파라미터가 존재
+	//- 목록일 경우에는 type과 keyword라는 파라미터가 없음
+	//- 만약 불완전한 상태(type이나 keyword만 있는 경우) -> 목록으로 처리
 	@RequestMapping("/list")
-	public String list(Model model) {
+	public String list(Model model,
+			@RequestParam(required = false) String type,
+			@RequestParam(required = false) String keyword) {
+		boolean isSearch = type != null && keyword != null; //type과 keyword가 둘 다 있어야하니 null이 아니면 true
+		
+		if(isSearch) { //검색일 경우
+			List<BoardDto> list = boardDao.selectList(type,keyword);
+			model.addAttribute("list",list);
+			model.addAttribute("isSearch", true);
+		}
+		else { //목록일 경우
 		List<BoardDto> list = boardDao.selectList();
 		model.addAttribute("list", list);
+		model.addAttribute("isSearch", false);
+//		model.addAttribute("list",boardDao.selectList());
+		}
 		return "/WEB-INF/views/board/list.jsp";
 }
 	

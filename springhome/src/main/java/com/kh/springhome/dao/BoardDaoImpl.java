@@ -91,5 +91,35 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] data = {boardWriter};
 		return jdbcTemplate.queryForObject(sql, Integer.class, data);
 	}
+
+	//검색창 생성
+	@Override
+	public List<BoardDto> selectList(String type, String keyword) {
+		//한방에 처리하는 구문(추천)
+		String sql = "select * from board "
+				+ "where instr("+type+",?) > 0 " 
+				+ "order by board_no desc"; 
+	
+			Object[] data = {keyword};
+			return jdbcTemplate.query(sql, listMapper, data);
+	}
+//		String sql = "select * from board "
+//				+ "where instr(board_writer,?) > 0 " //type을 지정하느냐 홀더로 쓰느냐 구분해서 쓰는 구문
+//				+ "order by board_no desc";
+		//그냥 확실하게 if문으로(비추천-갯수만큼 써줘야 함)
+//		String sql;
+//		if(type.equals("board_title")) { //type이 제목인 경우
+//			sql = "select * from board "
+//					+ "where instr(board_title,?) > 0 " 
+//					+ "order by board_no desc"; 
+//		}
+//		else { //type이 작성자인 경우
+//			sql = "select * from board "
+//					+ "where instr(board_writer,?) > 0 " 
+//					+ "order by board_no desc"; 
+//		}
+//		Object[] data = {keyword};
+//		return jdbcTemplate.query(sql, listMapper, data);
+//	}
 	
 	}
