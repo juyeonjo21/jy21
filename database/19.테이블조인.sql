@@ -22,11 +22,6 @@ SELECT member_nickname, board.*
 FROM board LEFT OUTER JOIN MEMBER 
 ON MEMBER.member_id=board.board_writer;
 
---완성된 구문
-SELECT member_nickname, board.*
-FROM board LEFT OUTER JOIN MEMBER 
-ON MEMBER.member_id=board.board_writer;
-
 --완성된 구문을 view에 저장하는 코드 작성
 CREATE VIEW board_list 
 AS SELECT member_nickname, board.*
