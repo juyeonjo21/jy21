@@ -21,3 +21,26 @@ ON MEMBER.member_id=board.board_writer;
 SELECT member_nickname, board.*
 FROM board LEFT OUTER JOIN MEMBER 
 ON MEMBER.member_id=board.board_writer;
+
+--완성된 구문
+SELECT member_nickname, board.*
+FROM board LEFT OUTER JOIN MEMBER 
+ON MEMBER.member_id=board.board_writer;
+
+--완성된 구문을 view에 저장하는 코드 작성
+CREATE VIEW board_list 
+AS SELECT member_nickname, board.*
+FROM board LEFT OUTER JOIN MEMBER 
+ON MEMBER.member_id=board.board_writer;
+
+--board_content 빼고 저장
+CREATE OR replace VIEW board_list AS 
+SELECT member_nickname, board.BOARD_NO,
+board.BOARD_WRITER, board.BOARD_TITLE,
+board.BOARD_READCOUNT, board.BOARD_LIKECOUNT,
+board.BOARD_REPLYCOUNT,
+board.BOARD_CTIME, board.BOARD_UTIME
+FROM board LEFT OUTER JOIN MEMBER 
+ON MEMBER.member_id=board.board_writer;
+
+select * from board_list;
