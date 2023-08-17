@@ -25,3 +25,10 @@ board.BOARD_CTIME, board.BOARD_UTIME,
 board_group, board_parent, board_depth
 FROM board LEFT OUTER JOIN MEMBER 
 ON MEMBER.member_id=board.board_writer;
+
+
+--계층형 조회구문
+SELECT * FROM board_list
+CONNECT BY PRIOR board_no = board_parent
+START WITH board_parent IS NULL 
+ORDER siblings BY board_group DESC, board_no ASC;
