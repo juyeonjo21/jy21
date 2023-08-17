@@ -25,45 +25,64 @@
             <th>좋아요</th>
             <th>댓글수</th>
             <th>작성일</th>
+            <th>그룹</th>
+            <th>상위</th>
+            <th>차수</th>
         </tr>
     </thead>
     <tbody align="center">
-    <c:forEach var= "boardDto" items= "${list}">
+    <c:forEach var= "boardListDto" items= "${list}">
         <tr>
-            <td>${boardDto.boardNo}</td>
-            <td>${boardDto.getBoardWriterString()}</td>
+            <td>${boardListDto.boardNo}</td>
+            <td>${boardListDto.getBoardWriterString()}</td>
             <td align="left">
+            
+            <%-- for(int i=1; i <= 차수; i++){ --%>
+            <c:forEach var="i" begin="1" end="${boardListDto.boardDepth}" step="1">
+            &nbsp;&nbsp;
+            </c:forEach>
+            
+            <%--띄어쓰기 뒤에 화살표 표시 --%>
+            <c:if test="${boardListDto.boardDepth > 0}">
+            <img src="/images/reply.png" width="20" height="15">
+            </c:if>
+            
             <!-- 제목을 누르면 상세페이지로 이동 -->
-            <a href="detail?boardNo=${boardDto.boardNo}">
-            ${boardDto.boardTitle}
+            <a href="detail?boardNo=${boardListDto.boardNo}">
+            ${boardListDto.boardTitle}
             </a>
     
             <!--댓글이 있다면 개수를 표시 -->
-         	<c:if test="${boardDto.boardReplycount > 0}">
-            [%{boardDto.boardReplycount}]
+         	<c:if test="${boardListDto.boardReplycount > 0}">
+            [%{boardListDto.boardReplycount}]
             </c:if>
             </td>
             
             <%--사용자가 없으면 탈퇴한 사용자로 표시 --%>
            <%--
             <c:choose>
-            <c:when test = "${boardDto.boardWriter != null}">
-            	<td>${boardDto.boardWriter}</td>
+            <c:when test = "${boardListDto.boardWriter != null}">
+            	<td>${boardListDto.boardWriter}</td>
             </c:when>
             <c:otherwise>
             <td>(탈퇴한 사용자)</td>
             </c:otherwise>
             </c:choose>
              --%>
-
-            <td>${boardDto.boardReadcount}</td>
-            <td>${boardDto.boardLikecount}</td>
-            <td>${boardDto.boardReplycount}</td>
-            <td>${boardDto.boardCtimeString}</td>
+             
+            <td>${boardListDto.boardReadcount}</td>
+            <td>${boardListDto.boardLikecount}</td>
+            <td>${boardListDto.boardReplycount}</td>
+            <td>${boardListDto.boardCtimeString}</td>
+            <td>${boardListDto.boardGroup}</td>
+            <td>${boardListDto.boardParent}</td>
+            <td>${boardListDto.boardDepth}</td>
+            
         </tr>
     </c:forEach>
     </tbody>
     </table>
+    <br>
     
     <!-- 검색창 -->
     <form action="list" method="get">

@@ -3,7 +3,9 @@ package com.kh.springhome.controller;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.springhome.dao.BoardDao;
 import com.kh.springhome.dao.MemberDao;
 import com.kh.springhome.dto.BoardDto;
+import com.kh.springhome.dto.BoardListDto;
 import com.kh.springhome.dto.MemberDto;
 import com.kh.springhome.error.AuthorityException;
-import com.kh.springhome.error.NoTargetException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -78,9 +83,36 @@ public class BoardController {
 	}
 	//상세
 	@RequestMapping("/detail")
-	public String detail(@RequestParam int boardNo, Model model) {
-		boardDao.updateReadcount(boardNo); //조회수 증가
+	public String detail(@RequestParam int boardNo, Model model,
+							HttpSession session) {
 		
+//		조회수 중복 방지를 위한 마스터플랜
+//		1.세션에 History라는 이름의 항목을 추출
+//		2.없으면 생성, 있으면 추출
+//		3.지금 읽는 글 번호가 history에 존재하는지 확인
+//		4.없으면 추가하고 다시 세션에 저장
+//		
+//		Set<Integer> history;
+//		if(session.getAttribute("history") != null) { //있으면(1)
+//			history = (Set<Integer>) session.getAttribute("history");//(2)
+//		}
+//		else {//없으면(1)
+//			history = new HashSet<>();//(2)
+//		}
+//		
+//		boolean isRead = history.contains(boardNo); //=history에 boardNo가 있냐?
+//		
+//		if(isRead == false) {//읽은 적이 없으면(4)
+//			history.add(boardNo);//글 번호를 추가하고
+//			session.setAttribute("history", history);//session 갱신
+//		}
+//		log.debug("history = {}", history); //확인용 테스트 코드
+//		
+//		//조회수 중복 방지
+//		if(isRead == false) { //읽은 적이 없을 때만 증가 시켜라
+//		boardDao.updateReadcount(boardNo); //조회수 증가
+//		}
+//		
 		BoardDto boardDto = boardDao.selectOne(boardNo);//조회
 		model.addAttribute("boardDto", boardDto);
 		
@@ -104,12 +136,12 @@ public class BoardController {
 		boolean isSearch = type != null && keyword != null; //type과 keyword가 둘 다 있어야하니 null이 아니면 true
 		
 		if(isSearch) { //검색일 경우
-			List<BoardDto> list = boardDao.selectList(type,keyword);
+			List<BoardListDto> list = boardDao.selectList(type,keyword);
 			model.addAttribute("list",list);
 			model.addAttribute("isSearch", true);
 		}
 		else { //목록일 경우
-		List<BoardDto> list = boardDao.selectList();
+		List<BoardListDto> list = boardDao.selectList();
 		model.addAttribute("list", list);
 		model.addAttribute("isSearch", false);
 //		model.addAttribute("list",boardDao.selectList());

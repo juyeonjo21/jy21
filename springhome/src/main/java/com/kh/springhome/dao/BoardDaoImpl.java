@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.dto.BoardDto;
+import com.kh.springhome.dto.BoardListDto;
+import com.kh.springhome.mapper.BoardListMapper;
 import com.kh.springhome.mapper.BoardMapper;
 
 @Repository
@@ -19,7 +21,7 @@ public class BoardDaoImpl implements BoardDao {
 	private BoardMapper mapper;
 	
 	@Autowired
-	private BoardMapper listMapper;
+	private BoardListMapper listMapper;
 	
 	//시퀀스생성
 	public int sequence() {
@@ -49,14 +51,16 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardDto> selectList() {
+	public List<BoardListDto> selectList() {
+//		기존 조회 구문
 //		String sql = "select * from board order by board_no desc";
-		String sql = "select "
-				+ "board_no, board_writer,"
-				+ "board_title, board_content,"
-				+ "board_readcount, board_likecount, board_replycount,"
-				+ "board_utime, board_ctime "
-				+ "from board order by board_no desc";
+//		String sql = "select * from board_list order by board_no desc";
+		
+		//계층형 조회 구문
+	String sql = "select * from board_list "
+			+ "CONNECT BY PRIOR board_no=board_parent "
+			+ "start with board_parent is null "
+			+ "order siblings by board_group desc, board_no asc";
 		return jdbcTemplate.query(sql, listMapper);
 	}
 
@@ -94,16 +98,16 @@ public class BoardDaoImpl implements BoardDao {
 
 	//검색창 생성
 	@Override
-	public List<BoardDto> selectList(String type, String keyword) {
+	public List<BoardListDto> selectList(String type, String keyword) {
 		//한방에 처리하는 구문(추천)
-		String sql = "select * from board "
+		String sql = "select * from board_list "
 				+ "where instr("+type+",?) > 0 " 
 				+ "order by board_no desc"; 
 	
 			Object[] data = {keyword};
 			return jdbcTemplate.query(sql, listMapper, data);
 	}
-//		String sql = "select * from board "
+//		String sql = "select * from board_list "
 //				+ "where instr(board_writer,?) > 0 " //type을 지정하느냐 홀더로 쓰느냐 구분해서 쓰는 구문
 //				+ "order by board_no desc";
 		//그냥 확실하게 if문으로(비추천-갯수만큼 써줘야 함)
