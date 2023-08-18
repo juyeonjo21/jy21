@@ -84,6 +84,63 @@
     </table>
     <br>
     
+    <!-- 페이지 네비게이터 출력 -->
+    <h3>
+    
+    <!-- 이전 버튼 -->
+    <c:if test="${begin > 1}">
+    <%--링크는 검색과 목록을 따로 구현 --%>
+	<c:choose>
+	<c:when test="${isSearch}">
+	    <a href="list?page=${begin-1}&type=${param.type}&keyword=${param.keyword}">${begin-1}</a>
+	</c:when>
+	<c:otherwise>
+	<a href="list?page=${begin-1}">&lt;</a>
+	</c:otherwise>
+	</c:choose>
+    </c:if>
+    
+    <!-- 숫자 버튼 -->
+    <c:forEach var="i" begin="${begin}" end="${end}" step="1">
+    <%--현재페이지랑 i랑 같으면 현재페이지를 따로 표시할 수 있다(안 눌리게) --%>
+	<c:choose>
+	<c:when test="${page==i}">
+	${i}
+	</c:when>   
+	<c:otherwise>
+	<%--링크는 검색과 목록을 따로 구현 --%>
+	<c:choose>
+	<c:when test="${isSearch}">
+	    <a href="list?page=${i}&type=${param.type}&keyword=${param.keyword}">${i}</a>
+	</c:when>
+	<c:otherwise>
+	<a href="list?page=${i}">${i}</a>
+	</c:otherwise>
+	</c:choose>
+	</c:otherwise>
+	</c:choose> 
+    </c:forEach>
+    
+    
+    <!-- 다음 버튼 -->
+   <c:if test="${end < pageCount}">
+   <%-- 링크는 검색과 목록을 따로 구현 --%>
+	<c:choose>
+		<c:when test="${isSearch}">
+			<a href="list?page=${end+1}&type=${param.type}&keyword=${param.keyword}">&gt;</a>
+		</c:when>
+		<c:otherwise>
+			<a href="list?page=${end+1}">&gt;</a>
+		</c:otherwise>
+	</c:choose>			
+    </c:if>
+   
+    </h3>
+   
+   <br> 
+    
+    
+    
     <!-- 검색창 -->
     <form action="list" method="get">
     
@@ -106,6 +163,7 @@
     <input type="search" name="keyword" placeholder="검색어입력" value="${param.keyword}">
     
     <button>검색</button>
+
     </form>
     
 

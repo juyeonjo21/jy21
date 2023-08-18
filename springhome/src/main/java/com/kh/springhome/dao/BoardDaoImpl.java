@@ -11,6 +11,7 @@ import com.kh.springhome.dto.BoardListDto;
 import com.kh.springhome.mapper.BoardListMapper;
 import com.kh.springhome.mapper.BoardMapper;
 
+
 @Repository
 public class BoardDaoImpl implements BoardDao {
 	
@@ -104,8 +105,10 @@ public class BoardDaoImpl implements BoardDao {
 	public List<BoardListDto> selectList(String type, String keyword) {
 		//한방에 처리하는 구문(추천)
 		String sql = "select * from board_list "
-				+ "where instr("+type+",?) > 0 " 
-				+ "order by board_no desc"; 
+                + "where instr("+type+", ?) > 0 "
+                + "connect by prior board_no = board_parent "
+                + "start with board_parent is null "
+                + "order siblings by board_group desc, board_no asc";
 	
 			Object[] data = {keyword};
 			return jdbcTemplate.query(sql, listMapper, data);
@@ -128,5 +131,54 @@ public class BoardDaoImpl implements BoardDao {
 //		Object[] data = {keyword};
 //		return jdbcTemplate.query(sql, listMapper, data);
 //	}
-	
+
+	public List<BoardListDto> selectListByPage(int page) {
+		int end = page * 10;
+		int begin = end - 9;
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from("
+				+ "select * from board_list "
+				+ "CONNECT BY PRIOR board_no=board_parent "
+				+ "start with board_parent is null "
+				+ "order siblings by board_group desc, board_no asc"
+				+	")TMP"
+				+") where rn between ? and ?";
+		Object[] data = {begin, end};
+		return jdbcTemplate.query(sql, listMapper, data);
 	}
+
+	@Override
+	public List<BoardListDto> selectListByPage(String type, String keyword, int page) {
+		int begin = page * 10-9;
+		int end = page * 10;
+		 String sql = "select * from ("
+                 +"select rownum rn, TMP.* from("
+                 + "select * from board_list  "
+                 + "where instr("+type+",?)>0 " 
+                 + "connect by prior board_no=board_parent "
+                 + "start with board_parent is null "
+                 + "order siblings by board_group desc, board_no asc"
+                 +")TMP"
+                 +") where rn between ? and ?";
+		Object[] data = {keyword, begin, end};
+		return jdbcTemplate.query(sql, listMapper, data);
+	}
+
+	@Override
+	public int countList() {
+		String sql = "select count(*)from board"; //전체 갯수
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+
+	@Override
+	public int countList(String type, String keyword) { //목록 갯수
+		String sql = "select count(*)from board "
+				+ "where instr("+type+",?) > 0"; //(항목,값) - 항목은 홀더로 처리하지 않는다. 값은 홀더로 처리
+		Object[] data = {keyword};
+		return jdbcTemplate.queryForObject(sql, int.class,data);
+	}
+
+
+}
+

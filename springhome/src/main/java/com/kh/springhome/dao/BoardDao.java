@@ -18,4 +18,12 @@ public interface BoardDao {
 	//목록 처리 
 	List<BoardListDto> selectList();
 	List<BoardListDto> selectList(String type, String keyword);
+	
+	//페이징
+	List<BoardListDto> selectListByPage(int page);
+	List<BoardListDto> selectListByPage(String type, String keyword, int page);
+	
+	//갯수 구하는 명령
+	int countList();
+	int countList(String type, String keyword);
 }

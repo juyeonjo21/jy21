@@ -156,19 +156,34 @@ public class BoardController {
 	//- 검색일 경우에는 type과 keyword라는 파라미터가 존재
 	//- 목록일 경우에는 type과 keyword라는 파라미터가 없음
 	//- 만약 불완전한 상태(type이나 keyword만 있는 경우) -> 목록으로 처리
+	//(추가)페이징 관련 처리
 	@RequestMapping("/list")
 	public String list(Model model,
 			@RequestParam(required = false) String type,
-			@RequestParam(required = false) String keyword) {
+			@RequestParam(required = false) String keyword,
+			@RequestParam(required = false, defaultValue = "1") int page) {
 		boolean isSearch = type != null && keyword != null; //type과 keyword가 둘 다 있어야하니 null이 아니면 true
 		
+		//페이징과 관련된 값들을 계산하여 JSP로 전달
+		int begin = (page -1) / 10 * 10 +1;
+		int end = begin + 9;
+		//int count = 지금 상황에 해당하는 전체 데이터 갯수;
+		//int count = 목록갯수 or 검색 결과수;
+		int count = isSearch ?  boardDao.countList(type, keyword): boardDao.countList();
+		int pageCount = (count-1)/10+1; //10개씩 끊었을 때의 페이지가 넘어가는 식 // total = 131page
+		model.addAttribute("page",page);
+		model.addAttribute("begin",begin);
+		//end랑 pageCount 값을 비교 계산해서 마지막 페이지로는 더 적은 값을 써야한다.(페이지 더 안 넘어가게 하려면)
+		model.addAttribute("end",Math.min(pageCount, end));
+		model.addAttribute("pageCount", pageCount);
+		
 		if(isSearch) { //검색일 경우
-			List<BoardListDto> list = boardDao.selectList(type,keyword);
+			List<BoardListDto> list = boardDao.selectListByPage(type,keyword, page);
 			model.addAttribute("list",list);
 			model.addAttribute("isSearch", true);
 		}
 		else { //목록일 경우
-		List<BoardListDto> list = boardDao.selectList();
+		List<BoardListDto> list = boardDao.selectListByPage(page);
 		model.addAttribute("list", list);
 		model.addAttribute("isSearch", false);
 //		model.addAttribute("list",boardDao.selectList());
@@ -230,4 +245,5 @@ public class BoardController {
 			throw new AuthorityException();
 		}
 	}
+	
 }
