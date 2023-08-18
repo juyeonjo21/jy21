@@ -14,7 +14,7 @@
 <h3 align="center"><a href="write">글쓰기</a></h3>
 </c:if>
 
-<table border= "1"  width= "900">
+<table border= "1"  width= "1000">
 
     <thead>
         <tr>
