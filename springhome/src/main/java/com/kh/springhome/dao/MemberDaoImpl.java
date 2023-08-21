@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.dto.MemberDto;
-import com.kh.springhome.mapper.MemberListMapper;
 import com.kh.springhome.mapper.MemberMapper;
 import com.kh.springhome.vo.PaginationVO;
 
@@ -19,9 +18,6 @@ public class MemberDaoImpl implements MemberDao{
 		
 		@Autowired
 		private MemberMapper memberMapper;
-		
-		@Autowired
-		private MemberListMapper listMapper;
 		
 		@Autowired
 		private MemberDto memberDto;
