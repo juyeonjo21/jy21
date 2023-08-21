@@ -28,10 +28,10 @@ public class PaginationVO {
 	}
 	public String getPrevQueryString() {
 		if(isSearch()) { //검색이면
-		return "page="+ (getBegin()-1) + "&type=" + type + "&keyword=" + keyword;
+		return "page="+ (getBegin()-1) +"&size=" +size+ "&type=" + type + "&keyword=" + keyword;
 		}
 		else { //목록이면
-			return "page=" + (getBegin()-1);
+			return "page=" + (getBegin()-1) + "&size=" +size;
 		}
 	}
 	public int getPageCount() {
@@ -43,19 +43,26 @@ public class PaginationVO {
 	
 	public String getnextQueryString() {
 		if(isSearch()) { //검색이면
-		return "page="+ (getEnd()+1) + "&type=" + type + "&keyword=" + keyword;
+		return "page="+ (getEnd()+1) + "&size=" +size+ "&type=" + type + "&keyword=" + keyword;
 		}
 		else { //목록이면
-			return "page=" + (getEnd()+1);
+			return "page=" + (getEnd()+1)+ "&size=" +size;
 		}
 	}
 	
 	public String getQueryString(int page) { //-> 현재페이지
 		if(isSearch()) { //검색이면
-			return "page="+ page + "&type=" + type + "&keyword=" + keyword; //헤당페이지 내놔라
+			return "page="+ page + "&size=" +size+ "&type=" + type + "&keyword=" + keyword; //헤당페이지 내놔라
 			}
 			else { //목록이면
-				return "page=" + page;
+				return "page=" + page +"&size=" +size;
 			}
 		}
+	
+	public int getStartRow() {
+		return getFinishRow() - (size-1);
+	}
+	public int getFinishRow() {
+		return page * size;
+	}
 	}

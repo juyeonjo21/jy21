@@ -2,9 +2,12 @@ package com.kh.springhome.dto;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
 @Data
+@Component
 public class MemberDto {
 	private String memberId,memberPw,memberNickname;
 	private String memberEmail, memberContact;

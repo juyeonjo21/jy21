@@ -68,8 +68,9 @@ public class MemberController {
 		
 		//[3]비밀번호가 일치하면 메인페이지로 이동(로그인 성공)
 		if(isCorrectPw) {
-			//세션에 아이디 저장
-			session.setAttribute("name",inputDto.getMemberId());
+			//세션에 아이디 + 등급 저장
+			session.setAttribute("name",findDto.getMemberId());
+			session.setAttribute("level", findDto.getMemberLevel());
 			//로그인시간 갱신
 			memberDao.updateMemberLogin(inputDto.getMemberId());
 			//메인페이지로 이동
@@ -80,13 +81,14 @@ public class MemberController {
 		return "redirect:login?error";
 	}	
 	}
+//	----------------회원 전용 메뉴----------------------
 	@RequestMapping("/logout") //로그아웃하려면 로그인된 걸 remove 해주어야 함 - 로그아웃 시,세션값(name) 날라감
 	public String logout(HttpSession session) {
 		session.removeAttribute("name");
+		session.removeAttribute("level");
 		return "redirect:/";
 	}
 	
-//	----------------회원 전용 메뉴----------------------
 	@RequestMapping("/mypage")
 	public String mypage(HttpSession session, Model model) {
 		//[1]세션에서 사용자의 아이디를 꺼낸다
@@ -181,5 +183,7 @@ public class MemberController {
 		public String exitFinish() {
 			return "/WEB-INF/views/member/exitFinish.jsp";
 		}
-}
+
+	}
+
 
