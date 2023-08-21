@@ -10,6 +10,7 @@ import com.kh.springhome.dto.BoardDto;
 import com.kh.springhome.dto.BoardListDto;
 import com.kh.springhome.mapper.BoardListMapper;
 import com.kh.springhome.mapper.BoardMapper;
+import com.kh.springhome.vo.PaginationVO;
 
 
 @Repository
@@ -167,16 +168,40 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int countList() {
-		String sql = "select count(*)from board"; //전체 갯수
+		String sql = "select count(*)from board"; //목록
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 
 	@Override
-	public int countList(String type, String keyword) { //목록 갯수
+	public int countList(String type, String keyword) { //검색
 		String sql = "select count(*)from board "
 				+ "where instr("+type+",?) > 0"; //(항목,값) - 항목은 홀더로 처리하지 않는다. 값은 홀더로 처리
 		Object[] data = {keyword};
 		return jdbcTemplate.queryForObject(sql, int.class,data);
+	}
+
+	@Override
+	public int countList(PaginationVO vo) {
+		if(vo.isSearch()) {
+			String sql = "select count(*)from board "
+					+ "where instr("+vo.getType()+",?) > 0"; //(항목,값) - 항목은 홀더로 처리하지 않는다. 값은 홀더로 처리
+			Object[] data = {vo.getKeyword()};
+			return jdbcTemplate.queryForObject(sql, int.class,data);
+		}
+		else {
+			String sql = "select count(*)from board"; 
+			return jdbcTemplate.queryForObject(sql, int.class);
+		}
+	}
+
+	@Override
+	public List<BoardListDto> seleListByPage(PaginationVO vo) {
+		if(vo.isSearch()) {
+		 return selectListByPage(vo.getType(), vo.getKeyword(), vo.getPage());	
+		}
+		else {
+			return selectListByPage(vo.getPage());
+		}
 	}
 
 
