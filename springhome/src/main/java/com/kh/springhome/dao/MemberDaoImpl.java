@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.springhome.dto.MemberBlockDto;
 import com.kh.springhome.dto.MemberDto;
+import com.kh.springhome.dto.MemberListDto;
+import com.kh.springhome.mapper.MemberBlockMapper;
+import com.kh.springhome.mapper.MemberListMapper;
 import com.kh.springhome.mapper.MemberMapper;
 import com.kh.springhome.vo.PaginationVO;
 
@@ -21,6 +25,9 @@ public class MemberDaoImpl implements MemberDao{
 		
 		@Autowired
 		private MemberDto memberDto;
+		
+		@Autowired
+		private MemberListMapper memberListMapper;
 		
 		
 		@Override
@@ -163,6 +170,64 @@ public class MemberDaoImpl implements MemberDao{
 					memberDto.getMemberPoint(), memberDto.getMemberId()
 			};
 			return jdbcTemplate.update(sql,data) > 0;
+		}
+
+		@Override
+		public void insertBlock(String memberId) {
+			String sql = "insert into member_block(member_id) values(?)";
+			Object[] data = {memberId};
+			jdbcTemplate.update(sql, data);
+		}
+
+		@Override
+		public boolean deleteBlock(String memberId) {
+			String sql = "delete member_block where member_id=?";
+			Object[] data = {memberId};
+			return jdbcTemplate.update(sql,data) > 0;
+		}
+
+		@Override
+		public List<MemberListDto> selectListByPage2(PaginationVO vo) {
+			if(vo.isSearch()) {
+				String sql = "select * from ("
+						+ "select rownum rn, TMP.* from ("
+						+ "select * from member_list "
+						+ "where instr("+vo.getType()+",?) > 0 "
+						+ "and member_level != '관리자' "
+						+ "order by " + vo.getType()+ " asc"
+						+ ")TMP"
+						+") where rn between ? and ?";
+				Object[] data = {vo.getKeyword(), vo.getStartRow(), vo.getFinishRow()};
+			return jdbcTemplate.query(sql, memberListMapper, data);
+			}
+			else {
+				String sql = "select * from ("
+						+ "select rownum rn, TMP.* from ("
+						+ "select * from member_list "
+						+ "where member_level != '관리자'"
+						+ "order by member_id asc"
+						+ ")TMP"
+						+") where rn between ? and ?";
+				Object[] data = {vo.getStartRow(), vo.getFinishRow()};
+			return jdbcTemplate.query(sql, memberListMapper, data);
+			}
+		}
+		
+		@Autowired
+		private MemberBlockMapper memberBlockMapper;
+
+		@Override
+		public List<MemberBlockDto> selectBlockList() {
+			String sql = "select * from member_block order by block_time asc";
+			return jdbcTemplate.query(sql, memberBlockMapper);
+		}
+
+		@Override
+		public MemberBlockDto selectBlockOne(String memberId) {
+			String sql = "select * from member_block where member_id=?";
+			Object[] data = {memberId};
+			List<MemberBlockDto> list = jdbcTemplate.query(sql, memberBlockMapper, data);
+			return list.isEmpty() ? null : list.get(0);
 		}
 	}
 
