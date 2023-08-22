@@ -64,7 +64,29 @@
 	</tr>
 
 </table>
-	<a href="/admin/edit?">회원정보변경</a>
+
+<h2>활동 내역</h2>
+
+<table border="1" width="500">
+	<thead>
+		<tr>
+			<th width="75%">제목</th>
+			<th>작성일</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="boardListDto" items="${boardList}">
+		<tr>
+			<td>
+				<a href="/board/detail?boardNo=${boaListDto.boardNo}">
+					${boardListDto.boardTitle}
+				</a>
+			</td>
+			<td>${boardListDto.boardCtime}</td>
+		</tr>
+		</c:forEach>
+	</tbody>
+</table>
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
