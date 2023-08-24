@@ -21,6 +21,29 @@
             padding-left: 0px;
             padding-right: 0px;
         }
+
+         /*
+        입력창 변형 스타일
+        - 배경이미지를 포함하는 입력창
+        - backfround-image 속성 사용
+        */
+
+        .form-input.form-image{
+            padding-left:2em;
+            /* background-image:url("./images/email2.jpg"); */
+            background-size:1.5em;
+            background-repeat:no-repeat;
+            background-position-x:0.25em;
+            /* background-position-y:50%; */
+            background-position-y:center;
+        }
+        [name=memberId]{
+            background-image:url("./images/email2.jpg");
+        }
+        [name=memberPw]{
+            background-image:url("./images/lock.jpg");
+        }
+
     .form-input{
             font-size:18px;
             padding:0.5em 1em;
