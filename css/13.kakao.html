@@ -1,12 +1,13 @@
-/*
-    자주 사용하는 디자인 코드를 모아놓은 파일
-*/
-@charset "UTF-8";
-
-*{
-    box-sizing: border-box;
-}
-     /*
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오톡 로그인</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+     <link rel="stylesheet" type="text/css" href="test.css">
+     <style>
+        /*
             입력창의 변형(확장) 스타일
             - 기본 스타일에 옵션을 추가하듯이 추가 클래스를 작성하여 적용
         */
@@ -31,16 +32,13 @@
         .form-input:focus{ 
             border-color:#2d3436;
         }
-                /*
+        
+        /*
             버튼은 역할에 따라 구분
             - 긍정버튼 : 페이지의 목적을 달성할 수 있는 버튼
             - 중립버튼 : 페이지와 아무 상관없는 버튼(기본 값)
             - 부정버튼 : 페이지의 목적을 달성할 수 없도록 하는 버튼
         */
-
-
-
-
     .btn.btn-positive{ /*긍정버튼*/
         font-weight:600;
         border-color:#0984e3;
@@ -76,7 +74,7 @@
         margin:10px 0px;
     }
 
-     /*
+    /*
         간격 스타일(spacing)
         - margin, padding을 자주 사용하는 것들 위주로 클래스화
         - 기본 간격은 10px이며 10px 단위로 설정 가능하도록 구현
@@ -126,60 +124,35 @@
     .me-40{margin-right:40px;}
     .me-50{margin-right:50px;}
 
-
-
- /*
-        컨테이너(Container)
-        -화면의 단위
-        -가운데 정렬되도록 구현
-        -내부에 행(row)을 배치하여 원하는 화면을 구성
-        */
-        .container{
-            margin-left:auto;
-            margin-right:auto;
-        }
-
-
-.w-100{width:100%;}
-
-    .w-300{ width:300px;}
-    .w-400{ width:400px;}
-    .w-500{ width:500px;}
-    .w-600{ width:600px;}
-    .w-700{ width:700px;}
-    .w-800{ width:800px;}
-    .w-900{ width:900px;}
-    .w-1000{ width:1000px;}
-    .w-1100{ width:1100px;}
-    .w-1200{ width:1200px;}
-
-    .row{
-        margin:10px 0px;
-    }
-
-    /*
-        정렬 스타일
-    */
-    .row{
-        text-align:center;
-    }
-    .left{
-        text-align:left;
-    }
-    .center{
-        text-align:center;
-    }
-    .right{
-        text-align:right;
-    }
      </style>
 </head>
 <body>
-    <div class="container w-300">
-        <div class="row">1</div>
-        <div class="row left">2</div>
-        <div class="row">3</div>
-        <div class="row">4</div>
-        <div class="row left">5</div>
-        <div class="row">6</div>
+    <form action="#" method="post" autocomplete="off">
+    <div class="container w-400">
+        <div class="row">
+            <img src="kakao.jpg" width="200">
+        </div>
+        <div class="row">
+           <input type="text" name="memberId" class="form-input form-underline w-100" 
+           placeholder="카카오메일 아이디,이메일,전화번호">
+        </div>
+        <div class="row">
+            <input type="password" name="memberPw" class="form-input form-underline w-100"
+             placeholder="비밀번호">
+        </div>
+        <div class="row mt-30 mv-20">
+            <button class="btn btn-positive w-100">로그인</button>
+        </div>
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row mv-20">
+            <button class="btn btn-negative w-100">QR코드 로그인</button>
+        </div>
     </div>
+</form>
+</head>
+<body>
+    
+</body>
+</html>

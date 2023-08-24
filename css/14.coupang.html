@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠팡 로그인</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+     <link rel="stylesheet" type="text/css" href="test.css">
+
+     <style>
+        .form-input{
+                font-size:18px;
+                padding:0.5em 1em;
+                color:lightgray;
+                outline:none; /*outline은 입력창 선택 시 강조 효과*/
+                border:1px solid #636e72;
+                border-radius:0.1em;
+                border-color: rgb(195, 196, 197);
+            }
+        .form-input:focus{ /*선택된 상태를 focus라고 한다*/
+            border-color:#2d3436;
+        }
+    
+        /*
+            버튼은 입력창과 동일하게 구현
+            글자를 두껍게 보여주도록 처리(bold)
+        */
+        .btn{
+            font-weight:600;
+            background-color: #3742fa;
+            color:white;
+            cursor:pointer;
+            border:none;
+            font-size:18px;
+            padding:0.5em 1em;
+            border-radius:0.2em;
+            margin:10px 0px;
+        }
+        
+        .btn:hover,
+        .btn2:hover
+        { 
+            filter:brightness(95%);
+        }
+        .btn2{
+            font-weight:600;
+            background-color:white;
+            color:#485460;
+            cursor:pointer;
+            border-color:#57606f;
+            font-size:18px;
+            padding:0.5em 1em;
+            border-radius:0.2em;
+            margin:10px 0px;
+    
+        }
+      
+         </style>
+    </head>
+    <body>
+        <form action="#" method="post" autocomplete="off">
+        <div class="container w-400">
+            <div class="row">
+                <img src="coupang.png" width="200">
+            </div>
+            <div class="row">
+               <input type="text" name="memberId" class="form-input w-100" 
+               placeholder="아이디(이메일)">
+            </div>
+            <div class="row">
+                <input type="password" name="memberPw" class="form-input w-100"
+                 placeholder="비밀번호">
+            </div>
+            <div class="row">
+                <button class="btn w-100">로그인</button>
+            </div>
+            <div class="row">
+                <hr>
+            </div>
+            <div class="row">
+                <button class="btn2 w-100">회원가입</button>
+            </div>
+        </div>
+    </form>
+</head>
+<body>
+    
+</body>
+</html>
