@@ -5,11 +5,16 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>내가 만든 홈페이지</title>
+<title>My Homepage</title>
+
+<link rel="stylesheet" type="text/css" href="/css/commons.css">
+<!-- <link rel="stylesheet" type="text/css" href="/css/test.css">
+ -->
+
 </head>
 <body>
 	<div align="center">
-	<h1>Juyeon Home</h1>
+	<h1>Juyeon's Home</h1>
 	<hr>
 	<%--
 	JSP에서 세션에 저장된 값을 확인하려면 EL의 내장객채를 사용
