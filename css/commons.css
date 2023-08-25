@@ -37,6 +37,18 @@
             /* background-position-y:50%; */
             background-position-y:center;
         }
+
+        /*
+            textarea는 크기 조정을 resize라는 속성으로 제어한다
+        */
+        textarea.form-input{
+            resize:vertical;
+            min-height:6em;
+        }
+        textarea.form-input.fixed{
+            resize:none;
+        }
+
         [name=memberId]{
             /* background-image:url("./images/email2.jpg"); */
         }
@@ -44,14 +56,7 @@
             /* background-image:url("./images/lock.jpg"); */
         }
 
-    .form-input{
-            font-size:18px;
-            padding:0.5em 1em;
-            outline:none; 
-            border:1px solid #636e72;
-            border-radius:0px;
-        }
-        .form-input:focus{ 
+        .form-input:focus{  /*선택된 상태를 focus라고 한다*/
             border-color:#2d3436;
         }
                 /*
@@ -61,7 +66,19 @@
             - 부정버튼 : 페이지의 목적을 달성할 수 없도록 하는 버튼
         */
 
-
+        /*
+    입력창 디자인
+    - 글자가 핵심이므로 글자 크기를 정하고 나머지를 비율(em)로 설정
+*/
+    .form-input, 
+    .btn 
+    {
+    font-size: 20px;
+    padding: 0.5em 1em;
+    outline: none; /*outline은 입력 창 선택 시 강조 효과 */
+    border: 1px solid #636e72;
+    border-radius: 0.1em;
+    }
 
 
     .btn.btn-positive{ /*긍정버튼*/
