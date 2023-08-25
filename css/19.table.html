@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>테이블 디자인</title>
     <link rel="stylesheet" type="text/css" href="commons.css">
-     <link rel="stylesheet" type="text/css" href="test.css">
+     <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
      <style>
         /*
             테이블 디자인
@@ -19,10 +19,10 @@
         .table{ /*앞에 점 반드시 붙이기*/
             width: 100%;
             border-spacing:0px;
+            border-collapse:collapse;
         }
         .table.table-border{
             border:1px solid #718093;
-            border-collapse:collapse; /*두줄을 한줄로 병합*/
         }
         .table.table-border > thead > tr > th,
         .table.table-border > thead > tr > td,
@@ -32,6 +32,36 @@
         .table.table-border > tfoot > tr > td
         {
             border:1px solid #718093;
+        }
+
+        /*
+            확장 스타일 - 줄무늬 테이블
+        */
+        .table.table-stripe > thead{
+            background-color:rgb(161, 205, 244);
+        }
+        .table.table-stripe > tbody > tr:nth-child(2n){
+            background-color:rgb(161, 205, 244);
+        }
+
+        /*
+            확장 스타일 - 옆트임 테이블
+        */
+        .table.table-slit
+        {
+            border-top:1px solid #718093;
+            border-bottom:1px solid #718093;
+        }
+        .table.table-slit > thead{
+            border-bottom:1px solid #718093;
+        }
+        .table.table-slit > tfoot{
+            border-bottom:1px solid #718093;
+        }
+
+        .table.table.table-slit > tbody > tr
+            :not(.table.table-slit > tbody > tr:last-child){
+            border-bottom: 1px dotted #718093;
         }
 
         /*
@@ -162,6 +192,82 @@
                         </tr>
                     </table>
                     </div>
+        <div class="row">
+        <table class="table table-stripe">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>속성</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>이상해씨</td>
+                    <td>풀</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>파이리</td>
+                    <td>불</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>꼬부기</td>
+                    <td>물</td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td>피카츄</td>
+                    <td>전기</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>라이츄</td>
+                    <td>전기</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="row">
+            <table class="table table-slit">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>이름</th>
+                        <th>속성</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>이상해씨</td>
+                        <td>풀</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>파이리</td>
+                        <td>불</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>꼬부기</td>
+                        <td>물</td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td>피카츄</td>
+                        <td>전기</td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td>라이츄</td>
+                        <td>전기</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
     </div>
 </body>
 </html>
