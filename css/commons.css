@@ -153,10 +153,7 @@
         border-color:#2d3436;
         color:#2d3436;
         cursor:pointer;
-        font-size:18px;
-        padding:0.5em 1em;
-        border-radius:0.1em;
-        margin:10px 0px;
+     
     }
 
      /*
@@ -221,5 +218,14 @@
     .gray{color:#718093;}
     .black{color:#1e272e;}
     .white{color: aliceblue;}
+
+    
+    /* 영역 가운데 위치시키는 필살 클래스(2번 방법 사용) */
+    .position-center{
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
 
 
