@@ -209,6 +209,15 @@
     .me-50{margin-right:50px;}
 
 
-
+	 /*
+        글자 색상과 관련된 클래스
+        -아이콘에도 사용 가능
+        */
+    .red{color:#d63031;}
+    .blue{color:#0984e3;}
+    .yellow{color:#fdcb6e;}
+    .green{color:#20bf6b;}
+    .gray{color:#718093;}
+    .black{color:#1e272e;}
 
 
