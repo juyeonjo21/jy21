@@ -3,7 +3,8 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h2>로그인</h2>
+
+<div class="row"><h2>로그인</h2></div>
 <form action="login" method="post" autocomplete="off">
     		    <div class="container w-400">
         <div class="row">

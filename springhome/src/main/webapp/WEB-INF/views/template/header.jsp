@@ -7,6 +7,9 @@
 <meta charset="EUC-KR">
 <title>My Homepage</title>
 
+<!-- favicon 설정 -->
+<link rel="shortcut icon" href="/images/kh.jpg">
+
 <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
