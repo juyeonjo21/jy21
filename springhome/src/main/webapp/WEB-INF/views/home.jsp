@@ -7,6 +7,14 @@
  --%>
 	<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 	
+	<!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+     <!-- 내가 만든 css 파일 -->
+     <link rel="stylesheet" type="text/css" href="/css/reset.css">
+     <link rel="stylesheet" type="text/css" href="/css/layout.css">
+     <link rel="stylesheet" type="text/css" href="/css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/test.css">  -->
 	<style>
 
 body {
@@ -14,8 +22,10 @@ body {
 }
 </style>
 	
+	<div class="row">
 	<h2>Now I am become Death, the destroyer of worlds.</h2>
 	<h4>나는 이제 죽음이요, 세상의 파괴자가 되었도다.</h4>
-	<img src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2023%2F06%2Fchristopher-nolans-oppenheimer-gets-a-green-light-in-the-us-01.jpg?cbr=1&q=90">
+	<img src="https://dummyimage.com/1000x400/000/fff">
+	</div>
 		
 	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
