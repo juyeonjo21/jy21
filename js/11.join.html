@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <!--css 파일을 불러오는 코드-->
+
+     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+     <!-- 내가 만든 css 파일 -->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+     <link rel="stylesheet" type="text/css" href="./css/commons.css">
+     <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+     <style>
+ 
+     </style>
+ 
+     <!-- javascript 작성 공간-->
+     <script>
+        `
+    var idRegex = /^[a-z0-9]{8,20}$/;
+    function memberId(){
+     if(idRegex.test(memberId)){
+        alert('멋진 아이디입니다!');
+        }
+        else{
+            alert('영문과 숫자 5~20자로 작성하세요');
+  
+        }
+    }
+    // var pwRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+     </script>
+</head>
+<body>
+    <div class="container w-300">
+        <div class="row">
+            <h1>회원가입</h1>
+        </div>
+        <div class="row left">
+            <div>아이디</div>
+            <input type="text" class="form-input w-100" oninput="memberId();">
+            </div>
+        <div class="row left">
+            <div>비밀번호</div>
+            <input type="password" class="form-input w-100" oninput="memberPw();">
+            </div>
+        <div class="row left">
+            <div>비밀번호 확인</div>
+            <input type="password" class="form-input w-100" oninput="memberPw2();">
+            </div>
+       <button type="submit" class="btn btn-positive w-100">가입하기</button>
+             </div>
+</body>
+</html>
