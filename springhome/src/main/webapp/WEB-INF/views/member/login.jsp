@@ -3,11 +3,22 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h2>로그인</h2>
+
+<div class="row"><h2>로그인</h2></div>
 <form action="login" method="post" autocomplete="off">
-<input type="text" name="memberId" placeholder="아이디" required><br><br>
-<input type="password" name="memberPw" placeholder="비밀번호" required><br><br>
-<button>로그인</button>
+    		    <div class="container w-400">
+        <div class="row">
+           <input type="text" name="memberId" class="form-input w-100">
+        </div>
+        <div class="row">
+            <input type="password" name="memberPw" class="form-input w-100">
+        </div>
+        <div class="row">
+            <button class="btn w-100">로그인</button>
+        </div>
+        <div class="row">
+        </div>
+    </div>
 </form>
 <%--
 	EL은 출력을 쉽게 하기 위한 언어이므로 여러 데이터를 쉽게 접근할 수 있다.
