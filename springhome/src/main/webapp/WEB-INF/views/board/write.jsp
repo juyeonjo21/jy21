@@ -4,6 +4,11 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script src="/js/boardWrite.js"></script>
+<script>
+
+</script>
+
 <form action="write" method="post" autocomplete="off">
 	<%-- 답글일 때만 추가 정보를 전송 --%>
 	<c:if test="${isReply}">
@@ -22,26 +27,34 @@
             </c:choose>
         </div>
         <div class="row left">
-            <label>제목</label>
+            <label>제목 <span class="important"> *</span> </label>
             
             <c:choose>
 				<c:when test="${isReply}">
-					<input type="text" name="boardTitle" class="form-input w-100"
+					<input type="text" name="boardTitle" class="form-input w-100" onblur="checkBoardTitle();"
 									value="RE: ${originDto.boardTitle}">
+				 <div class="fail-feedback">제목은 필수이며 100자 이내로 작성하세요</div>
 				</c:when>
 				<c:otherwise>
-					<input type="text" name="boardTitle" class="form-input w-100">
+					<input type="text" name="boardTitle" class="form-input w-100" onblur="checkBoardTitle();">
+				<div class="fail-feedback">제목은 필수이며 100자 이내로 작성하세요</div>
 				</c:otherwise>
 			</c:choose>
         </div>
         
         <div class="row left">
-            <label>내용</label>
-            <textarea name="boardContent" class="form-input w-100" style="min-height:250px"></textarea>
+            <label>내용<span class="important"> *</span></label>
+            <textarea name="boardContent" class="form-input w-100" style="min-height:250px" oninput="checkBoardContent();"></textarea>
         </div>
         <div class="row right">
-            <button type="submit" class="btn btn-positive">글쓰기</button>
-            <a href="#" class="btn">목록보기</a>
+          <span class="len red">0</span> / 1000
+     </div>
+                    
+        <div class="row">
+            <button type="submit" class="btn btn-positive w-100">
+             <i class="fa-solid fa-pen"></i>
+             작성하기</button>
+            <a href="#" class="btn w-100">목록보기</a>
         </div>
     </div>
 
