@@ -637,7 +637,7 @@ a.link:hover
        .success{
         /* important는 우선순위를 최상위로 올린다 */
         border-color: #00b984 !important;
-        background-image: url("./image/valid.png");
+        background-image: url("../image/valid.png");
         background-repeat: no-repeat;
         background-position-x: right;
         background-position-y: center;
@@ -646,7 +646,7 @@ a.link:hover
        .fail, 
        .fail2{
         border-color: red !important;
-        background-image: url("./image/invalid.png");
+        background-image: url("../image/invalid.png");
         background-repeat: no-repeat;
         background-position-x: right;
         background-position-y: center;
