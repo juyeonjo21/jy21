@@ -31,12 +31,12 @@
             
             <c:choose>
 				<c:when test="${isReply}">
-					<input type="text" name="boardTitle" class="form-input w-100" onblur="checkBoardTitle();"
+					<input type="text" name="boardTitle" class="form-input w-100" oninput="checkBoardTitle();"
 									value="RE: ${originDto.boardTitle}">
 				 <div class="fail-feedback">제목은 필수이며 100자 이내로 작성하세요</div>
 				</c:when>
 				<c:otherwise>
-					<input type="text" name="boardTitle" class="form-input w-100" onblur="checkBoardTitle();">
+					<input type="text" name="boardTitle" class="form-input w-100" oninput="checkBoardTitle();">
 				<div class="fail-feedback">제목은 필수이며 100자 이내로 작성하세요</div>
 				</c:otherwise>
 			</c:choose>
