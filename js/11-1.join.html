@@ -36,8 +36,9 @@
 
         var idRegex = /^[a-z0-9]{5,20}$/;
         var isValid = idRegex.test(input.value);
-        div.classList.remove("success", "fail");
         
+        div.classList.remove("success", "fail");
+
         if(isValid){
             div.textContent = "멋진 아이디입니다!";
             div.classList.add("success");//클래스추가

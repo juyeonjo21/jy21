@@ -17,12 +17,44 @@
         /*
             성공/실패에 대한 스타일 구현
         */
-        .success{
-            color: #00b984;
-        }
-        .fail{
-            color: red;
-        }
+       .success-feedback{
+        color: #00b984;
+        display: none;
+       }
+       .fail-feedback,
+       .fail2-feedback
+       {
+        color: red;
+        display: none;
+       }
+       .success ~.success-feedback{
+        display: block;
+       }
+       .fail ~.fail-feedback{
+        display: block;
+       }
+       .fail2 ~.fail2-feedback{
+        display:  block;
+       }
+       .success{
+        /* important는 우선순위를 최상위로 올린다 */
+        border-color: #00b984 !important;
+        background-image: url("./image/valid.png");
+        background-repeat: no-repeat;
+        background-position-x: right;
+        background-position-y: center;
+        background-size: 1em;
+       }
+       .fail, 
+       .fail2{
+        border-color: red !important;
+        background-image: url("./image/invalid.png");
+        background-repeat: no-repeat;
+        background-position-x: right;
+        background-position-y: center;
+        background-size: 1em;
+       }
+
      </style>
  
      <!-- javascript 작성 공간-->
@@ -31,31 +63,28 @@
     
     function checkId(){
         var input = document.querySelector("[name=memberId]");
-        // var div = document.querySelector("[name=memberId]+ div");//css selector
-        var div = input.nextElementSibling; //javascript
+
 
         var idRegex = /^[a-z0-9]{5,20}$/;
         var isValid = idRegex.test(input.value);
-        div.classList.remove("success", "fail");
-        
+       
+        input.classList.remove("success", "fail");
+
         if(isValid){
-            div.textContent = "멋진 아이디입니다!";
-            div.classList.add("success");//클래스추가
-            // div.style.color = "#00b894";
+            input.classList.add("success");//클래스추가
         }
         else{
-            div.textContent = "아이디는 영문 소문자와 숫자 5~20자로 작성";
-            div.classList.add("fail");
-            // div.style.color = "red";
+            input.classList.add("fail");
         }
     }
     function checkPw(){
     var input = document.querySelector("[name=memberPw]");
-    // var div = document.querySelector("[name=memberPw] + div");
-    var div = input.nextElementSibling;
         
     var pwRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
     var isValid = pwRegex.test(input.value);
+
+    input.classList.remove("success","fail");
+    input.classList.add(isValid ? "success":"fail");
 
     if(isValid){
         div.textContent = "올바른 비밀번호 형식입니다";
@@ -67,25 +96,22 @@
     }
 }
     function checkPw2() {
-            var pw = document.querySelector("[name=memberPw]");
-            var pwCheck = document.querySelector("#password-check");
-            var div = pwCheck.nextElementSibling;
+        var pw = document.querySelector("[name=memberPw]");
+        var pwCheck = document.querySelector("#password-check");
 
 
         // var isValid = 비밀번호가 1글자 이상 입력되어 있고 두 입력값이 같으면;
         var isValid = pw.value.length >= 1 && pw.value == pwCheck.value;
 
+        pwCheck.classList.remove("success","fail","fail2");
         if(pw.value.length == 0){
-                div.style.color = "#d63031";
-                div.textContent = "비밀번호를 먼저 작성하세요";
+               pwCheck.classList.add("fail2");
             }
             else if(isValid) {
-                div.style.color = "#00b894";
-                div.textContent = "비밀번호가 일치합니다";
+               pwCheck.classList.add("success");
             }
             else {
-                div.style.color = "#d63031";
-                div.textContent = "비밀번호가 일치하지 않습니다";
+               pwCheck.classList.add("fail");
             }
     }
      </script>
@@ -98,17 +124,21 @@
         <div class="row left">
             <label>아이디</label>
             <input type="text" name="memberId" class="form-input w-100" oninput="checkId();">
-            <div></div>
+            <div class="success-feedback">멋진 아이디입니다!</div>
+            <div class="fail-feedback">아이디는 영문,숫자 5~20자로 작성하세요</div>
         </div>
         <div class="row left">
             <label>비밀번호</label>
             <input type="password" name="memberPw" class="form-input w-100" oninput="checkPw();">
-            <div></div>
+            <div class="success-feedback">올바른 비밀번호 형식입니다!</div>
+            <div class="fail-feedback">비밀번호는 영문,숫자,특수문자를 반드시 포함하여 8~20자로 작성하세요</div>
         </div>
         <div class="row left">
             <label>비밀번호 확인</label>
             <input type="password" id="password-check" class="form-input w-100" oninput="checkPw2();">
-            <div></div>    
+            <div class="success-feedback">비밀번호가 일치합니다!</div>    
+            <div class="fail-feedback">비밀번호가 일치하지 않습니다</div>    
+            <div class="fail2-feedback">비밀번호를 먼저 작성하세요</div>    
         </div>
        <button type="submit" class="btn btn-positive w-100">가입하기</button>
              </div>
