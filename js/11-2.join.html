@@ -14,7 +14,15 @@
      <link rel="stylesheet" type="text/css" href="./css/commons.css">
      <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
      <style>
- 
+        /*
+            성공/실패에 대한 스타일 구현
+        */
+        .success{
+            color: #00b984;
+        }
+        .fail{
+            color: red;
+        }
      </style>
  
      <!-- javascript 작성 공간-->
@@ -28,14 +36,17 @@
 
         var idRegex = /^[a-z0-9]{5,20}$/;
         var isValid = idRegex.test(input.value);
-
+        div.classList.remove("success", "fail");
+        
         if(isValid){
             div.textContent = "멋진 아이디입니다!";
-            div.style.color = "#00b894";
+            div.classList.add("success");//클래스추가
+            // div.style.color = "#00b894";
         }
         else{
             div.textContent = "아이디는 영문 소문자와 숫자 5~20자로 작성";
-            div.style.color = "red";
+            div.classList.add("fail");
+            // div.style.color = "red";
         }
     }
     function checkPw(){
@@ -76,7 +87,7 @@
                 div.style.color = "#d63031";
                 div.textContent = "비밀번호가 일치하지 않습니다";
             }
-        } 
+    }
      </script>
 </head>
 <body>
