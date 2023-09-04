@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <!--css 파일을 불러오는 코드-->
+
+     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+     <!-- 내가 만든 css 파일 -->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+     <link rel="stylesheet" type="text/css" href="./css/commons.css">
+     <link rel="stylesheet" type="text/css" href="./css/test.css">
+     <style>
+ 
+     </style>
+ 
+     <!-- javascript 작성 공간-->
+     <script>
+
+        //다음 점수 데이터로 (1)총점,(2)평균,(3)60점의 예상등수 구하여 출력
+        //(1)총점
+        var scoreList = [70,55,90,100,82,88];
+        var sum = 0;
+        for(var i=0; i < scoreList.length; i++){
+           sum += scoreList[i]; 
+        }
+        console.log("합계 = " + sum);
+
+        //(2)평균
+        var avg = sum/scoreList.length;
+        // console.log("평균 = " + avg); //소수점
+        console.log("평균 = " + parseInt(avg));//정수
+
+        //(3)60점의 예상등수
+        var rank = 1;
+        for(var i=0; i < scoreList.length; i++){
+            if(scoreList[i] > 60){
+                rank ++;
+            }
+        }
+        console.log("60점의 예상등수 = " + rank);
+
+        //다음 배열에 1부터 100사이에서 1의 자리에 3,6,9가 들어간 숫자를 추가
+        var number369 = [];
+        
+        // number369.push();
+		for(var i=1; i <= 100; i++){
+            var ten = parseInt(i/10)==3 || parseInt(i/10)==6 ||parseInt(i/10)==9;//10의 자리가 3,6,9라면
+            var one = i % 10 == 3 || i % 10 == 6 || i % 10 == 9 ;//1의 자리가 3,6,9라면
+            if(ten||one){ 
+                number369.push(i);
+            }
+        }
+        console.log(number369);
+     </script>
+</head>
+<body>
+    
+</body>
+</html>
