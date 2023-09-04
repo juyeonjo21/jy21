@@ -54,8 +54,11 @@
 
     function window05(){
         // window.open("주소","ID","새창 옵션");
-        // open("http://www.google.com","","width=500, height=500"); //(ID지정x)무한 새창
-        open("http://www.google.com","win1","width=500, height=500"); // 하나로
+        // open("http://www.google.com","_blank","width=500, height=500"); //(ID지정x)무한 새창
+        //"_blank" - 명확하게 새창이라고 지정하는 것(빈 칸 보다는 선호)
+        open("http://www.naver.com","win1","width=500, height=500"); // 하나만 열림
+        //구글은 새창이 타켓팅되지 않음
+        //window.open("https://www.mozilla.org/", "win", "popup");//하나만 열림
     }
      </script>
 </head>
