@@ -57,19 +57,13 @@ $(function(){
 
     });
 
-    //form에 submit 이벤트를 설정하겠다
-    $(".join-form").submit(function(e){
-    
-        if(status.ok() == false){
-            e.preventDefault();
-        }
-    });
     $("[name=memberNickname]").blur(function(){
         var regex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9]{2,10}$/;
         var isValid = regex.test($(this).val());
 
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");       
+        status.nickName = isValid;
     });
     $("[name=memberEmail]").blur(function(){
         var regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -129,7 +123,8 @@ $(function(){
             //- form 전송할 때는 beforeunload 이벤트를 제거
             $(".join-form").submit(function(e){
                 $(".form-input").blur();
-            
+                console.table(status);
+                console.log(status.ok());
                 if(!status.ok()){
                     e.preventDefault();
                 }
