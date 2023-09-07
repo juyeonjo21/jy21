@@ -640,8 +640,9 @@ a.link:hover
         border-color: #00b984 !important;
         background-image: url("./image/valid.png");
         background-repeat: no-repeat;
-        background-position-x: right;
-        background-position-y: center;
+        /* background-position-x: right;
+        background-position-y: center; */
+        background-position: center right 1em;
         background-size: 1em;
        }
        .fail, 
@@ -650,6 +651,6 @@ a.link:hover
         background-image: url("./image/invalid.png");
         background-repeat: no-repeat;
         background-position-x: right;
-        background-position-y: center;
+        background-position-y: center right 1em;
         background-size: 1em;
        }

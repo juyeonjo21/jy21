@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체(Object)</title>
+    <!--css 파일을 불러오는 코드-->
+
+     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+     <!-- 내가 만든 css 파일 -->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+     <link rel="stylesheet" type="text/css" href="./css/commons.css">
+     <link rel="stylesheet" type="text/css" href="./css/test.css">
+     <style>
+ 
+     </style>
+ 
+     <!-- javascript 작성 공간-->
+     <script>
+        //자바스크립트 객체(object)
+        //- 기본적인 브라우저 통제를 위한 내장 객체
+        //- 내가 만들어 쓰는 사용자 객체
+ 
+    
+    function window01(){
+        // console.log(window);
+        // window.alert("알림창 출력 완료");
+
+        //window 키워드는 생략 가능하다
+        alert("알림창 출력 완료");
+    }
+
+    function window02(){
+        var choice = window.confirm("정말 이동하시겠습니까?");
+        console.log(choice); //확인-true / 취소-false
+
+        if(choice){
+            location.href = "http://www.google.com";
+        }
+    }
+
+    function window03(){
+        //사용하지 않는 기능
+       var value = window.prompt("아무거나 입력하세요");
+       console.log(value);
+    }
+
+    function window04(){
+        // window.open("주소");
+        open("https://www.naver.com");
+    }
+
+    function window05(){
+        // window.open("주소","ID","새창 옵션");
+        // open("http://www.google.com","_blank","width=500, height=500"); //(ID지정x)무한 새창
+        //"_blank" - 명확하게 새창이라고 지정하는 것(빈 칸 보다는 선호)
+        open("http://www.naver.com","win1","width=500, height=500"); // 하나만 열림
+        //구글은 새창이 타켓팅되지 않음
+        //window.open("https://www.mozilla.org/", "win", "popup");//하나만 열림
+    }
+
+    function location01(){
+        // console.log(window.location); //window생략가능
+        console.log(location);
+        location.href = "https://www.google.com";
+    }
+
+    function location02(){
+        //window.location.reload();
+        location.reload();
+    }
+
+    function history01(){
+        // console.log(window.history);
+        //이전페이지 이동
+        history.back();//= history.go(-1);
+    }
+
+    function history02(){
+        history.go(-2);
+    }
+    //document.querySelector()는 가장 위에 있는 1개의 태그를 선택
+    //document.querySelectorAll()은 해당하는 모든 태그를 선택
+    function document01(){
+        // console.log(window.document);
+        // var tag = document.querySelector("h1"); //원치 않는 결과가 나옴
+        // var tag = document.querySelector("#target");
+        // var tag = document.querySelector(".temp");
+       
+        var tag = document.querySelectorAll(".temp"); 
+        // tag[0].style.color = "red"; 
+
+        for(var i=0; i < tag.length; i++){
+            tag[i].style.color = "red";
+        }
+    }
+    //document.getElementById(아이디) - 가장 중요!
+    //document.getElementsByClassName(클래스)
+    //document.getElementsByTagName(태그명)
+    function document02(){
+        var tag = document.getElementById("target");
+        tag.style.color = "red";
+
+        // var tag = document.getElementsByClassName("temp");
+        // tag[0].style.color = "red";
+
+
+
+    }
+
+     </script>
+</head>
+<body>
+    <div class="container w-600">
+        <div class="row">
+            <h1>자바스크립트 내장 객체</h1>
+        </div>
+        <div class="row left">
+            자바스크립트 내장객체는 브라우저를 제어하는 것이 목표이며
+            브라우저의 최상위 요소가 창(Window)이다.
+            <br>
+            창을 제어하는 내장객체의 이름은 Window 이다.
+        </div>
+        <div class="row">
+            <button onclick="window01();">알림창</button>
+            <button onclick="window02();">확인창</button>
+            <button onclick="window03();">입력창</button>
+            <button onclick="window03();">입력창</button>
+            <button onclick="window04();">새탭</button>
+            <button onclick="window05();">새창</button>
+        </div>
+
+        <div class="row left">
+            location은 window의 하위 객체이며
+            주소창과 새로고침버튼 등의 정보 및 제어 기능이 존재
+        </div>
+        <div class="row">
+            <button onclick="location01();">구글로 이동</button>
+            <button onclick="location02();">새로고침</button>
+        </div>
+        <div class="row left">
+            history는 window의 하위 객체이며
+            방문이력을 관리하며 뒤로 혹은 앞으로 이동 기능이 존재
+            </div>
+
+            <div class="row">
+                <button onclick="history01();">뒤로가기</button>
+                <button onclick="history02();">뒤로 2페이지 가기</button>
+            </div>
+
+            <div class="row left">
+                doucment는 window의 하위 객체이며
+                문서를 제어할 수 있는 기능을 가지고 있다
+
+                <div class="row">
+                    <button onclick="document01();">선택하기(신버전)</button>
+                    <button onclick="document01();">선택하기(구버전)</button>
+                </div>
+
+                <div class="row">
+                    <h1 id="target" class="temp">선택 대상</h1>
+                </div>
+    </div>
+    
+</body>
+</html>
