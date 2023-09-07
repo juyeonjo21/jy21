@@ -10,7 +10,7 @@
      <link rel="stylesheet" type="text/css" href="/css/reset.css">
      <link rel="stylesheet" type="text/css" href="/css/layout.css">
      <link rel="stylesheet" type="text/css" href="/css/commons.css">
-      <link rel="stylesheet" type="text/css" href="/css/test.css"> 
+      <!--  <link rel="stylesheet" type="text/css" href="/css/test.css"> -->
 
     <hr>
     KH정보교육원 웹개발자 양성과정
