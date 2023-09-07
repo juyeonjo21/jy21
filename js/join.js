@@ -120,13 +120,21 @@ $(function(){
 
     status.addr = isValid;
 });
-    
-    //form에 submit 이벤트를 설정하겠다
-    $(".join-form").submit(function(e){
-        $(".form-input").blur();
-    
-        if(status.ok() == false){ //!status.ok()
-            e.preventDefault();
-        }
+            //페이지 이탈 방지
+            //- window에 beforeunload 이벤트 설정
+            $(window).on("beforeunload", function(){
+                return false;
+            });
+
+            //- form 전송할 때는 beforeunload 이벤트를 제거
+            $(".join-form").submit(function(e){
+                $(".form-input").blur();
+            
+                if(!status.ok()){
+                    e.preventDefault();
+                }
+            else{
+                $(window).off("beforeunload");
+            }
     });
 });
