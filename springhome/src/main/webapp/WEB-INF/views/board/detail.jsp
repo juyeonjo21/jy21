@@ -84,12 +84,16 @@ $(function(){
 				
 				//만드는 시점에 이벤트 설정
 				//-(주의) 반복문에서 만든 데이터 사용 불가(위치가 다름)
+				//- 지금과 같이 버튼 내부에 태그가 더 있을 때,
+				//	this와 e.target은 다를 수 있다
+				//	(this는 주인공, e.target은 실제대상)
 				$(htmlTemplate).find(".btn-delete")
 							.attr("data-reply-no", reply.replyNo)
 							.click(function(e){
 					//var replyNo = $(this).data("reply-no");
+					var replyNo = $(this).attr("data-reply-no");
 					//var replyNo = $(e.target).data("reply-no"); //html은 카멜케이스 소용없음(-선호)
-					var replyNo = $(e.target).attr("data-reply-no");
+					//var replyNo = $(e.target).attr("data-reply-no");
 					$.ajax({
 						url:"/rest/reply/delete",
 						method:"post",
@@ -100,18 +104,42 @@ $(function(){
 					});
 				});
 				
-				$(htmlTemplate).find(".btn-edit").click(function(){});
+				//수정 버튼을 누르면?
+				//- 편집 상태의 템플릿을 만들어서 추가
+				//- 전환 시 작성된 값들을 입력창으로 이동시켜야 함
+				//- 전송 가능한 form과 취소 버튼을 구현
+				//- 수정 시 서버로 글번호와 글내용만 전달하면 됨
+				$(htmlTemplate).find(".btn-edit").click(function(){
+					//this == 수정버튼
+					var editTemplate = $("#reply-edit-template").html();
+					var editHtmlTemplate = $.parseHTML(editTemplate);
+					
+					//취소 버튼에 대한 처리 구현
+					$(editHtmlTemplate).find(".btn-cancel")
+										.click(function(){
+											
+						//this == 취소버튼	
+						$(this).parents(".edit-container")
+								.prev(".view-container").show();
+						$(this).parents(".edit-container").remove();
+						});
+					
+					//화면 배치
+					$(this).parents(".view-container")
+						.hide()
+						.after(editHtmlTemplate);
+				});
 				
 				$(".reply-list").append(htmlTemplate);
 			}
-		}
+		},
 		});
 	}
 });
 </script>
 
 <script id="reply-template" type="text/template">
-	<div class="row flex-container">
+	<div class="row flex-container view-container">
 	<div class="w-75">
 		<div class="row left">
 		<h3 class="replyWriter">작성자</h3>
@@ -136,6 +164,25 @@ $(function(){
 	</div>
 </div>
 </div>
+</script>
+
+<script id="reply-edit-template" type="text/template">
+<form class="reply-edit-form edit-container">
+	<input type="hidden" name="replyNo" value="?">
+	<div class="row flex-container">
+	<div class="w-75">
+	<textarea name="replyContent" class="form-input w-100" rows="4">어쩌구저쩌궁</textarea>
+	</div>
+	<div class="w-25">
+	<div class="row">
+	<button type="submit" class="btn btn-positive">등록</button>
+	</div>
+	<div class="row">
+	<button type="button" class="btn btn-negative btn-cancel">취소</button>
+	</div>
+	</div>
+	</div>
+	</form>
 </script>
 
 <div class="container w-800">
@@ -196,11 +243,8 @@ $(function(){
 	</div>
 	
 	<%-- 댓글 목록이 표시될 영역 --%>
-	<div class="row left reply-list">
-	
-	
-	</div>
-	
+	<div class="row left reply-list"></div>
+
 	<%-- 각종 버튼이 위치하는 곳 --%>
 	<div class="row right">
 		<%-- 회원일 때만 글쓰기,수정,삭제가 나와야 한다 --%>
