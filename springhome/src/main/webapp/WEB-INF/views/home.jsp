@@ -18,13 +18,12 @@
 	<style>
 
 body {
-    background-color: #8B4513;
+  background-color: #3c6382;
 }
 </style>
 	
 	<div class="row">
-	<h2>Now I am become Death, the destroyer of worlds.</h2>
-	<img src="https://dummyimage.com/1000x400/000/fff">
+	<img src="/images/bin.webp" width="500">
 	</div>
 		
 	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

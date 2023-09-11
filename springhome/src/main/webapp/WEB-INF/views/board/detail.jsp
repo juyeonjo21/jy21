@@ -28,11 +28,114 @@ $(function(){
 			data : $(e.target).serialize(),
 			success:function(response){
 				//console.log("성공");
-				$("[name=replyContent]".val(""));
+				$("[name=replyContent]").val("");//입력창 초기화
+				loadList(); //목록 갱신
 			}
 		});
 	});
+	//목록은 페이지가 로딩되면 바로 불러오도록 구현한다
+	//- 등록이 완료된 경우 불러오도록 구현한다
+	//- 여러군데서 사용할 수 있도록 함수 형태로 구현한다
+	//- 목록을 모두 지우고 전부 다 새로 불러오도록 구현한다
+	loadList();
+	
+	//목록을 불러온 뒤 추가로 해야할 것
+	//- 내 글에만 수정/삭제 버튼이 나오도록 처리
+	//- 게시글 작성자가 쓴 댓글에 추가 표시
+	//- 수정버튼을 누르면 화면에 변화를 주도록 처리
+	//- 삭제버튼을 누르면 확인창 출력 후 삭제하도록 처리
+	function loadList(){		
+		//Javascript로 boardNo라는 이름의 파라미터 값 읽기
+		var params = new URLSearchParams(location.search);
+		var no = params.get("boardNo");
+		
+		//(중요)로그인한 사용자의 정보를 EL을 이용하여 저장(매우 위험한 코드)
+		var memberId = "${sessionScope.name}";
+		
+		//비동기 통신으로 화면 갱신
+		$.ajax({
+		//url:"http://localhost:9999/rest/reply/list",
+		url:"/rest/reply/list",
+		method:"post",
+		data:{replyOrigin: no},
+		success:function(response){
+			//화면청소
+			//$(".reply-list").remove(); //자기 자신까지 삭제(하면 안됨!)
+			$(".reply-list").empty();//자기 자신을 제외한 내부 코드 삭제
+			
+			//response는 댓글 목록(JSON)
+			//console.log(response);
+			for(var i=0; i < response.length; i++){
+				var reply = response[i];
+				
+				var template = $("#reply-template").html();
+				var htmlTemplate = $.parseHTML(template);
+				
+				//작성자를 표시할 때 다음과 같이 로직을 추가
+				//- 탈퇴한 사용자는 빈칸이 아니라 "탈퇴한 사용자"로 처리
+				$(htmlTemplate).find(".replyWriter").text(reply.replyWriter || "탈퇴한 사용자");
+				$(htmlTemplate).find(".replyContent").text(reply.replyContent);
+				$(htmlTemplate).find(".replyTime").text(reply.replyTime);
+				
+				//내가 작성한 댓글이 아니라면
+				if(memberId.length == 0 || memberId != reply.replyWriter){ //비회원일 때
+					$(htmlTemplate).find(".w-25").empty();//버튼 삭제(w-25찾아서 비워라)
+				}
+				
+				//만드는 시점에 이벤트 설정
+				//-(주의) 반복문에서 만든 데이터 사용 불가(위치가 다름)
+				$(htmlTemplate).find(".btn-delete")
+							.attr("data-reply-no", reply.replyNo)
+							.click(function(e){
+					//var replyNo = $(this).data("reply-no");
+					//var replyNo = $(e.target).data("reply-no"); //html은 카멜케이스 소용없음(-선호)
+					var replyNo = $(e.target).attr("data-reply-no");
+					$.ajax({
+						url:"/rest/reply/delete",
+						method:"post",
+						data:{replyNo : replyNo}, //보내는이름 : 보낼 데이터
+						success:function(response){
+							loadList();
+						},
+					});
+				});
+				
+				$(htmlTemplate).find(".btn-edit").click(function(){});
+				
+				$(".reply-list").append(htmlTemplate);
+			}
+		}
+		});
+	}
 });
+</script>
+
+<script id="reply-template" type="text/template">
+	<div class="row flex-container">
+	<div class="w-75">
+		<div class="row left">
+		<h3 class="replyWriter">작성자</h3>
+		</div>
+		<div class="row left">
+		<pre class="replyContent">내용</pre>
+		</div>
+		<div class="row left">
+		<span class="replyTime">yyyy-MM-dd HH:mm:ss</span>
+		</div>
+	</div>
+	<div class="w-25">
+	<div class="row">
+	<button class="btn btn-edit">
+	<i class="fa-solid fa-edit"></i>
+	</button>
+	</div>
+	<div class="row">
+	<button class="btn btn-negative btn-delete">
+	<i class="fa-solid fa-trash"></i>
+	</button>
+	</div>
+</div>
+</div>
 </script>
 
 <div class="container w-800">
@@ -92,33 +195,10 @@ $(function(){
 	</form>
 	</div>
 	
-	<div class="row left">
+	<%-- 댓글 목록이 표시될 영역 --%>
+	<div class="row left reply-list">
 	
-	<div class="row flex-container">
-	<div class="w-75">
-		<div class="row left">
-		<h3 class="DB이름">작성자</h3>
-		</div>
-		<div class="row left">
-		<pre class="DB이름">내용</pre>
-		</div>
-		<div class="row left">
-		<span class="DB이름">yyyy-MM-dd HH:mm:ss</span>
-		</div>
-	</div>
-	<div class="w-25">
-	<div class="row">
-	<button class="btn">
-	<i class="fa-solid fa-edit"></i>
-	</button>
-	</div>
-	<div class="row">
-	<button class="btn btn-negative">
-	<i class="fa-solid fa-trash"></i>
-	</button>
-	</div>
-	</div>
-	</div>
+	
 	</div>
 	
 	<%-- 각종 버튼이 위치하는 곳 --%>
