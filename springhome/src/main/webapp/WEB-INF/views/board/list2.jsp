@@ -144,10 +144,10 @@
 						
 						<!-- 댓글이 있다면 개수를 표시 -->
 						<c:if test="${boardListDto.boardReplycount > 0}">
-<%-- 						[${boardListDto.boardReplycount}] --%>
+							[${boardListDto.boardReplycount}] 
 							&nbsp;&nbsp;
 							<i class="fa-solid fa-comment blue"></i>
-							${boardListDto.boardReplyCount}							
+							${boardListDto.boardReplycount}							
 						</c:if>
 					</td>
 					<td>${boardListDto.getBoardWriterString()}</td>
