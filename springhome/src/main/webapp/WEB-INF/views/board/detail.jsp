@@ -5,6 +5,36 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<!--  댓글과 관련된 처리를 할 수 있도록 jQuery 코드 구현 -->
+
+<script>
+$(function(){
+	//목표 : 댓글등록을 누르면 입력정보로 ajax 통신을 통해 댓글 등록  처리
+	//(주의) form은 전송이되면 안된다(submit/기본이벤트 차단)
+	
+	$(".reply-insert-form").submit(function(e){
+		//this == e.target == 폼(form)
+		
+		//입력검사 코드(skip)
+		
+		//기본이벤트 차단
+		e.preventDefault();
+		
+		//비동기 통신 발생
+		$.ajax({
+			url:"/rest/reply/insert", //or http://localhost:9999/rest/reply/insert
+			method:"post",
+			//data:{replyOrigin:?, replyContent:?},
+			data : $(e.target).serialize(),
+			success:function(response){
+				//console.log("성공");
+				$("[name=replyContent]".val(""));
+			}
+		});
+	});
+});
+</script>
+
 <div class="container w-800">
 	<div class="row">
 		<h1>
@@ -47,14 +77,17 @@
 	
 	<%-- 댓글과 관련된 화면이 작성될 위치 --%>
 	<div class="row left">
-	<form>
+	<form class="reply-insert-form">
+	<input type="hidden" name="replyOrigin" value="${boardDto.boardNo}">
+	
 		<div class="row">
-		<textarea name="?" class="form-input w-100" rows="4"></textarea>
+		<textarea name="replyContent" class="form-input w-100" rows="4"></textarea>
 		</div>
 		<div class="row">
 		<button class="btn btn-positive w-100">
 		<i class="fa-solid fa-pen"></i>
-		댓글등록</button>
+		댓글등록
+		</button>
 		</div>
 	</form>
 	</div>
