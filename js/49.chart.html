@@ -16,31 +16,47 @@
             //data없음
             dataType:"json", //서버에서 받기를 기대하는 형태(아니면 에러처리)
             success:function(response){
-                console.log(response);
-            },
+                //console.log(response);
 
+                var labels = [], data = [];
+
+                for(var i=0; i < response.length; i++){
+                    labels.push(response[i].name);
+                    data.push(response[i].cnt);
+                }
+
+                //labels와 data를 이용하여 차트를 생성하는 코드
+                const ctx = document.getElementById('myChart');
+              
+                new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: labels,
+                    datasets: [{
+                      label: '인원수',
+                      data: data,
+                      borderWidth: 1,
+                      borderRadius: 10
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true
+                      }
+                    },
+                    plugins:{
+                        title:{
+                            display:true,
+                            text: '회원 등급별 인원수 현황',
+                        }
+                    }
+                  }
+                });
+
+            },
         });
     });
 
 
-    const ctx = document.getElementById('myChart');
-  
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['일반회원','VIP','관리자'],
-        datasets: [{
-          label: '인원수',
-          data: [152, 203, 72],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });
   </script>
