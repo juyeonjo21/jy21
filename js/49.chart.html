@@ -1,0 +1,46 @@
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <script>
+    $(function(){
+        //시작하자마자 서버로 비동기 통신을 시도하여
+        //차틑 구현을 위한 데이터를 가져온다
+
+        $.ajax({
+            url:"http://localhost:9999/rest/member/stat/count",
+            //method:"get", //get은 안 써도 됨
+            //data없음
+            dataType:"json", //서버에서 받기를 기대하는 형태(아니면 에러처리)
+            success:function(response){
+                console.log(response);
+            },
+
+        });
+    });
+
+
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['일반회원','VIP','관리자'],
+        datasets: [{
+          label: '인원수',
+          data: [152, 203, 72],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
