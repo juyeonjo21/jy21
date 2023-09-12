@@ -18,14 +18,19 @@
      <link rel="stylesheet" type="text/css" href="/css/layout.css">
      <link rel="stylesheet" type="text/css" href="/css/commons.css">
      <!-- <link rel="stylesheet" type="text/css" href="/css/test.css"> -->
-	<style></style>
-
+	<style>
+	.title{
+	color:white;
+	}
+	</style>
+	 <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <main>
         <header>
             <div class="logo">
-                <img src="https://dummyimage.com/200x50/000/fff">
+                <img src="/images/tweety12.gif" width="200px">
             </div>
             <div class="title">
                 <h1>Juyeon's Home</h1>

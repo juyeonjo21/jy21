@@ -63,13 +63,15 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 		registry.addInterceptor(memberInterceptor) //화이트리스트방식 - 내가 지정한 애들 빼고 다 안돼
 					.addPathPatterns("/member/**")
 					.addPathPatterns("/board/**")
+					.addPathPatterns("/rest/reply/**")
 					.excludePathPatterns(
 							"/member/join*",
 //							"/member/joinFinish",
 							"/member/login",
 							"/member/exitFinish",
+							"/board/list*",
 							"/board/detail",
-							"/board/list"
+							"/rest/reply/list"
 						);
 		//[3] 게시글 소유자 외의 접근을 차단하는 인터셉터 등록
 		registry.addInterceptor(boardOwnerInterceptor).addPathPatterns("/board/edit","/board/delete");
