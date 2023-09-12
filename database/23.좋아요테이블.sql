@@ -16,3 +16,4 @@ PRIMARY KEY(follower, target)
 );
 
 SELECT * FROM follow;
+ 
