@@ -22,10 +22,18 @@ public class PocketmonDaoImpl implements PocketmonDao{
 	      return jdbcTemplate.queryForObject(sql, int.class);
 	   }
 
-	   @Override
+	  @Override
 	   public void insert(PocketmonDto pocketmonDto) {
 	      String sql = "insert into pocketmon(no,name,type) values(?,?,?)";
 	      Object[] data = {pocketmonDto.getNo(),pocketmonDto.getName(),pocketmonDto.getType()};
 	      jdbcTemplate.update(sql,data);
 	   }
+
+	@Override
+	public void connect(int pocketmonNo, int attachNo) {
+		String sql = "insert into pocketmon_image values(?,?)";
+		Object[] data = {pocketmonNo, attachNo};
+		jdbcTemplate.update(sql,data);
+		
+	}
 }
