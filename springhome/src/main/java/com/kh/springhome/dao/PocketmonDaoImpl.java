@@ -16,20 +16,16 @@ public class PocketmonDaoImpl implements PocketmonDao{
 	@Autowired
 	private PocketmonMapper pocketmonMapper;
 
-	@Override
-	public int sequence() {
-		String sql = "select pocketmon_seq.nextval from dual";
-		
-		return jdbcTemplate.queryForObject(sql, int.class);
-	}
+	 @Override
+	   public int sequence() {
+	      String sql = "select pocketmon_seq.nextval from dual";
+	      return jdbcTemplate.queryForObject(sql, int.class);
+	   }
 
-	@Override
-	public void insert(PocketmonDto pocketmonDto) {
-		String sql = "insert into pocketmon(no.name,type) values(?,?,?)";
-		Object[] data = {
-				pocketmonDto.getNo(), pocketmonDto.getName(), pocketmonDto.getType()
-		};
-		jdbcTemplate.update(sql,data);
-	}
-
+	   @Override
+	   public void insert(PocketmonDto pocketmonDto) {
+	      String sql = "insert into pocketmon(no,name,type) values(?,?,?)";
+	      Object[] data = {pocketmonDto.getNo(),pocketmonDto.getName(),pocketmonDto.getType()};
+	      jdbcTemplate.update(sql,data);
+	   }
 }
