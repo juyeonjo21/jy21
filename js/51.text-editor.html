@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rich Text Editor</title>
-     <!--css 파일을 불러오는 코드-->
-
-     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-     <!-- 내가 만든 css 파일 -->
-     <link rel="stylesheet" type="text/css" href="./css/reset.css">
-     <link rel="stylesheet" type="text/css" href="./css/commons.css">
-     <link rel="stylesheet" type="text/css" href="./css/test.css">
-     <style>
- 
-     </style>
-     <!-- jquery cdn -->
-     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-     
-     <!-- javascript 작성 공간-->
-     <script>
- 
-     </script>
-</head>
-<body>
-    
-</body>
+    <title>without bootstrap</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+  </head>
+  <body>
+    <textarea id="summernote"></textarea>
+    <script>
+      $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+    </script>
+  </body>
 </html>
