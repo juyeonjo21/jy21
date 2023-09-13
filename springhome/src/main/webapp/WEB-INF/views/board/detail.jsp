@@ -5,8 +5,13 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<!--  댓글과 관련된 처리를 할 수 있도록 jQuery 코드 구현 -->
+<<style>
+	.note-viewer{
+	  line-height:2 !important;
+	}
+</style>
 
+<!--  댓글과 관련된 처리를 할 수 있도록 jQuery 코드 구현 -->
 <script>
 $(function(){
 	//목표 : 댓글등록을 누르면 입력정보로 ajax 통신을 통해 댓글 등록  처리
@@ -301,8 +306,8 @@ $(function(){
 		<h2>${boardDto.boardTitle}</h2>
 	</div>
 	<%-- 게시글 내용(본문) --%>
-	<div class="row left" style="min-height:250px">
-		<pre>${boardDto.boardContent}</pre>
+	<div class="row left note-viewer" style="min-height:250px">
+		${boardDto.boardContent}
 	</div>
 	
 	<%-- 댓글과 관련된 화면이 작성될 위치 --%>
@@ -314,8 +319,8 @@ $(function(){
 		<div class="row">
 		<textarea name="replyContent" class="form-input w-100" rows="4"></textarea>
 		</div>
-		<div class="row">
-		<button class="btn btn-positive w-100">
+		<div class="row right">
+		<button class="btn btn-positive">
 		<i class="fa-solid fa-pen"></i>
 		댓글등록
 		</button>
