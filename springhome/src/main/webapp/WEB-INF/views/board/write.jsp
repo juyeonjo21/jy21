@@ -4,10 +4,37 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<script src="/js/boardWrite.js"></script>
-<script>
+ 	<!--Summernote cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <style>
+        .note-editable{
+            line-height:2 !important;
+        }
+     </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-</script>
+	<script src="/js/boardWrite.js"></script>
+	<!-- javascript 작성 공간-->
+     <script>
+        $(function(){
+            $('[name=boardContent]').summernote({
+                placeholder: '내용을 작성하세요',
+                tabsize: 2,//탭을 누르면 이동할 간격
+                height: 200,//에디터 높이
+                minHeight:200,//에디터 최소높이
+                lineHeight:20, //기본 줄간격(px)
+                toolbar: [
+                ['style', ['style']],
+                ['font', ['bold','italic','underline']],
+                ['color', ['color']],
+                ['para', ['paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+        ]
+      });
+     });
+     </script>
 
 <form action="write" method="post" autocomplete="off">
 	<%-- 답글일 때만 추가 정보를 전송 --%>
@@ -27,7 +54,11 @@
             </c:choose>
         </div>
         <div class="row left">
-            <label>제목 <span class="important"> *</span> </label>
+            <label>
+            제목
+             <span class="important fa-solid fa-asterisk red">
+             </span> 
+             </label>
             
             <c:choose>
 				<c:when test="${isReply}">
@@ -43,7 +74,11 @@
         </div>
         
         <div class="row left">
-            <label>내용<span class="important"> *</span></label>
+            <label>
+            내용 
+            <span class="important fa-solid fa-asterisk red"> 
+            </span>
+            </label>
             <textarea name="boardContent" class="form-input w-100" style="min-height:250px" oninput="checkBoardContent();"></textarea>
         </div>
         <div class="row right">
