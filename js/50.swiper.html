@@ -54,6 +54,15 @@
             // scrollbar: {
             //     el: '.swiper-scrollbar',
             // },
+
+            //자동재생
+            autoplay:{
+                delay: 2000, //재생간격(ms)
+                pauseOnMouseEnter:true, //마우스 진입 시 멈춤 여부
+            },
+
+            //이펙트(전환효과)설정
+            effect: "slide", //(slide/fade/cube/coverflow/flip/creative/cards)
          });
     });
      </script>
@@ -72,8 +81,12 @@
         <div class="swiper-slide">
             <img src="./image/tweety.jpg" width="50%">
         </div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
+        <div class="swiper-slide">
+            <img src="./image/tweety21.webp" width="50%">
+        </div>
+        <div class="swiper-slide">
+            <img src="./image/twwty33.png" width="40%">
+        </div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
