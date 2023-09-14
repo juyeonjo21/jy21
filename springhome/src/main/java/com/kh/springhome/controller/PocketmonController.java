@@ -104,20 +104,21 @@ public class PocketmonController {
 		String home = System.getProperty("user.home");
 		File dir = new File(home, "upload");
 		File target = new File(dir, String.valueOf(attachDto.getAttachNo()));
+		System.out.println(attachDto);
 		
 		byte[] data = FileUtils.readFileToByteArray(target);//실제파일정보 불러오기
 		ByteArrayResource resource = new ByteArrayResource(data);
 		
-		
-		//4,5 - header(정보), body(내용)
+		//4, 5 - header(정보), body(내용)
 		return ResponseEntity.ok()
-				.header("Content-Encoding","UTF-8")
-				.header("Content-Length",String.valueOf(attachDto.getAttachSize()))
-//				.header("Content-Type",attachDto.getAttachType())//저장된유형
-				.header("Content-Type","application/octet-stream")//무조건 다운로드
-				.header("Content-Disposition","attachment; filename="+attachDto.getAttachName())
-				.body(resource);
+			.header("Content-Encoding", "UTF-8")
+			.header("Content-Length", String.valueOf(attachDto.getAttachSize()))
+			.header("Content-Type", attachDto.getAttachType())//저장된 유형
+//			.header("Content-Type", "application/octet-stream")//무조건 다운로드
+			.header("Content-Disposition", "attachment; filename="+attachDto.getAttachName())
+		.body(resource);
 	}
+	
 	
 	//상세 페이지
 	@RequestMapping("/detail")

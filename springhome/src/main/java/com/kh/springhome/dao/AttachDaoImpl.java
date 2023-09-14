@@ -26,11 +26,11 @@ public class AttachDaoImpl implements AttachDao{
 	@Override
 	public void insert(AttachDto attachDto) {
 		String sql = "insert into attach("
-				+ "attach_no, attach_name, attach_type) "
-				+ "values(?,?,?)";
+				+ "attach_no, attach_name, attach_size, attach_type) "
+				+ "values(?,?,?,?)";
 		Object[] data = {
 				attachDto.getAttachNo(), attachDto.getAttachName(),
-			 attachDto.getAttachType()
+				attachDto.getAttachSize(), attachDto.getAttachType()
 		};
 		jdbcTemplate.update(sql,data);
 	}
