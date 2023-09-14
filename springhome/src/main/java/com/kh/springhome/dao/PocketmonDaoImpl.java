@@ -1,10 +1,14 @@
 package com.kh.springhome.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.springhome.dto.AttachDto;
 import com.kh.springhome.dto.PocketmonDto;
+import com.kh.springhome.mapper.AttachMapper;
 import com.kh.springhome.mapper.PocketmonMapper;
 
 @Repository
@@ -15,6 +19,9 @@ public class PocketmonDaoImpl implements PocketmonDao{
 	
 	@Autowired
 	private PocketmonMapper pocketmonMapper;
+	
+	@Autowired
+	private AttachMapper attachMapper;
 
 	 @Override
 	   public int sequence() {
@@ -35,5 +42,17 @@ public class PocketmonDaoImpl implements PocketmonDao{
 		Object[] data = {pocketmonNo, attachNo};
 		jdbcTemplate.update(sql,data);
 		
+	}
+
+	@Override
+	public AttachDto findImage(int pocketmonNo) {
+		String sql = "select * from attach "
+				+ "where attach_no = ("
+				+ "select attach_no from pocketmon_image "
+				+ "where pocketmon_no = ?"
+				+ ")";
+		Object[] data = {pocketmonNo};
+		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 }
