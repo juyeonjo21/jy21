@@ -11,12 +11,14 @@
 		
 	<c:choose>
 		<c:when test="${pocketmonDto.image}">
-		<img src = "image?no=${pocketmonDto.no}" width="50" height="50">
+		<img src = "image?no=${pocketmonDto.no}" width="200" height="200">
 	</c:when>
 	<c:otherwise>
 		<img src = "https://dummyimage.com/50x50/000/fff">
 		</c:otherwise>
 	 </c:choose>
+	 
+	 <a href="delete?no=${pocketmonDto.no}">삭제</a>
 	</div>
  </c:forEach>
 	
