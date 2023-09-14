@@ -55,4 +55,24 @@ public class PocketmonDaoImpl implements PocketmonDao{
 		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+
+
+	@Override
+	public List<PocketmonDto> selectList() {
+		String sql = "select * from pocketmon order by no asc";
+		return jdbcTemplate.query(sql, pocketmonMapper);
+	}
+	
+	@Override
+	public PocketmonDto selectOne(int no) {
+		String sql = "select p.*, pm.attach_no from "
+				+ "pocketmon p "
+				+ "left outer join pocketmon_image pm "
+				+ "on p.no = pm.pocketmon_no "
+				+ "where no = ?";
+		Object[] data = {no};
+		List<PocketmonDto> list = 
+						jdbcTemplate.query(sql, pocketmonMapper,data);
+		return list.isEmpty() ? null : list.get(0);
+	}	
 }

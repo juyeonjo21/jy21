@@ -2,12 +2,14 @@ package com.kh.springhome.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -115,6 +117,22 @@ public class PocketmonController {
 				.header("Content-Type","application/octet-stream")//무조건 다운로드
 				.header("Content-Disposition","attachment; filename="+attachDto.getAttachName())
 				.body(resource);
+	}
+	
+	//상세 페이지
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int no, Model model) {
+		PocketmonDto pocketmonDto = pocketmonDao.selectOne(no);
+		model.addAttribute("pocketmonDto",pocketmonDto);
+		return "/WEB-INF/views/pocketmon/detail.jsp";
+	}
+	
+	//목록
+	@RequestMapping("/list")
+	public String list(Model model) {
+		List<PocketmonDto> list = pocketmonDao.selectList();
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/pocketmon/list.jsp";
 	}
 	
 }
