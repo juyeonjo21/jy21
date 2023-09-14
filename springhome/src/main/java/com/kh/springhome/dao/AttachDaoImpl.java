@@ -1,5 +1,7 @@
 package com.kh.springhome.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,13 +28,22 @@ public class AttachDaoImpl implements AttachDao{
 	@Override
 	public void insert(AttachDto attachDto) {
 		String sql = "insert into attach("
-				+ "attach_no, attach_name, attach_type) "
-				+ "values(?,?,?)";
+				+ "attach_no, attach_name, attach_size, attach_type) "
+				+ "values(?,?,?,?)";
 		Object[] data = {
 				attachDto.getAttachNo(), attachDto.getAttachName(),
-			 attachDto.getAttachType()
+				attachDto.getAttachSize(), attachDto.getAttachType()
 		};
 		jdbcTemplate.update(sql,data);
 	}
+
+	@Override
+	public boolean delete(int attachNo) {
+		String sql = "delete attach where attach_no = ?";
+		Object[] data = {attachNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	
 
 }
