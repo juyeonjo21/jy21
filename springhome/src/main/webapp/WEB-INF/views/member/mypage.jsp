@@ -48,7 +48,7 @@
 		<img src="/images/user2.png" width="150" height="150" 
 		class="image image-circle image-border profile-image">
 		<br>
-		<input type="file" name="profile-chooser" accept="image/*">
+		<input type="file" class="profile-chooser" accept="image/*">
 		<button class="btn btn-change">변경</button>
 	</div>
 	

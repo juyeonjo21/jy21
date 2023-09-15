@@ -44,6 +44,15 @@ public class AttachDaoImpl implements AttachDao{
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
+	@Override
+	public AttachDto selectOne(int attachNo) {
+		String sql = "select * from attach where attach_no = ?";
+		Object[] data = {attachNo};
+		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
+		
+		return list.isEmpty() ? null : list.get(0);
+	}
+
 	
 
 }
