@@ -7,11 +7,12 @@
 
 <script>
 	$(function(){
-		//변경버튼을 누르면 프로필을 업로드하고 이미지 교체
-		$(".btn-change").click(function(){
+		//파일이 바뀌면 프로필을 업로드하고 이미지 교체
+		$(".profile-chooser").change(function(){
 			//선택된 파일이 있는지 확인하여 없으면 중단
 			//var input = document.querySelector(".profile-chooser");
-			var input = $(".profile-chooser")[0];
+			//var input = $(".profile-chooser")[0];
+			var input = this;
 			if(input.files.length == 0) return;
 			
 			//ajax로 multipart업로드
@@ -36,6 +37,22 @@
 				},
 			});	
 		});
+		
+		//삭제아이콘을 누르면 프로필이 지워진다
+		$(".profile-delete").click(function(){
+			//확인창
+			var choice = window.confirm("정말 프로필을 지우시겠습니까?");
+			if(choice == false) return;
+			
+			//삭제요청
+			$.ajax({
+				url:"/rest/member/delete",
+				method:"post",
+				success:function(response){
+					$(".profile-image").attr("src","/images/user2.png");
+				},		
+			});
+		});
 	});
 </script>
 
@@ -45,11 +62,27 @@
 	</div>
 	
 	<div class="row mv-30">
+	<c:choose>
+	<c:when test="${profile == null}">
 		<img src="/images/user2.png" width="150" height="150" 
 		class="image image-circle image-border profile-image">
+	</c:when>
+	<c:otherwise>
+	<img src="/rest/member/download?attachNo=${profile}"
+		width="150" height="150" 
+		class="image image-circle image-border profile-image">
+	</c:otherwise>
+	</c:choose>
+	
 		<br>
-		<input type="file" class="profile-chooser" accept="image/*">
-		<button class="btn btn-change">변경</button>
+		
+		<!-- 라벨을 만들고 파일선택창을 숨김 -->
+		<label>
+			<input type="file" class="profile-chooser" accept="image/*" 
+														style="display:none;">
+		<i class="fa-solid fa-camera blue fa-2x"></i>
+		</label>	
+		<i class="fa-solid fa-trash-can red fa-2x profile-delete"></i>
 	</div>
 	
 	<div class="row">
