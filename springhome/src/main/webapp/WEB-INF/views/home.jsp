@@ -17,13 +17,16 @@
     <!-- <link rel="stylesheet" type="text/css" href="/css/test.css">  -->
 	<style>
 
-body {
-  background-color: #3c6382;
-}
+	body {
+	  background-color: #3c6382;
+	}
 </style>
+	<div class="container w-600">
+	<div class="row">
+	</div>
 	
 	<div class="row">
 	<img src="/images/bin.webp" width="500">
 	</div>
-		
+	</div>	
 	<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
