@@ -21,14 +21,14 @@
         margin-top: 150px;
     }
     .btn{
-        background-color: rgb(185, 186, 186);
+        background-color: rgb(208, 210, 210);
         border: none;
     }
     .radio-label {
             /* display: inline-block; */
             margin-bottom: 10px;
-            padding-right: 90px;
         }
+
      </style>
 
 
@@ -37,7 +37,7 @@
      
      <!-- javascript 작성 공간-->
      <script>
-     $(document).ready(function() {
+     $(function() {
             $("button[type='submit']").click(function(e) {
                 
                 var userId = $("[name=userId]").val();
@@ -68,14 +68,14 @@
                 <input type="password" name="userPw" class="form-input w-100"
                  placeholder="password">
             </div>
-            <div class="row left">
+            <div class="row">
             <label class="radio-label">
-                <input type="radio" id="normalRadio" name="type" value="normal"
+                <input type="radio" name="type" value="normal"
                  checked>
                 일반 회원
             </label>
             <label class="radio-label">
-                <input type="radio" id="adminRadio" name="type" value="admin">
+                <input type="radio" name="type" value="admin">
                 관리자
             </label>
         </div>

@@ -18,6 +18,16 @@
             width:100%;
             height:300px;
         }
+
+        /*info window */
+        .outer {
+            font-size: 20px;
+            padding: 0.5em;
+        }
+        .outer > .inner {
+            width: 100%;
+            text-align: center;
+        }
      </style>
      <!-- jquery cdn -->
      <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -94,10 +104,12 @@
 
                     //템플릿을 불러와서 글자를 설정한 뒤 인포윈도우로 추가
                     var template = $("#info-window-template").html();
+                    //template = template.replace("???", "바꿀값");//문자열처럼 처리
                     var result = $(template).find(".inner") //inner를 찾아서
                             .text("Hello") //글자를 바꾸고
                             .parents(".outer") // outer로 돌아와서
-                            .html(); //html 글자를 내놔라
+                            // .html(); //html 글자를 내놔라
+                            .prop("outerHTML");//html글자를 내놔라(전체글자)
 
                     var iwContent = result;
                     var iwPosition = new kakao.maps.LatLng(lat, lng); //인포윈도우 표시 위치입니다
