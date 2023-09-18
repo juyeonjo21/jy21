@@ -535,6 +535,16 @@ ul.menu.fixed {
     top: 0;
 }
 
+/*
+    추가 : 메뉴 Flex로 변경
+*/
+ul.menu {
+    display: flex;
+}
+ul.menu > .menu-right {
+    margin-left: auto;
+}
+
 /* 
     링크 스타일
     - 방문한 링크는 :visited로 선택 가능
@@ -576,84 +586,47 @@ a.link:hover
     float:left;
 }
 
+/*
+    flexible 레이아웃 스타일
+    - 영역은 display가 flex 이거나 inline-flex 여야 한다
+    - 영역에 flex-direction을 설정하면 내용의 정렬 방식을 정할 수 있다
+    - 영역에 flex-wrap을 설정하면 내용의 줄 바꿈 허용을 정할 수 있다
+    - 영역에 justify-content를 설정하면 내용의 좌우 정렬을 정할 수 있다
+    - 영역에 align-items를 설정하면 내용의 상하 정렬을 정할 수 있다
+    - 영역 내부에 flex-grow를 설정하면 비어있는 공간의 점유비율을 정할 수 있다
+*/
+
+.flex-container {
+    display: flex;
+}
+.inline-flex-container {
+    display: inline-flex;
+}
+
+.flex-container.auto-width > *,
+.inline-flex-container.auto-width > *
+{
+    flex-grow: 1;
+}
+.flex-container.vertical,
+.inline-flex-container.vertical
+{
+    flex-direction: column;
+}
+.flex-container.align-center,
+.inline-flex-container.align-center
+{
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-container.allow-wrap,
+.inline-flex-container.allow-wrap
+{
+    flex-wrap: wrap;
+}
 
 
- /*
-            flexible 레이아웃 스타일
-            - 영역은 display가 flex 이거나 inline-flex 여야 한다
-            - 영역에 flex-direction을 설정하면 내용의 줄바꿈 허용을 정할 수 있다
-            - 영역에 justify-content를 설정하면 내용의 좌우 정렬을 정할 수 있다
-            - 영역에 align-items를 설정하면 내용의 상하 정렬을 정할 수 있다
-            - 영역 내부에 flex-grow를 설정하면 비어있는 공간의 점유비율을 정할 수 있다
-        */
-
-        .flex-container{
-            display: flex;
-        }
-        .inline-flex-container{
-            display: inline-flex;
-        }
-
-        .flex-container.auto-width >*,
-        .inline-flex-container.auto-width >*{
-            flex-grow: 1;
-        }
-        .flex-container.vertical,
-        .inline-flex-container.vertical{
-            flex-direction: column;
-        }
-        .flex-container.align-center,
-        .inline-flex-container.align-center{
-            justify-content: center;
-            align-items: center;
-        }
-
-        .flex-container.allow-wrap,
-        .inline-flex-container.allow-wrap{
-            flex-wrap: wrap;
-        }
-         /*
-            성공/실패에 대한 스타일 구현
-        */
-       .success-feedback{
-        color: #00b984;
-        display: none;
-       }
-       .fail-feedback,
-       .fail2-feedback
-       {
-        color: red;
-        display: none;
-       }
-       .success ~.success-feedback{
-        display: block;
-       }
-       .fail ~.fail-feedback{
-        display: block;
-       }
-       .fail2 ~.fail2-feedback{
-        display:  block;
-       }
-       .success{
-        /* important는 우선순위를 최상위로 올린다 */
-        border-color: #00b984 !important;
-        background-image: url("../image/valid.png");
-        background-repeat: no-repeat;
-        background-position-x: right;
-        background-position-y: center;
-        background-size: 1em;
-       }
-       .fail, 
-       .fail2{
-        border-color: red !important;
-        background-image: url("../image/invalid.png");
-        background-repeat: no-repeat;
-        background-position-x: right;
-        background-position-y: center;
-        background-size: 1em;
-       }
-       
-       
 /*
     이미지 디자인
 */
@@ -689,3 +662,59 @@ a.link:hover
 .image.image-grayscale {
     filter: grayscale(100%);
 }
+
+/*
+    성공/실패에 대한 스타일 구현
+*/
+.success-feedback {
+    color: #00b894;
+    display: none;
+}
+.fail-feedback,
+.fail2-feedback
+{
+    color: #d63031;
+    display: none;
+}
+.success ~ .success-feedback {
+    display: block;
+}
+.fail ~ .fail-feedback {
+    display: block;
+}
+.fail2 ~ .fail2-feedback {
+    display: block;
+}
+.success {
+    /* important는 우선순위를 최상위로 올린다 */
+    border-color: #00b894 !important;
+    background-image: url("../images/valid.png");
+    background-repeat: no-repeat;
+    background-position: center right 1em;
+    background-size: 1em;
+}
+.fail, 
+.fail2
+{
+    border-color: #d63031 !important;
+    background-image: url("../images/invalid.png");
+    background-repeat: no-repeat;
+    background-position: center right 1em;
+    background-size: 1em;
+}
+
+/*
+    진행바 디자인
+*/
+.progressbar {
+    width: 100%;
+    height: 5px;
+}
+.progressbar > .guage {
+    width: 0%;
+    height: 100%;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    /* 스르륵 */
+    transition: width 0.1s ease-out;
+}}
