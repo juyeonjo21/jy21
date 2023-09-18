@@ -23,8 +23,8 @@ public class Test01 {
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
 		sender.setHost("smtp.gmail.com");//업체주소
 		sender.setPort(587);//업체포트
-		sender.setUsername("나의이메일계정");
-		sender.setPassword("나의앱비밀번호(비번x)");
+		sender.setUsername("juyeonjo0201");
+		sender.setPassword("jhpxeopkdoeitimn");
 		
 		//통신과 관련된 추가 설정
 		Properties props = new Properties();
