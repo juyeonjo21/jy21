@@ -3,7 +3,7 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <h2>${memberDto.memberId}님의 회원 정보</h2>
 
@@ -78,7 +78,7 @@
 		<c:forEach var="boardListDto" items="${boardList}">
 		<tr>
 			<td>
-				<a href="/board/detail?boardNo=${boaListDto.boardNo}">
+				<a href="${pageContext.request.contextPath}/board/detail?boardNo=${boaListDto.boardNo}">
 					${boardListDto.boardTitle}
 				</a>
 			</td>
@@ -89,4 +89,4 @@
 </table>
 
 
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/footer.jsp"></jsp:include>
