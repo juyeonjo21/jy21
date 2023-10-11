@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
     
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <h2>
 	자유 게시판
@@ -50,7 +50,7 @@
 				<%-- 띄어쓰기 뒤에 화살표 표시 --%>
 				<c:if test="${boardListDto.boardDepth > 0}">
 <!-- 					<img src="https://dummyimage.com/15x15/000/fff"> -->
-					<img src="/images/reply.png" width="15" height="15">
+					<img src="${pageContext.request.contextPath}/images/reply.png" width="15" height="15">
 				</c:if>
 				
 			
@@ -171,6 +171,6 @@
 
 <br>
 
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/footer.jsp"></jsp:include>
 
 
