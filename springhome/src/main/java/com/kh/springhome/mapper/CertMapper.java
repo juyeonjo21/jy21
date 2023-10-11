@@ -16,7 +16,7 @@ public class CertMapper implements RowMapper<CertDto> {
 		CertDto certDto = new CertDto();
 		certDto.setCertEmail(rs.getString("cert_email"));
 		certDto.setCertNumber(rs.getString("cert_number"));
-		certDto.setCertTime(rs.getDate("cert_Time"));
+		certDto.setCertTime(rs.getDate("cert_time"));
 		return certDto;
 	}
 

@@ -42,9 +42,8 @@ public class CertDaoImpl implements CertDao{
 
 	@Override
 	public CertDto selectOneIn5min(String certEmail) {
-		String sql = "select * from cert "
-				+ "where cert_email = ? "
-				+ "cert_time between sysdate-5/24/60 and sysdate";
+		String sql = "select * from cert where cert_email=? "
+				+ "AND cert_time between sysdate-5/24/60 and sysdate";
 		Object[] data = {certEmail};
 		List<CertDto> list = jdbcTemplate.query(sql, certMapper, data);
 		return list.isEmpty() ? null:list.get(0);
