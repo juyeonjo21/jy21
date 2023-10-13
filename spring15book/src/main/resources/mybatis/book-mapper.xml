@@ -145,6 +145,13 @@
       		 ]]>
       		 </when>
       		 </choose>
+      		 <!-- 장르(목록 포함 검사) -->
+      		 <if test="bookGenreList != null and bookGenreList.size() > 0">
+      		 and book_genre in
+      		 <foreach collection="bookGenreList" open="(" close=")" separator="," item="genre">
+      		 	{genre}
+      		 </foreach>
+      		 </if>
       		 
       	</where>
       	<!-- 정렬 구문 -->

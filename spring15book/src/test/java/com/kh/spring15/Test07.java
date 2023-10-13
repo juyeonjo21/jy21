@@ -31,9 +31,10 @@ public class Test07 {
 //		param.put("bookPriceMax", "1000");
 //		param.put("bookPublicationBegin", "2023-01-01");
 //		param.put("bookPublicationEnd", "2023-12-31");
-		param.put("bookPageMin", 100);
-		param.put("bookPageMax", 400);
-		
+//		param.put("bookPageMin", 100);
+//		param.put("bookPageMax", 400);
+//		param.put("bookGenre", "판타지");//장르가 한개였다면..(x)
+		param.put("bookGenreList", List.of("판타지","공포","코미디")); //장르가 여러개라면..(o)
 		
 		List<BookDto> list = sqlSession.selectList("book.complexSearch", param);
 		log.debug("검색 결과 = {}개", list.size());
