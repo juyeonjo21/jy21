@@ -23,7 +23,13 @@ public class Test07 {
 	@Test
 	public void test() {
 		Map<String, Object> param = new HashMap<>();
-		param.put("bookId", 1);
+//		param.put("bookId", 1);
+//		param.put("bookTitle", "테스트2");
+//		param.put("bookAuthor", "테스트2");
+//		param.put("bookPublisher", "테스트작가2");
+		param.put("bookPriceMin", "10");
+		param.put("bookPriceMax", "1000");
+		
 		
 		List<BookDto> list = sqlSession.selectList("book.complexSearch", param);
 		log.debug("검색 결과 = {}개", list.size());
