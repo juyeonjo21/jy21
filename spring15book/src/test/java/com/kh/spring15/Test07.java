@@ -27,8 +27,12 @@ public class Test07 {
 //		param.put("bookTitle", "테스트2");
 //		param.put("bookAuthor", "테스트2");
 //		param.put("bookPublisher", "테스트작가2");
-		param.put("bookPriceMin", "10");
-		param.put("bookPriceMax", "1000");
+//		param.put("bookPriceMin", "10");
+//		param.put("bookPriceMax", "1000");
+//		param.put("bookPublicationBegin", "2023-01-01");
+//		param.put("bookPublicationEnd", "2023-12-31");
+		param.put("bookPageMin", 100);
+		param.put("bookPageMax", 400);
 		
 		
 		List<BookDto> list = sqlSession.selectList("book.complexSearch", param);
