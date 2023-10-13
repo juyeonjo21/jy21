@@ -158,7 +158,12 @@
       	order by
       	<foreach collection="orderList" separator="," item="order">${order}</foreach>
       	</if>
+      	
+      	<!-- Top N Query Footer 불러오기 -->
+		<include refid="pagingFooter"></include>
+      	
       </select>
+     
       <!-- Top N Query를 위한 코드 조각 생성(상/하) -->
 	<sql id="pagingHeader">
 		<if test="begin != null and end != null">
