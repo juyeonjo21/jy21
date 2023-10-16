@@ -5,10 +5,100 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="member">
-    <insert id="add">
-    	insert into member(member_id, member_pw, member_nickname, member_email,
-    	member_contact, member_birth, member_post, member_addr1, member_addr2,
-    	member_level, member_point, member_join, member_login, member_change)
-    	 values(#{memberId},#{memberPw},#{memberNickname},#{memberEmail},#{memberContact},#{memberBirth},#{memberPost},#{memberAddr1},#{memberAddr2},#{memberLevel},#{memberPoint},#{memberJoin},#{memberLogin},#{memberChange})
-    </insert>
+     <select id="complexSearch" resultType="MemberDto">
+     <!-- 기본 조회 -->
+    	select * from member
+    
+    <!-- 조건 -->
+    <where>
+    <!-- 아이디(유사) -->
+    <if test="memberId != null">
+    and instr(member_id, #{memberId}) > 0
+    </if>
+    <!-- 닉네임(유사) -->
+    <if test="memberNickname != null">
+    and instr(member_nickname, #{memberNickname}) > 0
+    </if>
+    <!-- 이메일(유사) -->
+    <if test="memberEmail != null">
+    and instr(member_email, #{memberEmail}) > 0
+    </if>
+    <!-- 연락처(일치) -->
+    <if test="memberContact != null">
+    and member_contact = #{memberContact}
+    </if>
+    <!-- 생년월일(일치) -->
+    <if test="memberBirth != null">
+    and member_birth = #{memberBirth}
+    </if>
+    <!-- 등급(목록 포함) -->
+     <if test="memberLevelList != null and memberLevelList.size() > 0">
+     and member_levelList in
+     <foreach collection="memberLevelList" open="(" item="memberLevel" separator="," close=")">
+     #{memberLevel}
+     </foreach>
+     </if>
+    <!-- 포인트(구간) -->
+    <choose>
+    <when test="memberPointMin != null and memberPointMax != null">
+    and member_point between #{memberPointMin} and #{memberPointMax}
+    </when>
+    <when test="memberPointMin != null">
+    <![CDATA[
+    and member_point >= #{memberPointMin}
+    ]]>
+    </when>
+     <when test="memberPointMax != null">
+     <![CDATA[
+    and member_point >= #{memberPointMax}
+    ]]>
+    </when>
+    </choose>
+    <!-- 가입일(구간) -->
+    <choose>
+    <when test="memebrJoinBegin != null and memberJoinEnd != null">
+    and member_join between
+    	to_date(#{memberJoinBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    	and
+    	to_date(#{memberJoinEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    </when>
+    <when test="memebrJoinBegin != null">
+    <![CDATA[
+    and member_join >= to_date(#{memberJoinBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    ]]>
+    </when>
+    <when test="memebrJoinEnd != null">
+    <![CDATA[
+    and member_join <= to_date(#{memberJoinEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    ]]>
+    </when>
+    </choose>
+    
+    <!-- 로그인 일자(구간) -->
+    <choose>
+    <when test="memebrLoginBegin != null and memberLoginEnd != null">
+    and member_login between
+    	to_date(#{memberLoginBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    	and
+    	to_date(#{memberLoginEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    </when>
+    <when test="memebrLoginBegin != null">
+    <![CDATA[
+    and member_login >= to_date(#{memberLoginBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    ]]>
+    </when>
+    <when test="memebrLoginEnd != null">
+    <![CDATA[
+    and member_login <= to_date(#{memberLoginEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+    ]]>
+    </when>
+    </choose>
+    </where>
+    
+    <!-- 정렬 -->
+    <if test="orderList != null and orderList.size() > 0">
+    order by
+    <foreach collection="orderList" item="order" separator=",">${order}</foreach>   
+    </if>
+    </select>
     </mapper>
