@@ -5,7 +5,7 @@
 		- 템플릿 페이지(template page)라고 부름
 		- 절대경로를 사용할 것
  --%>
-	<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 	
 	<!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

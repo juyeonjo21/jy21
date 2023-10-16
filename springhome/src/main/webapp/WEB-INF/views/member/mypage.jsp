@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <script>
 	$(function(){
@@ -20,7 +20,7 @@
 			form.append("attach", input.files[0]);
 			
 			$.ajax({
-				url:"/rest/member/upload",
+				url:window.contextPath+"/rest/member/upload",
 				method:"post",
 				processData:false,
 				contentType:false,
@@ -30,7 +30,7 @@
 					
 					//프로필 이미지 교체하는 코드
 					$(".profile-image").attr("src",
-							"/rest/member/download?attachNo=" +response.attachNo);
+							window.contextPath+"/rest/member/download?attachNo=" +response.attachNo);
 				},
 				error:function(){
 					window.alert("통신 오류 방생\n 잠시 후 다시 시도해주세요");
@@ -46,7 +46,7 @@
 			
 			//삭제요청
 			$.ajax({
-				url:"/rest/member/delete",
+				url:window.contextPath+"/rest/member/delete",
 				method:"post",
 				success:function(response){
 					$(".profile-image").attr("src","/images/user2.png");
@@ -64,11 +64,11 @@
 	<div class="row mv-30">
 	<c:choose>
 	<c:when test="${profile == null}">
-		<img src="/images/user2.png" width="150" height="150" 
+		<img src="${pageContext.request.contextPath}/images/user2.png" width="150" height="150" 
 		class="image image-circle image-border profile-image">
 	</c:when>
 	<c:otherwise>
-	<img src="/rest/member/download?attachNo=${profile}"
+	<img src="${pageContext.request.contextPath}/rest/member/download?attachNo=${profile}"
 		width="150" height="150" 
 		class="image image-circle image-border profile-image">
 	</c:otherwise>
@@ -157,7 +157,7 @@
 	<c:forEach var="boardDto" items="${boardLikeList}">
 	<tr>
 	<td class="row left w-75">
-	<a href="/board/detail?boardNo=${boardDto.boardNo}" class="link">
+	<a href="${pageContext.request.contextPath}/board/detail?boardNo=${boardDto.boardNo}" class="link">
 	${boardDto.boardTitle}
 	</a>
 	</td>
@@ -191,6 +191,6 @@
 	
 </div>
 
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/footer.jsp"></jsp:include>
 
 

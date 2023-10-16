@@ -50,7 +50,7 @@
 				<%-- 띄어쓰기 뒤에 화살표 표시 --%>
 				<c:if test="${boardListDto.boardDepth > 0}">
 <!-- 					<img src="https://dummyimage.com/15x15/000/fff"> -->
-					<img src="/images/reply.png" width="15" height="15">
+					<img src="${pageContext.request.contextPath}/images/reply.png" width="15" height="15">
 				</c:if>
 				
 			

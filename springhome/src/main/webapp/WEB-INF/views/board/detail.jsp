@@ -27,7 +27,7 @@ $(function(){
 		
 		//비동기 통신 발생
 		$.ajax({
-			url:"/rest/reply/insert", //or http://localhost:9999/rest/reply/insert
+			url:window.contextPath+"/rest/reply/insert", //or http://localhost:9999/rest/reply/insert
 			method:"post",
 			//data:{replyOrigin:?, replyContent:?},
 			data : $(e.target).serialize(),
@@ -60,7 +60,7 @@ $(function(){
 		//비동기 통신으로 화면 갱신
 		$.ajax({
 		//url:"http://localhost:9999/rest/reply/list",
-		url:"/rest/reply/list",
+		url:window.contextPath+"/rest/reply/list",
 		method:"post",
 		data:{replyOrigin: no},
 		success:function(response){
@@ -100,7 +100,7 @@ $(function(){
 					//var replyNo = $(e.target).data("reply-no"); //html은 카멜케이스 소용없음(-선호)
 					//var replyNo = $(e.target).attr("data-reply-no");
 					$.ajax({
-						url:"/rest/reply/delete",
+						url:window.contextPath+"/rest/reply/delete",
 						method:"post",
 						data:{replyNo : replyNo}, //보내는이름 : 보낼 데이터
 						success:function(response){
@@ -148,7 +148,7 @@ $(function(){
 								e.preventDefault();
 								
 								$.ajax({
-									url:"/rest/reply/edit",
+									url:window.contextPath+"/rest/reply/edit",
 									method:"post",
 									//data:{replyNo : ? , replyContent: ?},
 									data:$(e.target).serialize(),
@@ -228,7 +228,7 @@ $(function(){
 		var boardNo = params.get("boardNo");
 		
 		$.ajax({
-			url:"/rest/like/check",
+			url:window.contextPath+"/rest/like/check",
 			method:"post",
 			data:{boardNo:boardNo},
 			success:function(response){
@@ -249,7 +249,7 @@ $(function(){
 		//[2]하트를 누르면
 		$(".fa-heart").click(function(){
 			$.ajax({
-				url:"/rest/like/action",
+				url:window.contextPath+"/rest/like/action",
 				method:"post",
 				data:{boardNo:boardNo},
 				success:function(response){
