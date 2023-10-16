@@ -57,6 +57,6 @@ public class Test01 {
 		log.debug("word = {}", word);
 		log.debug("encrypt = {}", encrypt);
 	}
-
+	
 }
 
