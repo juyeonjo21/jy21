@@ -77,6 +77,16 @@
     <groupId>org.apache.tomcat.embed</groupId>
     <artifactId>tomcat-embed-jasper</artifactId>
 	</dependency>
+	<!-- SHA(Secure Hash Algorithm) 암호화 라이브러리 -->
+	<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+</dependency>
+<!-- spring-security 암호화 라이브러리 -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+</dependency>
 	</dependencies>
 
 	<build>
