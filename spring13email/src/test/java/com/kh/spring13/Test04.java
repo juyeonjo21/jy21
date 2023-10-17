@@ -32,7 +32,14 @@ public class Test04 {
 		helper.setTo(new String[] {"merry2j@naver.com"});
 		helper.setSubject("제목");
 //		helper.setText("<h1>Hello</h1>",false);
-		helper.setText("<h1>Hello</h1>",true);
+//		helper.setText("<h1>Hello</h1>",true);
+		
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("<div style='padding:20px; box-shadow:0 0 2px 2px black'>");
+		buffer.append("<h1 style='color:red'>제목 테스트</h1>");
+		buffer.append("<p>내용 테스트</p>");
+		buffer.append("</div>");
+		helper.setText(buffer.toString(), true);
 		
 		//[4] 전송
 		sender.send(message);
