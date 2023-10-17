@@ -21,8 +21,8 @@ public class MemberJoinTest {
 	@Test
 	public void test() {
 		dao.insert(SecureMemberDto.builder()
-				.memberId("hello1234")
-				.memberPw("password1234")
+				.memberId("hello1235")
+				.memberPw("password1235")
 				.build());
 		
 	}
