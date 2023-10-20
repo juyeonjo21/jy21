@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+     <!-- 내가 만든 css 파일 -->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+     <link rel="stylesheet" type="text/css" href="./css/commons.css">
+     <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+
+         <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        
+    .target{
+        display: flex;
+        padding: 10px;
+        font-size: 24px;
+    }
+
+    .btn{
+        border:none;
+        background-color: rgba(220, 220, 220, 0.893);
+    }
+
+    </style>
+
+
+    <!-- javascript 작성 공간-->
+    <script>
+         $(function(){
+            $(".ck").change(function(){
+               
+                console.log($(this).prop("checked"));
+                console.log($(this).attr("checked"));
+
+              
+                if($(this).prop("checked")){ 
+                    $("[name=pw]").prop("type","text");
+                }
+                else{ //비밀번호 가림
+                    $("[name=pw]").prop("type","password");
+                }
+            });
+        });
+
+
+        window.addEventListener("load",function(){
+            var buttonList = document.querySelectorAll(".keypad");
+
+            for(var i=0; i < buttonList.length; i++){
+                buttonList[i].addEventListener("click",function(){
+                  
+
+                    var div = document.querySelector(".target");
+                    div.textContent += this.textContent;
+                });
+            }
+            var clearBtn = document.querySelector(".clear");
+            clearBtn.addEventListener("click",function(){
+                var div = document.querySelector(".target");
+                div.textContent = "";
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container w-400">
+        <div class="row" style="margin-top: 50px;">
+        <h1>비밀번호 입력</h1>
+        <div class="target" type="password" name="pw" style="height:50px;"></div>
+        <div class="row left">
+            <input type="checkbox" class="ck">비밀번호 표시
+        </div>
+        </div>
+        <div class="row float-container">
+            <div class="col-3 p-10"><button class="btn w-100 keypad">1</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">2</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">3</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">4</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">5</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">6</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">7</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">8</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">9</button></div>
+            <div class="col-3 p-10"><button class="btn w-100"><i class="fa-solid fa-delete-left"></i></button></div>
+            <div class="col-3 p-10"><button class="btn w-100 keypad">0</button></div>
+            <div class="col-3 p-10"><button class="btn w-100 clear"><i class="fa-solid fa-eraser"></i></button></div>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+</body>
+</html>
