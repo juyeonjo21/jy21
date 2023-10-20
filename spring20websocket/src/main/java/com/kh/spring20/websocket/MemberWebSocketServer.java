@@ -47,8 +47,11 @@ public class MemberWebSocketServer extends TextWebSocketHandler {
 			return;
 		}
 		
+		//메세지에 송신자의 ID를 추가하여 전송
+		TextMessage tm = new TextMessage("[" + memberId + "]" + message.getPayload()); //사용자가 보낸 메세지의 글자 부분만 넘어옴
+		
 		for(WebSocketSession client:clients) {
-			client.sendMessage(message);
+			client.sendMessage(tm);
 		}
 	}
 }
