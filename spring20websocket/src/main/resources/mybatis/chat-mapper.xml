@@ -13,7 +13,7 @@
     	  #{chatContent},
     	   #{chatSender},
     	   #{chatSenderLevel},
-    	   #{chatReceiver}
+    	   #{chatReceiver}   
     	 )
     </insert>
     
