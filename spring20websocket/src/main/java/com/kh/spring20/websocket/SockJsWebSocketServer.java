@@ -2,6 +2,7 @@ package com.kh.spring20.websocket;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -71,7 +72,8 @@ public class SockJsWebSocketServer extends TextWebSocketHandler {
 
 		// 모든 접속자에게 접속자 명단을 전송
 		// 메소드 추가
-		sendClientList();
+		sendClientList();//전체에게 전송
+		sendMessageList(client);//접속자에게 메세지 내역 전송
 	}
 
 	// 접속자 명단(clients)을 모든 접속자에게 전송하는 메소드
@@ -91,6 +93,57 @@ public class SockJsWebSocketServer extends TextWebSocketHandler {
 		}
 	}
 
+	//접속한 사용자에게 메세지 이력을 전송하는 메소드
+	public void sendMessageList(ClientVO client) throws IOException {
+		List<ChatDto> list = chatDao.list();
+		
+		for(ChatDto dto : list) {
+			//dto의 내용을 메세지 형식으로 만들어서 전송
+			//- dto에 chatReceiver가 있으면 DM, 없으면 DM 아님
+			//- 시간은 FE 미구현으로 첨부하지 않음
+			
+			if(dto.getChatReceiver() == null) {//전체 채팅인 경우 - chatReceiver가 null인 경우
+				Map<String,Object> map = new HashMap<>();
+				map.put("content",dto.getChatContent() );
+				map.put("memberId", dto.getChatSender());
+				map.put("memberLevel", dto.getChatSenderLevel());
+				String messageJson = mapper.writeValueAsString(map);
+				TextMessage message = new TextMessage(messageJson);
+				client.send(message);
+			}
+			else {//DM이라면
+				if(client.isMember() == false) continue; //비회원 컷트
+				
+				if(client.getMemberId().equals(dto.getChatSender()) == false &&
+						client.getMemberId().equals(dto.getChatReceiver()) == false)
+					continue; //작성자나 수신자가 아니면 컷트
+			
+				//접속한 사람이 보낸 메세지라면 5개의 데이터를 전송(dm,memberId,memberLevel,content,chatReceiver)
+				if(client.getMemberId().equals(dto.getChatSender())){
+					Map<String,Object> map = new HashMap<>();
+					map.put("content",dto.getChatContent() );
+					map.put("memberId", dto.getChatSender());
+					map.put("memberLevel", dto.getChatSenderLevel());
+					map.put("dm", true);
+					map.put("target", dto.getChatReceiver());
+					String messageJson = mapper.writeValueAsString(map);
+					TextMessage message = new TextMessage(messageJson);
+					client.send(message);
+				}	
+			else {//접속한 사람이 받은 메세지라면 4개의 데이터를 전송
+				Map<String,Object> map = new HashMap<>();
+				map.put("content",dto.getChatContent() );
+				map.put("memberId", dto.getChatSender());
+				map.put("memberLevel", dto.getChatSenderLevel());
+				map.put("dm", true);
+				String messageJson = mapper.writeValueAsString(map);
+				TextMessage message = new TextMessage(messageJson);
+				client.send(message);
+			}
+		}
+	}
+}
+	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		// 사용자가 보낸 메세지를 모두에게 broadcast (회원이 아닌 전체에게 전송)
