@@ -13,7 +13,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/litera/bootstrap.min.css"
 	rel="stylesheet">
-<!--<link href="test.css" rel="stylesheet" type="text/css"> -->
+<link href="test.css" rel="stylesheet" type="text/css">
 
 <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -152,12 +152,20 @@
 			} 
 			
 			else if (data.content) {//메세지 처리
-				var memberId = $("<strong>").text(data.memberId);
-				var memberLevel = $("<span>").text(data.memberLevel).addClass(
-						"badge bg-primary badge-pill ms-2");
+				var memberId;
+			if(data.dm == true){ //DM이라면
+				memberId = $("<strong>").text(data.memberId + "님으로부터의 DM");
+			}
+			else{//DM이 아니라면
+				memberId = $("<strong>").text(data.memberId);
+			}
+			
+				var memberLevel = $("<span>").text(data.memberLevel)
+											.addClass("badge bg-primary badge-pill ms-2");
 				var content = $("<div>").text(data.content);
 
-				$("<div>").addClass("border border-secondary rounded p-2")
+				//메세지를 화면에 추가
+				$("<div>").addClass("border border-secondary rounded p-2 mt-2")
 						.append(memberId)
 						.append(memberLevel)
 						.append("<hr>")
@@ -169,13 +177,35 @@
 			}
 		};
 
+		
+		//메세지를 전송하는 코드
+		//- 메세지가 @로 시작하면 DM으로 처리(아이디 유무 검사정도 하면 좋고)
+		// - @아이디 메세지 
 		$(".send-btn").click(function() {
 			var text = $(".message-input").val();
-			if (text.length == 0)
-				return;
+			if (text.length == 0) return;
 
-			window.socket.send(text);
+			//window.socket.send(text); //일반 텍스트 형식으로 보낼 때
+			
+			
+			if(text.startsWith("@")){ //@로 시작하면
+				var space = text.indexOf(" "); //첫번째 띄어쓰기
+				if(space == -1) return;
+				
+				var obj = {
+						target :text.substring(1, space), //@뒤부터 띄어쓰기 전까지
+						content:text.substring(space+1) //띄어쓰기 뒤부터
+				};
+			}
+			else{
+				var obj = {
+					content:text
+			};
+			var str = JSON.stringify(obj); //객체를 JSON 문자열로 변환
+			window.socket.send(str); //JSON 형식으로 보낼 때
 			$(".message-input").val("");
+			}
+			
 		});
 		
 		//.btn-userlist를 누르면 사용자 목록에 active를 붙였다 떼었다 하도록 처리
