@@ -10,6 +10,9 @@
 <h2><a href="time">타임 웹소켓 예제</a></h2>
 <h2><a href="group">그룹 웹소켓 예제</a></h2>
 
+
+<h2><a href="sockjs">SockJS를 사용한 웹소켓 예제</a></h2>
+
 <c:choose>
 <c:when test="${sessionScope.name == null}">
 <!-- 로그인 화면 -->
