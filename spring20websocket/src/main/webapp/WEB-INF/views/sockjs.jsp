@@ -45,6 +45,20 @@
 		top : 1em;
 		right: 1em;
 	}
+	.message-list{
+		height : 65vh;
+		overflow-y : scroll;
+		padding-bottom : 50px;
+	}
+	::-webkit-scrollbar{
+		width: 1px; /*스크롤바 너비(폭에 영향 줌)*/
+		background : black;
+		
+	}
+	::-webkit-scrollbar-thumb{
+		background : var(--bs-secondary); /*스크롤바 색상*/
+		
+	}
  }
 </style>
 </head>
@@ -149,6 +163,9 @@
 						.append("<hr>")
 						.append(content)
 						.appendTo(".message-list");
+				
+				//스크롤바를 맨 아래로 이동
+				$(".message-list").scrollTop($(".message-list")[0]scrollHeight);
 			}
 		};
 
