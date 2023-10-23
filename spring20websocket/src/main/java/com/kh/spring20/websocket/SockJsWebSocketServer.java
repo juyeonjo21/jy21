@@ -129,6 +129,15 @@ public class SockJsWebSocketServer extends TextWebSocketHandler {
 			tm = new TextMessage(messageJson);
 			
 			client.send(tm); //작성자에게 메세지 전송(발신자)
+			
+			//DB insert(DM일 경우 내용, 발신자, 발신자등급, 수신자를 저장)
+			chatDao.insert(ChatDto.builder()
+					.chatContent((String) params.get("content"))
+					.chatSender(client.getMemberId())
+					.chatSenderLevel(client.getMemberLevel())
+					.chatReceiver((String) params.get("target"))
+					.build());
+			
 		}
 		else {//전체 채팅일 경우
 			// 정보를 Map에 담아 변환 후 전송
@@ -146,7 +155,7 @@ public class SockJsWebSocketServer extends TextWebSocketHandler {
 				c.send(tm);
 			}
 			
-			//DB insert
+			//DB insert(전체 메세지일 경우 내용,발신자,발신자 등급을 저장)
 			chatDao.insert(ChatDto.builder()
 					.chatContent((String) params.get("content"))
 					.chatSender(client.getMemberId())
