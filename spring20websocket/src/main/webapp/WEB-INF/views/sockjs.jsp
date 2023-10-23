@@ -16,9 +16,37 @@
 <!--<link href="test.css" rel="stylesheet" type="text/css"> -->
 
 <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+
+<style>
+	.btn-userlist{
+		display : none;
+	}
+
+
+	@media screen and (max-width: 768px){
+	.client-list{
+		position : fixed;
+		top : 0;
+		left : -250px;
+		bottom : 0;
+		width : 250px;
+		z-index : 9999999;
+		padding-top : 95px;
+		transition : left 0.2s ease-out;
+	}
+	.client-list.active{
+		left : 0;
+	}
+	.btn-userlist{
+		display : block;
+		position : fixed;
+		top : 1em;
+		right: 1em;
+	}
+ }
+</style>
 </head>
 
 <body>
@@ -28,13 +56,18 @@
 
 				<div class="row mt-4">
 					<div class="col">
-						<h1>전체 채팅</h1>
+						<h1>
+						전체 채팅
+						<button class="btn btn-secondary btn-userlist">
+						<i class="fa-solid fa-users"></i>
+						</button>
+						</h1>
 					</div>
 				</div>
 
 				<div class="row mt-4">
-					<div class="col-4 client-list"></div>
-					<div class="col-8">
+					<div class="col-md-4 client-list"></div>
+					<div class="col-md-8">
 
 
 						<div class="row">
@@ -126,6 +159,11 @@
 
 			window.socket.send(text);
 			$(".message-input").val("");
+		});
+		
+		//.btn-userlist를 누르면 사용자 목록에 active를 붙였다 떼었다 하도록 처리
+		$(".btn-userlist").click(function(){
+			$(".client-list").toggleClass("active");
 		});
 	</script>
 
