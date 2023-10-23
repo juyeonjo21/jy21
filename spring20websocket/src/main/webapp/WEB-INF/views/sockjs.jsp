@@ -154,7 +154,12 @@
 			else if (data.content) {//메세지 처리
 				var memberId;
 			if(data.dm == true){ //DM이라면
+				if(data.target){//target이 있다면(내가 DM을 보내서 찍히는 메세지라면)
+				memberId = $("<strong>").text(data.target + "님에게 보낸 DM");
+				}
+				else{
 				memberId = $("<strong>").text(data.memberId + "님으로부터의 DM");
+				}
 			}
 			else{//DM이 아니라면
 				memberId = $("<strong>").text(data.memberId);
@@ -173,7 +178,7 @@
 						.appendTo(".message-list");
 				
 				//스크롤바를 맨 아래로 이동
-				$(".message-list").scrollTop($(".message-list")[0]scrollHeight);
+				//$(".message-list").scrollTop($(".message-list")[0]scrollHeight);
 			}
 		};
 
@@ -196,6 +201,9 @@
 						target :text.substring(1, space), //@뒤부터 띄어쓰기 전까지
 						content:text.substring(space+1) //띄어쓰기 뒤부터
 				};
+				var str = JSON.stringify(obj); //객체를 JSON 문자열로 변환
+				window.socket.send(str); //JSON 형식으로 보낼 때
+				$(".message-input").val("");
 			}
 			else{
 				var obj = {
