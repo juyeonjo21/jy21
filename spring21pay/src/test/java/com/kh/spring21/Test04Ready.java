@@ -58,7 +58,7 @@ public class Test04Ready {
 		
 		//헤더 설정
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK" + kakaoPayProperties.getKey()); //내 admin 앱 키
+		headers.add("Authorization", "KakaoAK " + kakaoPayProperties.getKey()); //내 admin 앱 키
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		//바디 설정
@@ -81,8 +81,14 @@ public class Test04Ready {
 		//Map response = template.postForObject(uri, entity, Map.class); //주소,리퀘스트,서버응답(key,value - 잘 모르면 Map사용)
 		KakaoPayReadyResponseVO response = 
 				template.postForObject(uri, entity, KakaoPayReadyResponseVO.class);
-		log.debug("response = {}", response);
-		log.debug("url = {}", response.getNextRedirectPcUrl());
+//		log.debug("response = {}", response);
+//		log.debug("url = {}", response.getNextRedirectPcUrl());
+		
+		//다음 테스트를 위해 필요한 값을 출력
+		log.debug("결제 페이지 = {}", response.getNextRedirectPcUrl());
+		log.debug("tid = {}", response.getTid());
+		log.debug("partner_order_id = {}", request.getPartnerOrderId());
+		log.debug("partner_user_id = {}", request.getPartnerUserId());
 		
 	}
 }
