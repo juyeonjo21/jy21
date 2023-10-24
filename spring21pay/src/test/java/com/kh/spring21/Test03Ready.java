@@ -40,13 +40,13 @@ public class Test03Ready {
 		//전송 도구 생성
 		RestTemplate template = new RestTemplate();
 		
+		
 		//(+추가) SNAKE_CASE를 CAMEL_CASE로 처리하도록 추가 도구를 설정
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+//		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+//		template.getMessageConverters().add(0,converter);
 		
-		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-		
-		template.getMessageConverters().add(0,converter);
 		
 		//주소 설정
 		URI uri = new URI("https://kapi.kakao.com/v1/payment/ready");
@@ -62,8 +62,8 @@ public class Test03Ready {
 		body.add("partner_order_id", request.getPartnerOrderId());//가맹점 주문번호
 		body.add("partner_user_id", request.getPartnerUserId());//가맹점 회원 아이디(주문자)
 		body.add("item_name", request.getItemName());//상품명
-		body.add("quantity", String.valueOf(request.getItemPrice()));//int -> String으로 바꾸는 명령/String.valueof
-		body.add("total_amount", "3000");//판매금액
+		body.add("total_amount", String.valueOf(request.getItemPrice()));//int -> String으로 바꾸는 명령/String.valueof
+		body.add("quantity", "3000");//판매금액
 		body.add("tax_free_amount", "0");//상품 비과세 금액
 		body.add("approval_url", "http://localhost:8080/pay/success");//결제 성공 시
 		body.add("cancel_url", "http://localhost:8080/pay/cancel");//결제 취소 시

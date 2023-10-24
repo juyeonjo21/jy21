@@ -3,6 +3,8 @@ package com.kh.spring21.vo;
 import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 //카카오페이 결과를 담는 VO
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 //@JsonIgnoreProperties({"tms_result"})//특정 항목만 무시하도록 지정
 @JsonIgnoreProperties(ignoreUnknown = true)//모르는 항목은 무시하도록 지정
 @Data @NoArgsConstructor @AllArgsConstructor @Builder

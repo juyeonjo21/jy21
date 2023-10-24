@@ -47,8 +47,8 @@ public class Test02Ready {
 		body.add("partner_order_id", partnerOrderId);//가맹점 주문번호
 		body.add("partner_user_id", partnerUserId);//가맹점 회원 아이디(주문자)
 		body.add("item_name", itemName);//상품명
-		body.add("quantity", String.valueOf(itemPrice));//int -> String으로 바꾸는 명령/String.valueof
-		body.add("total_amount", "3000");//판매금액
+		body.add("total_amount", String.valueOf(itemPrice));//int -> String으로 바꾸는 명령/String.valueof
+		body.add("quantity", "3000");//판매금액
 		body.add("tax_free_amount", "0");//상품 비과세 금액
 		body.add("approval_url", "http://localhost:8080/pay/success");//결제 성공 시
 		body.add("cancel_url", "http://localhost:8080/pay/cancel");//결제 취소 시
