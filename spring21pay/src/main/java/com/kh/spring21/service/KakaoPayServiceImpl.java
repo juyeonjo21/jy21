@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kh.spring21.configuration.KakaoPayProperties;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
@@ -40,10 +41,14 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 		body.add("item_name", request.getItemName());//상품명
 		body.add("total_amount", String.valueOf(request.getItemPrice()));//int -> String으로 바꾸는 명령/String.valueof
 		body.add("quantity", "3000");//판매금액
-		body.add("tax_free_amount", "0");//상품 비과세 금액
-		body.add("approval_url", "http://localhost:8080/pay/success");//결제 성공 시
-		body.add("cancel_url", "http://localhost:8080/pay/cancel");//결제 취소 시
-		body.add("fail_url", "http://localhost:8080/pay/fail");//결제 실패 시
+		body.add("tax_free_amount", "0");//상품 비과세
+		
+		//현재 페이지 주소 계산
+		String path = ServletUriComponentsBuilder
+								.fromCurrentRequestUri().toUriString();
+		body.add("approval_url", path + "/success");
+		body.add("cancel_url", path +"/cancel");
+		body.add("fail_url", path +"/fail");
 		
 		
 		//요청 발송
