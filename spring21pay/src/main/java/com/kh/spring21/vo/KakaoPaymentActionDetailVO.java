@@ -18,6 +18,9 @@ import lombok.NoArgsConstructor;
 public class KakaoPaymentActionDetailVO {
 	private String aid;
 	private String approvedAt;
-	private int amount, pointAmount, discountAmount, paymentActionType, payload;
+	private int amount, pointAmount, discountAmount;
+	private int greenDeposit;
+	private String paymentActionType;
+	private String payload;
 
 }

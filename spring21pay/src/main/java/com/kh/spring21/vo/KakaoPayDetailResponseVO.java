@@ -27,7 +27,6 @@ public class KakaoPayDetailResponseVO {
 	private KakaoPaySelectedCardInfo selectedCardInfo;
 //	private KakaoPaymentActionDetail[] paymentActionDetails;
 	private List<KakaoPaymentActionDetailVO> paymentActionDetails;
-	private String payload;
 	
 
 }
