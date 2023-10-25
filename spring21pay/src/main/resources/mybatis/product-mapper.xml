@@ -9,4 +9,7 @@
     select * from product order by product_no asc
     </select>
     
+    <select id="find" resultType="ProductDto">
+    select * from product where product_no = #{productNo}
+    </select>
     </mapper>

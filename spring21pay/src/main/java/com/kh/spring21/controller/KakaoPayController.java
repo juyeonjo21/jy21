@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring21.dao.ProductDao;
+import com.kh.spring21.dto.ProductDto;
 import com.kh.spring21.service.KakaoPayService;
 import com.kh.spring21.vo.KakaoPayApproveRequestVO;
 import com.kh.spring21.vo.KakaoPayApproveResponseVO;
@@ -103,4 +104,52 @@ public class KakaoPayController {
 //		return "/WEB-INF/views/pay2/home.jsp";
 		return "pay2/home";
 	}
+	
+	@GetMapping("/test2/purchase")
+	public String purchase(@RequestParam int productNo, HttpSession session) throws URISyntaxException {
+		//상품정보 조회
+		ProductDto productDto = productDao.selectOne(productNo);
+		//상품정보를 이용하여 결제 준비 요청 후 
+		KakaoPayReadyRequestVO request = KakaoPayReadyRequestVO.builder()
+				.itemName(productDto.getProductName())
+				.itemPrice(productDto.getProductPrice())
+				.partnerOrderId(UUID.randomUUID().toString())
+				.partnerUserId("testuser1")
+				.build();
+		
+		KakaoPayReadyResponseVO response =
+				kakaoPayService.ready(request);
+		
+		//session에 flash value를 저장(잠시 쓰고 지우는 데이터)
+		//- 사용자를 거치지 않는 범위 내에서 사용해야 안전하게 쓸 수 있다
+		session.setAttribute("approve", KakaoPayApproveRequestVO.builder()
+										.partnerOrderId(request.getPartnerOrderId())
+										.partnerUserId(request.getPartnerUserId())
+										.tid(response.getTid())
+										.build());		
+		
+		//결제페이지를 사용자에게 안내
+		return "redirect:" + response.getNextRedirectPcUrl();
+	}
+	
+	//결제 성공
+	@GetMapping("/test2/purchase/success")
+	public String test2Success(HttpSession session, @RequestParam String pg_token) throws URISyntaxException {
+		//session에 저장되어 있는 flash value를 꺼내어 pg_token을 추가한 뒤 승인 요청
+				KakaoPayApproveRequestVO request = 
+						(KakaoPayApproveRequestVO) session.getAttribute("approve");//다운캐스팅
+				session.removeAttribute("approve"); //잠깐만 저장하는 거니까 지워줘야 함
+				
+				request.setPgToken(pg_token);//토큰 추가
+				
+				//결제 승인 요청
+				KakaoPayApproveResponseVO response =  kakaoPayService.approve(request);
+				return "redirect:successResult";
+	}
+	
+	@RequestMapping("/test2/purchase/successResult")
+	public String test2SuccessResult() {
+		return "pay2/successResult";
+	}
+	
 }

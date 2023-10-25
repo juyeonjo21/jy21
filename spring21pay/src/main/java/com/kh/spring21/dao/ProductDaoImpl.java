@@ -15,8 +15,12 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Override
 	public List<ProductDto> selectList() {
-		
 		return sqlSession.selectList("product.list");
+	}
+
+	@Override
+	public ProductDto selectOne(int productNo) {
+		return sqlSession.selectOne("product.find", productNo);
 	}
 
 }
