@@ -68,13 +68,16 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 		
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
 		body.add("cid", kakaoPayProperties.getCid());
-		body.add("tid","T5376b962b8b1abb00dd");//거래번호
-		body.add("partner_order_id", "8961a371-f07b-4855-9e61-a59958672454");
-		body.add("partner_user_id", "testuser1");
-		body.add("pg_token", "9e353efb69db37c8054f");
+		body.add("tid",request.getTid());//거래번호*
+		body.add("partner_order_id", request.getPartnerOrderId());
+		body.add("partner_user_id", request.getPartnerUserId());
+		body.add("pg_token", request.getPgToken());
 		
 		HttpEntity entity = new HttpEntity(body, headers);	
-		return null;
+		
+		KakaoPayApproveResponseVO response = 
+				template.postForObject(uri, entity, KakaoPayApproveResponseVO.class);
+		return response;
 	}
 
 }
