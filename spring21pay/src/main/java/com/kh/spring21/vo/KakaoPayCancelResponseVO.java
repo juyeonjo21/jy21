@@ -1,6 +1,7 @@
 package com.kh.spring21.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -12,18 +13,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
-public class KakaoPayApproveResponseVO {
-	private String aid, tid, cid, sid; //요청,거래,가맹점,정기결제 코드
+public class KakaoPayCancelResponseVO {
+	private String aid, tid, cid, status;
 	private String partnerOrderId, partnerUserId;
-	private String payMentMethodType; //결제수단(카드/머니)
+	private String paymentMethodType;
 	private KakaoPayAmountVO amount;
-	private KakaoPayCardInfoVO cardInfo;
-	private String itemName, itemCode;
-	private int quantity; //수량
-	private Date createdAt, approvedAt;//준비,승인시각
-	private String payload;//메모
+	private KakaoPayAmountVO canceledAmount;
+	private KakaoPayAmountVO cancelAvailableAmount;
+	private int quantity;
+	private Date createdAt, approvedAt, canceledAt;
+	private String payload;
 	
-
 }

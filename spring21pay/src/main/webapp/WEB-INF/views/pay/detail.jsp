@@ -3,7 +3,14 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-    <h1>결제 상세 내역</h1>
+    <h1>
+    결제 상세 내역
+    <br>
+    <hr>
+    <c:if test="${vo.status != 'CANCEL_PAYMENT'}">
+    <a href="cancel?tid=${vo.tid}&cancelAmount=${vo.cancelAvailableAmount.total}">결제취소</a>
+    </c:if>
+    </h1>
     
     <ul>
     <li>거래번호 : ${vo.tid}</li>
@@ -11,20 +18,20 @@
     <li>partner_order_id : ${vo.partnerOrderId}</li>
     <li>partner_user_id : ${vo.partnerUserId}</li>
     
-    <li>결제유형 :
+    <li>결제유형 : ${vo.paymentMethodType}
     <c:choose>
     <c:when test="${vo.paymentMethodType == 'MONEY'}">현금</c:when>
     <c:otherwise>카드</c:otherwise>
     </c:choose>
     </li>
     <li>상품명 : ${vo.itemName}</li>
-    <li>결제 시작시간 : 
+    <li>결제 시작시각 : 
     	<fmt:formatDate value="${vo.createdAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
     </li>
-    <li>결제 승인시간 : 
+    <li>결제 승인시각 : 
     	<fmt:formatDate value="${vo.approvedAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
     </li>
-    <li>결제 취소시간 : 
+    <li>결제 취소시각 : 
     	<fmt:formatDate value="${vo.canceledAt}" pattern="yyyy-MM-dd HH:mm:ss"/>
     </li>
     
@@ -38,4 +45,26 @@
     <li>판매가 : 
     	<fmt:formatNumber value="${vo.amount.total - vo.amount.vat}" pattern="#,##0"></fmt:formatNumber>
     원</li>
+    <c:if test="${vo.selectedCardInfo != null}">
+    <li>
+    카드정보 
+    <ul>
+    	<li>카드번호 : ${vo.selectedCardInfo.cardBin}</li>
+    	<li>할부개월수 : ${vo.selectedCardInfo.installMonth}</li>
+    	<li>카드사명 : ${vo.selectedCardInfo.cardCorpName}</li>
+    	<li>무이자할부 : ${vo.selectedCardInfo.interestFreeInstall}</li>
     </ul>
+    </li>
+    </c:if>
+    </ul>
+    
+    <hr>
+    
+    <h1>결제 진행내역</h1>
+    <hr>
+    <ul>
+    <c:forEach var="paymentActionDetailVO" items="${vo.paymentActionDetails}">
+    <li>${paymentActionDetailVO}</li>
+    </c:forEach>
+    </ul>
+    
