@@ -295,4 +295,9 @@ public class KakaoPayController {
 		return "pay3/list";
 	}
 	
+	@RequestMapping("/test3/list2")
+	public String test3list2(Model model) {
+		model.addAttribute("list", paymentDao.selectTotalList());
+		return "pay3/list2";
+	}
 }

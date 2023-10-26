@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring21.dto.PaymentDetailDto;
 import com.kh.spring21.dto.PaymentDto;
+import com.kh.spring21.vo.PaymentListVO;
 
 @Repository
 public class PaymentDaoImpl implements PaymentDao{
@@ -34,6 +35,11 @@ public class PaymentDaoImpl implements PaymentDao{
 	@Override
 	public List<PaymentDto> selectList() {
 		return sqlSession.selectList("payment.list");
+	}
+
+	@Override
+	public List<PaymentListVO> selectTotalList() {
+		return sqlSession.selectList("payment.listAll");
 	}
 
 }
