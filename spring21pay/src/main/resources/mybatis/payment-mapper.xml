@@ -99,4 +99,28 @@
     	order by payment_detail_no asc
     </select>
     
+    <!-- [1] payment 상세조회 -->
+    <select id="find" resultType="PaymentDto">
+    	select * from payment where payment_no = #{paymentNo}
+    </select>
+    
+    <!-- [2] payment_detail 상세조회 -->
+    <select id="selectDetail" resultType="PaymentDetailDto">
+    	select * from payment_detail where payment_detail_no = #{paymentDetailNo}
+    </select>
+    
+    <!-- payment 잔여금액처리 -->
+    <update id="cancel">
+    	update payment set payment_remain = #{paymentRemain}
+    	where payment_no = #{paymentNo}
+    </update>
+    
+    <!-- payment_detail 의 취소처리  -->
+    <update id="cancelDetail">
+    	update payment_detail 
+    	set payment_detail_status = '취소'
+    	where payment_detail_no = #{paymentDetailNo}
+    </update>
+    
+    
     </mapper>

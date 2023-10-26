@@ -42,4 +42,25 @@ public class PaymentDaoImpl implements PaymentDao{
 		return sqlSession.selectList("payment.listAll");
 	}
 
+	@Override
+	public PaymentDetailDto selectDetail(int paymentDetailNo) {
+		return sqlSession.selectOne("payment.selectDetail", paymentDetailNo);
+	}
+
+	@Override
+	public PaymentDto selectOne(int paymentNo) {
+		return sqlSession.selectOne("payment.find", paymentNo);
+	}
+
+	@Override
+	public void cancelDetail(int paymentDetailNo) {
+		sqlSession.update("payment.cancelDetail", paymentDetailNo);
+		
+	}
+
+	@Override
+	public void cancel(PaymentDto paymentDto) {
+		sqlSession.update("payment.cancel", paymentDto);
+	}
+
 }
