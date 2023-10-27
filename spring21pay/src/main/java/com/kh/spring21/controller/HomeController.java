@@ -19,7 +19,7 @@ public class HomeController {
 	public String login(HttpSession session, 
 						@RequestParam String memberId,
 						@RequestParam String memberPw) {
-		if(memberId.equals("testuser1") && memberPw.equals("Testuser1!")) {
+		if(memberId.equals("testuser10") && memberPw.equals("Testuser10!")) {
 			session.setAttribute("name", memberId);
 			session.setAttribute("level", "VIP");
 		}
