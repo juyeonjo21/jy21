@@ -19,6 +19,7 @@ public interface PaymentDao {
 	
 	void cancelDetail(int paymentDetailNo);
 	void cancel(PaymentDto paymentDto);
+	void cancelDetailGroup(int paymentDetailOrigin); // =paymentNo랑 같은 뜻으로 부르는거임
 	
 	
 

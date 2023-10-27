@@ -9,7 +9,13 @@
 	
 	<!-- 대표정보 -->
 	<div style="border:1px solid blue; padding:10px;">
-		${paymentListVO.paymentDto}</div>
+		${paymentListVO.paymentDto}
+		<hr>
+		<%-- 전체취소 버튼은 잔여 금액이 있을 때만 출력되어야 한다 --%>
+		<c:if test="${paymentListVO.paymentDto.paymentRemain > 0}">
+		<a href="cancelAll?paymentNo=${paymentListVO.paymentDto.paymentNo}">전체(잔여)금액 취소</a>
+		</c:if>
+		</div>
 		
 	<!-- 상세정보 -->	
 	<div style="border:1px solid red; padding:10px; margin-top:10px;">

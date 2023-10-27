@@ -63,4 +63,9 @@ public class PaymentDaoImpl implements PaymentDao{
 		sqlSession.update("payment.cancel", paymentDto);
 	}
 
+	@Override
+	public void cancelDetailGroup(int paymentDetailOrigin) {
+		sqlSession.update("payment.cancelDetailGroup", paymentDetailOrigin);
+	}
+
 }
