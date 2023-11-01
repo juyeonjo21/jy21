@@ -10,20 +10,18 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class MemberComplexSearchVO {
-	private Integer memberId;
-	private String memberPw;
+	private String memberId;
 	private String memberNickname;
 	private String memberEmail;
 	private String memberContact;
 	private String memberBirth;
-	private String memberPost;
-	private String memberAddr1;
-	private String memberAddr2;
 	private List<String> memberLevelList;
-	private int memberPoint;
-	private Date memberJoin;
-	private Date memberLogin;
-	private Date memberChange;
+	private Integer memberPointMin, memberPointMax;
+	private String memberJoinBegin, memberJoinEnd; //날짜도 검색할 때는 문자열로 입력
+	private String memberLoginBegin, memberLoginEnd;
+	
+	private List<String> orderList;
+
 	
 	
 
