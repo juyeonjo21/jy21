@@ -17,4 +17,20 @@
     <delete id="remove">
     	delete pocketmon where no = #{no}
     </delete>
+    
+    <select id="find" resultType="pocketmonDto">
+    	select * from pocketmon where no = #{no}
+    </select>
+    
+    <update id="edit">
+    	update pocketmon
+    	set 
+    	<if test="dto.no > 0">
+    	no = #{dto.no},
+    	</if>
+    	name = #{dto.name}, type = #{dto.type}
+    	where no = #{no}
+    </update>
+    
+    
     </mapper>
