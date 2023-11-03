@@ -2,6 +2,7 @@ package com.kh.spring22.restcontroller;
 
 import java.util.List;
 
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,13 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.spring22.dao.PocketmonDao;
 import com.kh.spring22.dto.PocketmonDto;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+//문서용 어노테이션
+@Tag(name = "포켓몬스터 리액트용 백엔드", description = "피카츄~")
 
 @CrossOrigin
 //@CrossOrigin(value = {"http://localhost:3000", "http://localhost:5500"})
@@ -45,8 +48,10 @@ public class PocketmonRestController {
 	
 	@PostMapping("/")
 //	public void  insert(@ModelAttribute PocketmonDto pocketmonDto) {//from-data 수신용
-	//@RequestBody 직접 해석 -> 스프링으로 import해야함. swagger(x)
-	public void insert(@RequestBody PocketmonDto pocketmonDto) {
+	//@RequestBody 직접 해석(ex:JSON) -> 스프링으로 import해야함. swagger(x)
+	public void insert(
+			@ParameterObject 
+			@RequestBody PocketmonDto pocketmonDto) {
 		pocketmonDao.insert(pocketmonDto);
 	}
 	
