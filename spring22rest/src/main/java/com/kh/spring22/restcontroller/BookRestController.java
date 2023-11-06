@@ -19,8 +19,10 @@ import com.kh.spring22.dao.BookDao;
 import com.kh.spring22.dto.BookDto;
 import com.kh.spring22.dto.PocketmonDto;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
+@Tag(name="도서 관리", description = "도서 정보 관리를 위한 컨트롤러")
 @CrossOrigin
 @RequestMapping("/book")
 @RestController
@@ -34,47 +36,33 @@ public class BookRestController {
 		return bookDao.selectList();
 	}
 	
+	@GetMapping("/bookId/{bookId}")
+	public BookDto find(@PathVariable int bookId) {
+		return bookDao.selectOne(bookId);
+	}
+	
+	@GetMapping("/bookTitle/{bookTitle}")
+	public List<BookDto> search(@PathVariable String bookTitle) {
+		return bookDao.searchList(bookTitle);
+	}
+	
 	@PostMapping("/")
 	public void insert(@RequestBody BookDto bookDto) {
 		bookDao.insert(bookDto);
 	}
 	
-	@DeleteMapping("/{bookId}")
-	public ResponseEntity<String> delete(@PathVariable int bookId){
-		boolean result = bookDao.delete(bookId);
-		if(result) {
-			return ResponseEntity.status(200).build();
-		}
-		else {
-			return ResponseEntity.status(404).build();
-		}
+	@PutMapping("/{bookId}")
+	public void update(@RequestBody BookDto bookDto, @PathVariable int bookId) {
+		//bookDto에 모든 항목이 있는지 검사해야함
+		bookDao.edit(bookId, bookDto);
 	}
-	
-	@GetMapping("/bookId/{bookId}")
-	public ResponseEntity<BookDto> find(@PathVariable int bookId){
-		BookDto bookDto = bookDao.selectOne(bookId);
-		if(bookDto != null) {
-			return ResponseEntity.ok(bookDto);
-		}
-		else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-	
-	@PutMapping("/bookId/{bookId}")
-	public ResponseEntity<String> edit(@PathVariable int bookId, @RequestBody BookDto bookDto){
-		boolean result = bookDao.edit(bookId, bookDto);
-		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
-	}
-
 	@PatchMapping("/{bookId}")
-	public ResponseEntity<String> deitUnit(
-		@PathVariable int bookId, @RequestBody BookDto bookDto){
-		if(bookDto.isEmpty()) {
-		ResponseEntity.badRequest().build();
+	public void update2(@RequestBody BookDto bookDto, @PathVariable int bookId) {
+		//bookDto에 항목이 하나라도 있는지 검사해야함
+		bookDao.edit(bookId, bookDto);
 	}
-	boolean result = bookDao.editUnit(bookId, bookDto);
-	return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+	@DeleteMapping("/{bookId}")
+	public void delete(@PathVariable int bookId) {
+		bookDao.delete(bookId);
 	}
 }
-

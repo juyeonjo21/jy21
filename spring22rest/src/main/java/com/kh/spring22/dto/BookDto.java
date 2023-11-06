@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Schema(description = "도서 정보 객체")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class BookDto {
 	
@@ -13,8 +14,9 @@ public class BookDto {
 	private String bookTitle;
 	private String bookAuthor;
 	private String bookPublicationDate;
-	private float bookPrice;
 	private String bookPublisher;
+	
+	private float bookPrice;
 	private int bookPageCount;
 	private String bookGenre;
 	
