@@ -2,11 +2,14 @@ package com.kh.spring22.dto;
 
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Schema(description = "포켓몬스터 정보")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
@@ -22,6 +25,7 @@ public class PocketmonDto {
 	@Schema(description = "몬스터속성", allowableValues = {"풀","불","물","전기","무속성"}, nullable = false, example = "전기")
 	private String type;
 	
+	@JsonIgnore
 	@Schema(hidden = true)
 	public boolean isEmpty() {
 		return no == 0 && name == null && type == null;
