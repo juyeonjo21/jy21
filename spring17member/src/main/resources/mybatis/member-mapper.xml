@@ -56,18 +56,18 @@
     </choose>
     <!-- 가입일(구간) -->
     <choose>
-    <when test="memebrJoinBegin != null and memberJoinEnd != null">
+    <when test="memberJoinBegin != null and memberJoinEnd != null">
     and member_join between
     	to_date(#{memberJoinBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     	and
     	to_date(#{memberJoinEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     </when>
-    <when test="memebrJoinBegin != null">
+    <when test="memberJoinBegin != null">
     <![CDATA[
     and member_join >= to_date(#{memberJoinBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     ]]>
     </when>
-    <when test="memebrJoinEnd != null">
+    <when test="memberJoinEnd != null">
     <![CDATA[
     and member_join <= to_date(#{memberJoinEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     ]]>
@@ -76,18 +76,18 @@
     
     <!-- 로그인 일자(구간) -->
     <choose>
-    <when test="memebrLoginBegin != null and memberLoginEnd != null">
+    <when test="memberLoginBegin != null and memberLoginEnd != null">
     and member_login between
     	to_date(#{memberLoginBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     	and
     	to_date(#{memberLoginEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     </when>
-    <when test="memebrLoginBegin != null">
+    <when test="memberLoginBegin != null">
     <![CDATA[
     and member_login >= to_date(#{memberLoginBegin} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     ]]>
     </when>
-    <when test="memebrLoginEnd != null">
+    <when test="memberLoginEnd != null">
     <![CDATA[
     and member_login <= to_date(#{memberLoginEnd} ||''||'00:00:00','yyyy-mm-dd hh24:mi:ss')
     ]]>
